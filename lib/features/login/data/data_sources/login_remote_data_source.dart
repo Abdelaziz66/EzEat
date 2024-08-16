@@ -1,0 +1,62 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ez_eat/features/login/domain/entities/login_entity.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
+import '../models/login_model.dart';
+
+abstract class LoginRemoteDataSource{
+ Future<LoginEntity>  login({required LoginDataModel loginDataModel});
+ Future<LoginEntity> getUserDataFunction({required uid});
+}
+
+class LoginRemoteDataSourceImpl extends LoginRemoteDataSource{
+
+
+  @override
+  Future<LoginEntity> login({required LoginDataModel loginDataModel}) async{
+    LoginEntity? loginEntity;
+    await FirebaseAuth.instance
+        .signInWithEmailAndPassword(email: loginDataModel.email!, password:loginDataModel.password!)
+        .then((value) async {
+
+      loginEntity = await getUserDataFunction(uid: value.user?.uid);
+      return loginEntity;
+    });
+    return loginEntity!;
+  }
+
+  @override
+  Future<LoginEntity> getUserDataFunction({required uid}) async{
+    LoginEntity? loginEntity;
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(uid)
+        .get()
+        .then((value) {
+          loginEntity = LoginModel.fromJson(value.data());
+          return  loginEntity;
+    });
+    return  loginEntity!;
+  }
+
+  //
+  // @override
+  // Future<void> getUserDataFunction({required LoginModel loginModel,required uid}) async {
+  //
+  //   LoginModel loginModelI = LoginModel(
+  //     name:  loginModel.name,
+  //     email: loginModel.email,
+  //     phone: loginModel.phone,
+  //   );
+  //
+  //   await FirebaseFirestore.instance
+  //       .collection('users')
+  //       .doc(uid)
+  //       .set(loginModelI.tomap())
+  //       .then((value) {
+  //
+  //   });
+  // }
+
+
+}

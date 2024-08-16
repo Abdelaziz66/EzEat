@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "339204339904",
+    "project_id": "ezeat-17178",
+    "storage_bucket": "ezeat-17178.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:339204339904:android:1349d75ad642e273925525",
+        "android_client_info": {
+          "package_name": "com.example.ez_eat"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDx0WGdBizPmMa72pGSFw-dVWqEClQsZb0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
