@@ -11,21 +11,21 @@ class LayoutAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    return const SafeArea(
       child: SizedBox(
         height: 60,
-        child: AppBar(
-          backgroundColor: Colors.transparent,
-          actions: const [
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+
+            DrawerIcon(),
+            Spacer(),
             Padding(
               padding: EdgeInsets.only(top: 0.0, right: 20),
               child: FaIcon(FontAwesomeIcons.opencart),
             ),
 
           ],
-
-          leading:   const DrawerIcon(),
-          centerTitle: true,
         ),
       ),
     );
@@ -41,31 +41,36 @@ class DrawerIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => scaffoldKey.currentState?.openDrawer(),
+      behavior: HitTestBehavior.translucent,
       child: Padding(
         padding: const EdgeInsets.only(top: 0.0, left: 20),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              height: 2.8,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: Colors.black,
-              ),
-            ),
-            const SizedBox(height: 7),
-            Container(
+        child: SizedBox(
 
-              width: 20,
-              height: 2.5,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: Colors.black,
+          width: 38,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                height: 2.8,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: Colors.black,
+                ),
               ),
-            ),
+              const SizedBox(height: 7),
+              Container(
 
-          ],
+                width: 20,
+                height: 2.5,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: Colors.black,
+                ),
+              ),
+
+            ],
+          ),
         ),
       ),
     );

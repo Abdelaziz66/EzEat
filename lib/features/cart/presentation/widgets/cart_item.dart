@@ -38,12 +38,12 @@ class _CartItemState extends State<CartItem> {
           borderRadius: BorderRadius.circular(35),
           color: Colors.white.withOpacity(.3),
         ),
-        child: Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 15.0,right: 15,top: 15),
+              child: Row(
                 children: [
                   _FoodImage(widget: widget),
                   const SizedBox(
@@ -92,8 +92,11 @@ class _CartItemState extends State<CartItem> {
                   ),
                 ],
               ),
-              const Spacer(),
-              Container(
+            ),
+            const Spacer(),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(25),
                     color: Colors.black.withOpacity(.05),
@@ -183,8 +186,8 @@ class _CartItemState extends State<CartItem> {
                       ],
                     ),
                   )),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

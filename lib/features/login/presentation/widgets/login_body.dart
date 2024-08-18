@@ -1,3 +1,4 @@
+import 'package:ez_eat/features/dashboard/presentation/manager/dashboard_cubit/dashboard_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -140,11 +141,12 @@ class _LoginBodyState extends State<LoginBody> {
   }
 
   void _loginSuccess(LoginSuccessState state, BuildContext context) {
-     showFlutterToastMessage(message: 'Login Successful');
+    showFlutterToastMessage(message: 'Login Successful');
     saveToHive('isLogin',true, kStartBox);
     saveToHive('uId',state.loginEntity.uid, kStartBox);
     uId=state.loginEntity.uid;
     GoRouter.of(context).push(AppRouter.kLayout);
+    DashboardCubit.get(context).getFood();
   }
 }
 
