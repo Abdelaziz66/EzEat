@@ -1,5 +1,4 @@
 import 'package:ez_eat/core/constants/constant.dart';
-import 'package:ez_eat/core/style/textStyles.dart';
 import 'package:ez_eat/core/widgets/animation_background.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -8,7 +7,6 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../../../core/functions/save_food.dart';
 import '../../../../core/utils/app_router.dart';
 import '../../../../core/widgets/custom_button.dart';
-import '../pages/login_or_register.dart';
 import 'onboarding_item.dart';
 
 class OnboardingBody extends StatefulWidget {
@@ -32,7 +30,6 @@ class _OnboardingBodyState extends State<OnboardingBody> {
     'App display calories, fats, protein and carb.',
     'You can get your food in 10 min.',
   ];
-
   final List imageName = [
     'sheif.png',
     'book.png',
@@ -57,11 +54,7 @@ class _OnboardingBodyState extends State<OnboardingBody> {
                     subTitle: subTitle[index]),
                 physics: const BouncingScrollPhysics(),
                 onPageChanged: (index) {
-                  if (index == 2) {
-                    isLast = true;
-                  } else {
-                    isLast = false;
-                  }
+                  _changeInOnboarding(index);
                 },
                 controller: smoothPageController,
                 scrollDirection: Axis.horizontal,
@@ -83,24 +76,13 @@ class _OnboardingBodyState extends State<OnboardingBody> {
                         expansionFactor: 4,
                       ),
                       count: 3),
-                  Spacer(),
+                  const Spacer(),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: CustomButton(
                       text: 'Next',
                       onTap: () {
-                        if (isLast) {
-                          saveToHive('isOnboarding',true, KStartBox);
-                          GoRouter.of(context).push(AppRouter.kLoginOrRegister);
-
-                        } else {
-                          smoothPageController.nextPage(
-                            duration: const Duration(
-                              milliseconds: 750,
-                            ),
-                            curve: Curves.fastLinearToSlowEaseIn,
-                          );
-                        }
+                        _clickOnNext(context);
                       },
                       key: null,
                     ),
@@ -112,6 +94,29 @@ class _OnboardingBodyState extends State<OnboardingBody> {
         ),
       ),
     );
+  }
+
+  void _changeInOnboarding(int index) {
+     if (index == 2) {
+      isLast = true;
+    } else {
+      isLast = false;
+    }
+  }
+
+  void _clickOnNext(BuildContext context) {
+     if (isLast) {
+      saveToHive('isOnboarding',true, kStartBox);
+      GoRouter.of(context).push(AppRouter.kLoginOrRegister);
+
+    } else {
+      smoothPageController.nextPage(
+        duration: const Duration(
+          milliseconds: 750,
+        ),
+        curve: Curves.fastLinearToSlowEaseIn,
+      );
+    }
   }
 }
 

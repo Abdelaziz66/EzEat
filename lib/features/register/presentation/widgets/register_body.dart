@@ -7,9 +7,9 @@ import '../../../../core/style/colors.dart';
 import '../../../../core/style/textStyles.dart';
 import '../../../../core/utils/app_router.dart';
 import '../../../../core/widgets/animation_background.dart';
+import '../../../../core/widgets/back_icon.dart';
 import '../../../../core/widgets/custom_button.dart';
 import '../../../../core/widgets/custom_text_form_field.dart';
-import '../../../login/presentation/pages/login.dart';
 import '../../data/models/register_model.dart';
 import '../manager/register_cubit/register_cubit.dart';
 
@@ -31,7 +31,7 @@ class _RegisterBodyState extends State<RegisterBody> {
     return BlocConsumer<RegisterCubit, RegisterState>(
       listener: (context, state) {
         if (state is RegisterSuccessState) {
-          showFlutterToastMessage(message: 'Sign Up Successful');
+          showFlutterToastMessage(message: 'Register Successful');
         }
         if (state is RegisterErrorState) {
           showFlutterToastMessage(message: 'Register Failed');
@@ -49,22 +49,7 @@ class _RegisterBodyState extends State<RegisterBody> {
                     key: formKey,
                     child: Column(
                       children: [
-                        SizedBox(
-                          height: 60,
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              IconButton(
-                                icon: const FaIcon(
-                                  FontAwesomeIcons.chevronLeft,
-                                ),
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                              ),
-                            ],
-                          ),
-                        ),
+                        const BackIcon(),
                         SizedBox(height: MediaQuery.of(context).size.height*.05,),
                         const Text(
                           'Register',
@@ -143,48 +128,14 @@ class _RegisterBodyState extends State<RegisterBody> {
                         const CircularProgressIndicator():
                         CustomButton(
                           onTap: () {
-                            if (formKey.currentState!.validate()) {
-                              RegisterModel registerModel = RegisterModel(
-                                 email:  emailController.text,
-                                 password: passwordController.text,
-                                name: nameController.text,
-                                 phone: phoneController.text);
-                              cubit.register(
-                                registerModel: registerModel,
-                              );
-                            }
+                            _clickOnRegister(cubit);
                           },
                           text: 'Register',
                         ),
                         const SizedBox(
                           height: 20,
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              'Have an account !',
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.grey[700],
-                              ),
-                            ),
-                            TextButton(
-                              onPressed: () {
-                                GoRouter.of(context).push(AppRouter.kLogin);
-                              },
-                              child: const Text(
-                                'Login now',
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.blue,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
+                        const _HaveAccount(),
                       ],
                     ),
                   ),
@@ -194,6 +145,53 @@ class _RegisterBodyState extends State<RegisterBody> {
           ),
         );
       },
+    );
+  }
+
+  void _clickOnRegister(RegisterCubit cubit) {
+       if (formKey.currentState!.validate()) {
+      RegisterModel registerModel = RegisterModel(
+         email:  emailController.text,
+         password: passwordController.text,
+        name: nameController.text,
+         phone: phoneController.text);
+      cubit.register(
+        registerModel: registerModel,
+      );
+    }
+  }
+}
+
+class _HaveAccount extends StatelessWidget {
+  const _HaveAccount();
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          'Have an account !',
+          style: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.w500,
+            color: Colors.grey[700],
+          ),
+        ),
+        TextButton(
+          onPressed: () {
+            GoRouter.of(context).push(AppRouter.kLogin);
+          },
+          child: const Text(
+            'Login now',
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w500,
+              color: Colors.blue,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

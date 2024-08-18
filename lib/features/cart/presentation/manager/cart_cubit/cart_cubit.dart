@@ -1,9 +1,10 @@
 
+import 'package:ez_eat/features/cart/domain/use_cases/add_to_cart_usecase.dart';
+import 'package:ez_eat/features/cart/domain/use_cases/remove_from_cart_usecase.dart';
 import 'package:ez_eat/features/dashboard/presentation/manager/dashboard_cubit/dashboard_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../dashboard/domain/entities/food_entity.dart';
-import '../../../domain/use_cases/add_to_cart_usecase.dart';
-import '../../../domain/use_cases/remove_from_cart_usecase.dart';
+
 import 'cart_state.dart';
 
 
@@ -18,7 +19,7 @@ class CartCubit extends Cubit<CartState> {
 
 
 
-  void addToFavourite({required FoodEntity food,required context})async{
+  void addToCart({required FoodEntity food,required context})async{
     for(int i=0;i< DashboardCubit.get(context).foods.length;i++){
       if( DashboardCubit.get(context).foods[i].id==food.id){
         if(DashboardCubit.get(context).foods[i].cart){
@@ -36,14 +37,13 @@ class CartCubit extends Cubit<CartState> {
 
     result.fold((failure) {
       emit(AddToCartErrorState(failure.message));
-      print(failure.message);
     }, (r) {
       emit(AddToCartSuccessState());
     });
 
   }
 
-  void removeFromFavourite({required FoodEntity food,required context})async{
+  void removeFromCart({required FoodEntity food,required context})async{
     for(int i=0;i< DashboardCubit.get(context).foods.length;i++){
       if( DashboardCubit.get(context).foods[i].id==food.id){
         if(!DashboardCubit.get(context).foods[i].cart){
@@ -59,7 +59,6 @@ class CartCubit extends Cubit<CartState> {
     var result = await removeFromCartUseCase.call(food.id);
     result.fold((failure) {
       emit(RemoveFromCartErrorState(failure.message));
-      print(failure.message);
     }, (r) {
       emit(RemoveFromCartSuccessState());
     });

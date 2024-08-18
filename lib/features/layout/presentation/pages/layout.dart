@@ -14,7 +14,7 @@ class Layout extends StatelessWidget {
   Widget build(BuildContext context) {
     return  Scaffold(
       key: scaffoldKey,
-      body:const Layoutbody(),
+      body:const LayoutBody(),
     );
   }
 }

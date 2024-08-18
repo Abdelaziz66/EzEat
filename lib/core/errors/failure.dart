@@ -24,11 +24,11 @@ class ServerFailure extends Failure {
         return ServerFailure.fromResponse(
             e.response!.statusCode!, e.response!.data);
       case DioErrorType.cancel:
-        return ServerFailure('Request to ApiServer was canceld');
+        return ServerFailure('Request to ApiServer was canceled');
       case DioErrorType.connectionError:
         return ServerFailure('No Internet Connection');
       case DioErrorType.unknown:
-        return ServerFailure('Opps There was an Error, Please try again');
+        return ServerFailure('Ops There was an Error, Please try again');
     }
   }
 

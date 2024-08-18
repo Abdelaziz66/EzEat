@@ -1,10 +1,8 @@
-import 'dart:ui';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class LayoutBackground extends StatelessWidget {
-  const LayoutBackground({
+class BackGroundShape extends StatelessWidget {
+  const BackGroundShape({
     super.key,
   });
 
@@ -25,7 +23,7 @@ class LayoutBackground extends StatelessWidget {
           children: [
             Expanded(
               child: Container(
-              
+
                 height:MediaQuery.of(context).size.height*.25,
                 decoration: const BoxDecoration(
                   color: Color(0xFFFCB0AA),
@@ -34,7 +32,7 @@ class LayoutBackground extends StatelessWidget {
             ),
             Expanded(
               child: Container(
-                
+
                 height:MediaQuery.of(context).size.height*.25,
                 decoration: const BoxDecoration(
                   shape: BoxShape.circle,
@@ -79,4 +77,3 @@ class LayoutBackground extends StatelessWidget {
     );
   }
 }
-

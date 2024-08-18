@@ -11,8 +11,6 @@ class FoodLocalDataSourceImpl extends FoodLocalDataSource{
   @override
   List<FoodEntity> getFood() {
     var box = Hive.box<FoodEntity>(kFoodBox);
-    print('hive box length ');
-    print(box.values.toString().length);
     return box.values.toList();
   }
 

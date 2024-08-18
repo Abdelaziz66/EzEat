@@ -2,7 +2,6 @@
 import 'package:ez_eat/core/style/textStyles.dart';
 import 'package:flutter/material.dart';
 
-import '../utils/strings.dart';
 
 class Titles extends StatelessWidget {
   const Titles({

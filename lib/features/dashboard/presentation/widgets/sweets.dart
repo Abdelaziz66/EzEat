@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../core/functions/show_flutter_toast_message.dart';
 import '../manager/dashboard_cubit/dashboard_cubit.dart';
 import 'food_gridview.dart';
 class Sweets extends StatelessWidget {
@@ -12,19 +11,7 @@ class Sweets extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<DashboardCubit, DashboardState>(
-      listener: (context, state) {
-        // if (state is GetDashBoardDataSuccessState) {
-        //   foods.addAll(state.food);
-        //   print(foods.length);
-        // }
-        //
-        // if (state is GetDashBoardDataErrorState) {
-        //   ScaffoldMessenger.of(context).showSnackBar(
-        //     buildErrorWidget(state.errMessage),
-        //   );
-        // }
-      },
+    return BlocBuilder<DashboardCubit, DashboardState>(
       builder: (context, state) {
         DashboardCubit  cubit=DashboardCubit.get(context);
         if (state is GetDashBoardDataSuccessState ||  cubit.foods.isNotEmpty) {

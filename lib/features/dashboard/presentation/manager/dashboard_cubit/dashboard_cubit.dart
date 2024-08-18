@@ -1,12 +1,12 @@
-import 'package:ez_eat/features/dashboard/domain/use_cases/food_usecase.dart';
-import 'package:ez_eat/features/dashboard/presentation/widgets/Discount.dart';
-import 'package:ez_eat/features/dashboard/presentation/widgets/Sweets.dart';
+import 'package:ez_eat/features/dashboard/domain/use_cases/food_use_case.dart';
+import 'package:ez_eat/features/dashboard/presentation/widgets/discount.dart';
+import 'package:ez_eat/features/dashboard/presentation/widgets/sweets.dart';
 import 'package:ez_eat/features/dashboard/presentation/widgets/drinks.dart';
 import 'package:ez_eat/features/dashboard/presentation/widgets/sandwiches.dart';
-import 'package:ez_eat/features/favourite/presentation/manager/favourite_cubit/favourite_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../cart/presentation/manager/cart_cubit/cart_state.dart';
 import '../../../../favourite/presentation/manager/favourite_cubit/favourite_state.dart';
 import '../../../domain/entities/food_entity.dart';
 
@@ -30,8 +30,8 @@ class DashboardCubit extends Cubit<DashboardState> {
 
   final FoodUseCase foodUseCase;
 
-  List<Widget> bestSellerCarusolList =[];
-  List<Widget> offersCarusolList =[];
+  List<Widget> bestSellerCarouselList =[];
+  List<Widget> offersCarouselList =[];
 
   List<FoodEntity> foods = [];
   Future<void> getFood() async {
@@ -39,15 +39,24 @@ class DashboardCubit extends Cubit<DashboardState> {
     var result = await foodUseCase.call();
     result.fold((failure) {
       emit(GetDashBoardDataErrorState(failure.message));
-      print(failure.message);
     }, (food) {
       emit(GetDashBoardDataSuccessState(food));
     });
   }
+
   void getFavourite({required List<FoodEntity> foods}){
     for(int i=0;i< foods.length;i++) {
       if(foods[i].favourite) {
         ChangeFavouriteSuccessState.add(food:foods[i]);
+      }
+    }
+
+  }
+
+  void getCart({required List<FoodEntity> foods}){
+    for(int i=0;i< foods.length;i++) {
+      if(foods[i].cart) {
+        ChangeCartSuccessState.add(food:foods[i]);
       }
     }
 

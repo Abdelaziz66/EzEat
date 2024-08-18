@@ -1,7 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:ez_eat/features/dashboard/presentation/widgets/offers_slider_item.dart';
 import 'package:flutter/material.dart';
-
 import '../manager/dashboard_cubit/dashboard_cubit.dart';
 
 
@@ -11,10 +9,9 @@ class OffersSlider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height * .20,
-
+      height:180,
       child:CarouselSlider(
-        items:  DashboardCubit.get(context).offersCarusolList,
+        items:  DashboardCubit.get(context).offersCarouselList,
         options: CarouselOptions(
           height: double.infinity,
           viewportFraction: 1,

@@ -5,4 +5,4 @@ abstract class LayoutState {}
 
 class LayoutInitial extends LayoutState {}
 
-class NavigationbarState extends LayoutState {}
+class NavigationBarState extends LayoutState {}

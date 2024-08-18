@@ -4,8 +4,6 @@ import 'package:ez_eat/features/favourite/domain/use_cases/add_to_favourite_usec
 import 'package:ez_eat/features/favourite/domain/use_cases/remove_from_favourite_usecase.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../../core/constants/constant.dart';
-import '../../../../../core/functions/save_food.dart';
 import '../../../../dashboard/domain/entities/food_entity.dart';
 import 'favourite_state.dart';
 
@@ -39,7 +37,6 @@ class FavouriteCubit extends Cubit<FavouriteState> {
 
     result.fold((failure) {
       emit(AddToFavouriteErrorState(failure.message));
-      print(failure.message);
     }, (r) {
       emit(AddToFavouriteSuccessState());
     });
@@ -59,23 +56,9 @@ class FavouriteCubit extends Cubit<FavouriteState> {
         break;
       }
     }
-    // print('---------------');
-    // print('this is now must be unfavourite');
-    // print('---------------');
-    // print(food.title);
-    // print(food.favourite);
-    // print('---------------');
-    // print('this is now must be favourite');
-    // print('---------------');
-    // ChangeFavouriteSuccessState.favourite.forEach((element) {
-    //   print(element.title);
-    //   print(element.favourite);
-    //   print('---------------');
-    // });
     var result = await removeFromFavouriteUseCase.call(food.id);
     result.fold((failure) {
       emit(RemoveFromFavouriteErrorState(failure.message));
-      print(failure.message);
     }, (r) {
       emit(RemoveFromFavouriteSuccessState());
     });
