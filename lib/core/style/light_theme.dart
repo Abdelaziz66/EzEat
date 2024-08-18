@@ -4,9 +4,6 @@ import 'colors.dart';
 
 
 final lightTheme = ThemeData(
-    appBarTheme: const AppBarTheme(
-      centerTitle: true,
-    ),
     brightness: Brightness.light,
     primaryColor: KColors.primaryColor,
     colorScheme: const ColorScheme.light(

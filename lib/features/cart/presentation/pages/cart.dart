@@ -1,4 +1,3 @@
-import 'package:ez_eat/core/style/textStyles.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/cart_body.dart';

@@ -25,6 +25,8 @@ class CustomTextFormField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 70,
+      width: MediaQuery.of(context).size.width<600? MediaQuery.of(context).size.width: 600,
+
       decoration: BoxDecoration(
         // border: Border.all(color: Colors.black),
         borderRadius: BorderRadius.circular(20),

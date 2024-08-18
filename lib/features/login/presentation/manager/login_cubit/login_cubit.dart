@@ -1,5 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../data/models/login_model.dart';
@@ -14,7 +12,7 @@ class LoginCubit extends Cubit<LoginState> {
   final LoginUseCase loginUseCase;
 
 
-  bool isVisible = false;
+  bool isVisible = true;
   void changeEye() {
     isVisible = !isVisible;
     emit(ChangeEyeState());

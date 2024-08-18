@@ -25,6 +25,6 @@ class LayoutCubit extends Cubit<LayoutState> {
   ];
   void onTapNavigationBar(index) {
     currentNavigationBarIndex = index;
-    emit(NavigationbarState());
+    emit(NavigationBarState());
   }
 }

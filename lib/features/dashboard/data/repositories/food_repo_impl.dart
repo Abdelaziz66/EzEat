@@ -1,10 +1,8 @@
 import 'package:dartz/dartz.dart';
-import 'package:dio/dio.dart';
 import 'package:ez_eat/core/errors/failure.dart';
 import 'package:ez_eat/features/dashboard/domain/entities/food_entity.dart';
 import 'package:ez_eat/features/dashboard/domain/repositories/food_repo.dart';
-
-import '../data_sources/food_local_data_scource.dart';
+import '../data_sources/food_local_data_source.dart';
 import '../data_sources/food_remote_data_source.dart';
 
 class FoodRepoImpl extends FoodRepo {

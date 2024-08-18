@@ -16,7 +16,7 @@ class RegisterRepoImpl extends RegisterRepo{
  @override
  Future<Either<Failure, void>> register({required RegisterModel registerModel}) async{
    try{
-     registerRemoteDataSource.register(registerModel:registerModel);
+    await registerRemoteDataSource.register(registerModel:registerModel);
      return right(null);
    } catch (e) {
      return left(ServerFailure(e.toString()));

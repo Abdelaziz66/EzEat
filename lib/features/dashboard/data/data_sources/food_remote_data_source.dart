@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ez_eat/core/functions/save_food.dart';
 import 'package:ez_eat/features/dashboard/domain/entities/food_entity.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 
 import '../../../../core/constants/constant.dart';
 import '../models/food_model.dart';
@@ -15,6 +14,7 @@ class FoodRemoteDataSourceImpl extends FoodRemoteDataSource {
   Future<List<FoodEntity>> getFood() async {
     List<FoodEntity> food = [];
     List<String> favourite = [];
+    List<String> cart = [];
     await FirebaseFirestore.instance
         .collection('Foods')
         .orderBy('category')
@@ -23,6 +23,8 @@ class FoodRemoteDataSourceImpl extends FoodRemoteDataSource {
       food = getFoodList(value);
 
       favourite = await getFavourite();
+      cart = await getCart();
+
       for (int i = 0; i < favourite.length; i++) {
         for (int ii = 0; ii < food.length; ii++) {
           if (favourite[i] == food[ii].id) {
@@ -31,7 +33,14 @@ class FoodRemoteDataSourceImpl extends FoodRemoteDataSource {
           }
         }
       }
-
+      for (int i = 0; i < cart.length; i++) {
+        for (int ii = 0; ii < food.length; ii++) {
+          if (cart[i] == food[ii].id) {
+            food[ii].cart = true;
+            break;
+          }
+        }
+      }
 
       saveFoodHive(food, kFoodBox);
 
@@ -73,12 +82,28 @@ class FoodRemoteDataSourceImpl extends FoodRemoteDataSource {
     return favourite;
   }
 
+  Future<List<String>> getCart() async {
+    List<String> cart = [];
+
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(uId)
+        .collection('cart')
+        .get()
+        .then((value) async {
+      cart = getCartList(value);
+      // saveToHive('favourite', favourite, kFavouriteBox);
+      return cart;
+    });
+
+    return cart;
+  }
+
   List<FoodEntity> getFoodList(QuerySnapshot<Map<String, dynamic>> value) {
     List<FoodEntity> food = [];
     for (var foodMap in value.docs) {
       food.add(FoodModel.fromJson(foodMap.data()));
     }
-    print('length after = ${food.length}');
     return food;
   }
 
@@ -87,8 +112,15 @@ class FoodRemoteDataSourceImpl extends FoodRemoteDataSource {
     for (var favouriteMap in value.docs) {
       favourite.add(favouriteMap.id);
     }
-    print('length after = ${favourite.length}');
     return favourite;
+  }
+
+  List<String> getCartList(QuerySnapshot<Map<String, dynamic>> value) {
+    List<String> cart = [];
+    for (var cartMap in value.docs) {
+      cart.add(cartMap.id);
+    }
+    return cart;
   }
 // Future<void> updateFood() async {
 //   for(int i=0;i<=26;i++){

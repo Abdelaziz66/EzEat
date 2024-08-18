@@ -10,7 +10,7 @@ class LoginOrRegister extends StatelessWidget {
   Widget build(BuildContext context) {
     return  Scaffold(
       backgroundColor: Colors.grey[300],
-      body: LoginOrRegisterBody(),
+      body: const LoginOrRegisterBody(),
     );
   }
 }

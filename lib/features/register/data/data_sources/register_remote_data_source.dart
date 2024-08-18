@@ -1,6 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:dartz/dartz.dart';
-import 'package:ez_eat/core/errors/failure.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import '../models/register_model.dart';
@@ -18,10 +16,13 @@ class RegisterRemoteDataSourceImpl extends RegisterRemoteDataSource{
     await FirebaseAuth.instance
         .createUserWithEmailAndPassword(email: registerModel.email!, password: registerModel.password!)
         .then((value) {
+
       createUserData(
         registerModel:registerModel,
         uid: value.user!.uid,
-      );
+      ).catchError((onError){
+
+      });
 
   });
   }

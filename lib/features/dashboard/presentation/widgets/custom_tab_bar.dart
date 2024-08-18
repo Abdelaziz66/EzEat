@@ -12,11 +12,7 @@ class CustomTabBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<DashboardCubit, DashboardState>(
-      listener: (context, state) {
-        // TODO: implement listener
-      },
-
+    return BlocBuilder<DashboardCubit, DashboardState>(
       builder: (context, state) {
         DashboardCubit  cubit=DashboardCubit.get(context);
         return SizedBox(
@@ -24,7 +20,7 @@ class CustomTabBar extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15.0),
             child: DefaultTabController(
-              length: 4, // Number of tabs
+              length: 4,
               initialIndex: cubit.currentTabBarIndex,
               child: TabBar(
                 onTap: (index) {
@@ -43,10 +39,10 @@ class CustomTabBar extends StatelessWidget {
 
 
                 tabs:  [
-                  CustomTabs(imagepath: 'f1.png',index:cubit.currentTabBarIndex, tabIndex: 0,),
-                  CustomTabs(imagepath: 'f4.png',index:cubit.currentTabBarIndex, tabIndex: 1,),
-                  CustomTabs(imagepath: 'f2.png',index:cubit.currentTabBarIndex, tabIndex: 2,),
-                  CustomTabs(imagepath: 'f3.png',index:cubit.currentTabBarIndex, tabIndex: 3,),
+                  CustomTabs(imagePath: 'f1.png',index:cubit.currentTabBarIndex, tabIndex: 0,),
+                  CustomTabs(imagePath: 'f4.png',index:cubit.currentTabBarIndex, tabIndex: 1,),
+                  CustomTabs(imagePath: 'f2.png',index:cubit.currentTabBarIndex, tabIndex: 2,),
+                  CustomTabs(imagePath: 'f3.png',index:cubit.currentTabBarIndex, tabIndex: 3,),
                 ],
               ),
             ),

@@ -1,8 +1,8 @@
+import 'package:ez_eat/features/dashboard/presentation/manager/dashboard_cubit/dashboard_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
-import 'package:hive/hive.dart';
 import '../../../../core/constants/constant.dart';
 import '../../../../core/functions/save_food.dart';
 import '../../../../core/functions/show_flutter_toast_message.dart';
@@ -10,9 +10,9 @@ import '../../../../core/style/colors.dart';
 import '../../../../core/style/textStyles.dart';
 import '../../../../core/utils/app_router.dart';
 import '../../../../core/widgets/animation_background.dart';
+import '../../../../core/widgets/back_icon.dart';
 import '../../../../core/widgets/custom_button.dart';
 import '../../../../core/widgets/custom_text_form_field.dart';
-import '../../../register/presentation/pages/register.dart';
 import '../../data/models/login_model.dart';
 import '../manager/login_cubit/login_cubit.dart';
 
@@ -32,11 +32,7 @@ class _LoginBodyState extends State<LoginBody> {
     return BlocConsumer<LoginCubit, LoginState>(
       listener: (context, state) {
         if (state is LoginSuccessState) {
-          showFlutterToastMessage(message: 'Login Successful');
-          saveToHive('isLogin',true, KStartBox);
-          saveToHive('uId',state.loginEntity.uid, KStartBox);
-          uId=state.loginEntity.uid;
-          GoRouter.of(context).push(AppRouter.kLayout);
+          _loginSuccess(state, context);
         }
         if (state is LoginErrorState) {
           showFlutterToastMessage(message: 'Login Failed');
@@ -55,22 +51,7 @@ class _LoginBodyState extends State<LoginBody> {
                   child: Column(
               
                     children: [
-                      SizedBox(
-                        height: 60,
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            IconButton(
-                              icon: const FaIcon(
-                                FontAwesomeIcons.chevronLeft,
-                              ),
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                            ),
-                          ],
-                        ),
-                      ),
+                      const BackIcon(),
                       SizedBox(height: MediaQuery.of(context).size.height*.1,),
                       const Text(
                         'Hello Again !',
@@ -128,46 +109,14 @@ class _LoginBodyState extends State<LoginBody> {
                      const CircularProgressIndicator():
                       CustomButton(
                         onTap: () {
-                          if (formKey.currentState!.validate()) {
-                            LoginDataModel loginDataModel = LoginDataModel(
-                               email:  emailController.text,
-                               password: passwordController.text,);
-                            cubit.login(
-                                loginDataModel:loginDataModel,
-                            );
-                          }
+                          _clickOnLogin(cubit);
                         },
                         text: 'Login',
                       ),
                       const SizedBox(
                         height: 20,
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'Not a member !',
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.grey[700],
-                            ),
-                          ),
-                          TextButton(
-                            onPressed: () {
-                              GoRouter.of(context).push(AppRouter.kRegister);
-                            },
-                            child: const Text(
-                              'Register Now',
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.blue,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
+                      const _GoToRegister(),
                       // SizedBox(height: MediaQuery.of(context).size.height*.2,),
                     ],
                   ),
@@ -179,4 +128,60 @@ class _LoginBodyState extends State<LoginBody> {
       },
     );
   }
+
+  void _clickOnLogin(LoginCubit cubit) {
+    if (formKey.currentState!.validate()) {
+      LoginDataModel loginDataModel = LoginDataModel(
+         email:  emailController.text,
+         password: passwordController.text,);
+      cubit.login(
+          loginDataModel:loginDataModel,
+      );
+    }
+  }
+
+  void _loginSuccess(LoginSuccessState state, BuildContext context) {
+    showFlutterToastMessage(message: 'Login Successful');
+    saveToHive('isLogin',true, kStartBox);
+    saveToHive('uId',state.loginEntity.uid, kStartBox);
+    uId=state.loginEntity.uid;
+    GoRouter.of(context).push(AppRouter.kLayout);
+    DashboardCubit.get(context).getFood();
+  }
 }
+
+class _GoToRegister extends StatelessWidget {
+  const _GoToRegister();
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          'Not a member !',
+          style: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.w500,
+            color: Colors.grey[700],
+          ),
+        ),
+        TextButton(
+          onPressed: () {
+            GoRouter.of(context).push(AppRouter.kRegister);
+          },
+          child: const Text(
+            'Register Now',
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w500,
+              color: Colors.blue,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+

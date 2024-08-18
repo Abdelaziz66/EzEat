@@ -34,66 +34,102 @@ class FoodItem extends StatelessWidget {
                   color: Colors.white.withOpacity(.3),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text(
-                        '${food.title}',
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: Styles.textStyle18,
-                      ),
-                      const SizedBox(
-                        height: 2,
-                      ),
-                      Text(
-                        '${food.subTitle}',
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        style: Styles.textStyle14,
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Text(
-                            '1500',
-                            style: Styles.textStyle16.copyWith(
-                                decoration: TextDecoration.lineThrough),
-                          ),
-                          const SizedBox(
-                            width: 5,
-                          ),
-                          Text(
-                            '${food.price} \$',
-                            style: Styles.textStyle20,
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
+                  padding: const EdgeInsets.only(top:50.0),
+                  child: _FoodInfo(food: food),
                 ),
               ),
             ],
           ),
+          CustomImage(food: food),
+        ],
+      ),
+    );
+  }
+}
+
+
+class _FoodInfo extends StatelessWidget {
+  const _FoodInfo({
+    required this.food,
+  });
+
+  final FoodEntity food;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(15.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          Text(
+            '${food.title}',
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: Styles.textStyle18,
+          ),
+          const SizedBox(
+            height: 2,
+          ),
+          Expanded(
+            child: Container(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                '${food.subTitle}',
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: Styles.textStyle14,
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 5,
+          ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              SizedBox(
-                height: 160,
-                child: Image.network(
-                  '${food.imageUrl}',
-                ),
-              )
+              Text(
+                '1500',
+                style: Styles.textStyle16.copyWith(
+                    decoration: TextDecoration.lineThrough),
+              ),
+              const SizedBox(
+                width: 5,
+              ),
+              Text(
+                '${food.price} \$',
+                style: Styles.textStyle20,
+              ),
             ],
           ),
         ],
       ),
+    );
+  }
+}
+
+class CustomImage extends StatelessWidget {
+  const CustomImage({
+    super.key,
+    required this.food,
+  });
+
+  final FoodEntity food;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        SizedBox(
+          height: 160,
+          child: Image.network(
+            '${food.imageUrl}',
+          ),
+        )
+      ],
     );
   }
 }
