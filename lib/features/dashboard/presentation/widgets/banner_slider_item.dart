@@ -1,23 +1,18 @@
 import 'package:ez_eat/core/style/textStyles.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
-import '../../../../core/widgets/food_details.dart';
+import '../../../../core/utils/app_router.dart';
 import '../../domain/entities/food_entity.dart';
 
-class OffersItem extends StatelessWidget {
-  const OffersItem({super.key, required this.food,});
+class BannerItem extends StatelessWidget {
+  const BannerItem({super.key, required this.food,});
   final FoodEntity food;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => FoodDetails(
-                food: food,
-              ),
-            ));
+        GoRouter.of(context).push(AppRouter.kFoodDetails,extra:food);
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0),

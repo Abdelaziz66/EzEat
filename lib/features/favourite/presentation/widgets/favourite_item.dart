@@ -1,9 +1,10 @@
 import 'package:ez_eat/core/style/textStyles.dart';
 import 'package:ez_eat/features/dashboard/domain/entities/food_entity.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
-import '../../../../core/widgets/food_details.dart';
+import 'package:go_router/go_router.dart';
+import '../../../../core/utils/app_router.dart';
 import '../../../cart/presentation/manager/cart_cubit/cart_cubit.dart';
 import '../manager/favourite_cubit/favourite_cubit.dart';
 
@@ -24,13 +25,7 @@ class _FavouriteItemState extends State<FavouriteItem> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => FoodDetails(
-                food: widget.food,
-              ),
-            ));
+        GoRouter.of(context).push(AppRouter.kFoodDetails,extra: widget.food);
       },
       child: SizedBox(
         width: 400,
@@ -232,13 +227,14 @@ class _Title extends StatelessWidget {
         mainAxisAlignment:
         MainAxisAlignment.start,
         children: [
-          Text(
-            widget.food.title!,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-            style: Styles.textStyle18,
+          Expanded(
+            child: Text(
+              widget.food.title!,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: Styles.textStyle18,
+            ),
           ),
-         const Spacer(),
           const SizedBox(width: 50),
           _FavouriteIcon(widget: widget),
 

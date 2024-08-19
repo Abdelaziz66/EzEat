@@ -7,7 +7,7 @@ import '../../../../core/utils/strings.dart';
 import '../manager/dashboard_cubit/dashboard_cubit.dart';
 import 'custom_tab_bar.dart';
 import '../../../../core/widgets/custom_title.dart';
-import 'offers_slider_item.dart';
+import 'banner_slider_item.dart';
 
 class DashboardBody extends StatelessWidget {
   const DashboardBody({super.key});
@@ -67,7 +67,7 @@ class DashboardBody extends StatelessWidget {
   void saveOffersCarousel(DashboardCubit cubit, GetDashBoardDataSuccessState state) {
     cubit.offersCarouselList =[];
     for(int i=0;i<4;i++){
-      cubit.offersCarouselList.add( OffersItem(food: state.food[i]),);
+      cubit.offersCarouselList.add( BannerItem(food: state.food[i]),);
     }
   }
 

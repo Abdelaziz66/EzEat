@@ -11,6 +11,9 @@ Future<void> hiveSetup() async {
   var startBoxData = Hive.box(kStartBox);
   isOnboarding = startBoxData.get('isOnboarding') ?? false;
   isLogin = startBoxData.get('isLogin') ?? false;
+  isSkip=startBoxData.get('skip') ?? false;
   uId = startBoxData.get('uId');
+  print(uId);
+
 
 }

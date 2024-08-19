@@ -142,8 +142,9 @@ class _LoginBodyState extends State<LoginBody> {
 
   void _loginSuccess(LoginSuccessState state, BuildContext context) {
     showFlutterToastMessage(message: 'Login Successful');
-    saveToHive('isLogin',true, kStartBox);
-    saveToHive('uId',state.loginEntity.uid, kStartBox);
+    save('isLogin',true, kStartBox);
+    save('uId',state.loginEntity.uid, kStartBox);
+    save('skip',false, kStartBox);
     uId=state.loginEntity.uid;
     GoRouter.of(context).push(AppRouter.kLayout);
     DashboardCubit.get(context).getFood();

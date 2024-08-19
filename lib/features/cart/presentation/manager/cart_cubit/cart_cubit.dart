@@ -3,6 +3,7 @@ import 'package:ez_eat/features/cart/domain/use_cases/add_to_cart_usecase.dart';
 import 'package:ez_eat/features/cart/domain/use_cases/remove_from_cart_usecase.dart';
 import 'package:ez_eat/features/dashboard/presentation/manager/dashboard_cubit/dashboard_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../../../core/constants/constant.dart';
 import '../../../../dashboard/domain/entities/food_entity.dart';
 
 import 'cart_state.dart';
@@ -32,14 +33,17 @@ class CartCubit extends Cubit<CartState> {
         break;
       }
     }
+    if(uId != null){
+      var result = await addToCartUseCase.call(food.id);
+      result.fold((failure) {
+        emit(AddToCartErrorState(failure.message));
+      }, (r) {
+        emit(AddToCartSuccessState());
+      });
+    }
 
-    var result = await addToCartUseCase.call(food.id);
 
-    result.fold((failure) {
-      emit(AddToCartErrorState(failure.message));
-    }, (r) {
-      emit(AddToCartSuccessState());
-    });
+
 
   }
 
@@ -56,12 +60,15 @@ class CartCubit extends Cubit<CartState> {
         break;
       }
     }
-    var result = await removeFromCartUseCase.call(food.id);
-    result.fold((failure) {
-      emit(RemoveFromCartErrorState(failure.message));
-    }, (r) {
-      emit(RemoveFromCartSuccessState());
-    });
+    if(uId != null){
+      var result = await removeFromCartUseCase.call(food.id);
+      result.fold((failure) {
+        emit(RemoveFromCartErrorState(failure.message));
+      }, (r) {
+        emit(RemoveFromCartSuccessState());
+      });
+    }
+
 
   }
 

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/utils/strings.dart';
 import '../../../../core/widgets/custom_title.dart';
-import 'favourite_listview.dart';
+import 'favourite_gridview.dart';
 
 class FavouriteBody extends StatelessWidget {
   const FavouriteBody({super.key});
@@ -12,7 +12,7 @@ class FavouriteBody extends StatelessWidget {
     return const Column(
       children: [
         Titles(title: Strings.dashboardTitle, subtitle: Strings.dashboardSubTitle,),
-        FavouriteListView(),
+        FavouriteGridView(),
 
 
       ],

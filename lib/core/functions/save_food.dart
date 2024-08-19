@@ -8,7 +8,7 @@ void saveFoodHive(List<FoodEntity> food, String boxName) {
   box.addAll(food);
 }
 
-void saveToHive(String key, value,String boxName) {
+void save(String key, value,String boxName) {
   var box = Hive.box(boxName);
   box.put(key,value);
 }

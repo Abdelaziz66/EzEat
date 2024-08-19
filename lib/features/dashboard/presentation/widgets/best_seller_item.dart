@@ -2,9 +2,10 @@ import 'package:ez_eat/core/style/textStyles.dart';
 import 'package:ez_eat/features/dashboard/domain/entities/food_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
-import '../../../../core/widgets/food_details.dart';
+import '../../../../core/utils/app_router.dart';
 import '../../../cart/presentation/manager/cart_cubit/cart_cubit.dart';
 import '../../../favourite/presentation/manager/favourite_cubit/favourite_cubit.dart';
 import 'custom_linear_percent.dart';
@@ -26,14 +27,7 @@ class _BestSellerItemState extends State<BestSellerItem> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // GoRouter.of(context).push(AppRouter.kFoodDetails);
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => FoodDetails(
-                food: widget.food,
-              ),
-            ));
+        GoRouter.of(context).push(AppRouter.kFoodDetails,extra: widget.food);
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15.0),

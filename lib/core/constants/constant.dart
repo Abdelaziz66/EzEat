@@ -10,6 +10,7 @@ const kStartBox = 'start_box';
 
   bool? isOnboarding;
   bool? isLogin;
+  bool? isSkip;
   String? uId ;
 
 var scaffoldKey=GlobalKey<ScaffoldState>();

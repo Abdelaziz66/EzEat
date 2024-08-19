@@ -7,14 +7,14 @@ import '../manager/cart_cubit/cart_cubit.dart';
 import '../manager/cart_cubit/cart_state.dart';
 import 'cart_item.dart';
 
-class CartListView extends StatefulWidget {
-  const CartListView({super.key});
+class CartGridView extends StatefulWidget {
+  const CartGridView({super.key});
 
   @override
-  State<CartListView> createState() => _CartListViewState();
+  State<CartGridView> createState() => _CartGridViewState();
 }
 
-class _CartListViewState extends State<CartListView> {
+class _CartGridViewState extends State<CartGridView> {
   List<FoodEntity> cart = ChangeCartSuccessState.cart;
   @override
   Widget build(BuildContext context) {

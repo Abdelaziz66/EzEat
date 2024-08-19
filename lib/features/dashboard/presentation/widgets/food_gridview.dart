@@ -2,7 +2,7 @@ import 'package:ez_eat/features/dashboard/domain/entities/food_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../manager/dashboard_cubit/dashboard_cubit.dart';
-import 'food_gridview_item.dart';
+import 'food_item.dart';
 
 class FoodGridView extends StatelessWidget {
   const FoodGridView({super.key, required this.foods, required this.length});

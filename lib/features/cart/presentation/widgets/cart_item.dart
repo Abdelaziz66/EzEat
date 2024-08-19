@@ -2,8 +2,10 @@
 import 'package:ez_eat/core/style/textStyles.dart';
 import 'package:ez_eat/features/dashboard/domain/entities/food_entity.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
-import '../../../../core/widgets/food_details.dart';
+import '../../../../core/constants/constant.dart';
+import '../../../../core/utils/app_router.dart';
 import '../../../favourite/presentation/manager/favourite_cubit/favourite_cubit.dart';
 import '../manager/cart_cubit/cart_cubit.dart';
 
@@ -23,13 +25,8 @@ class _CartItemState extends State<CartItem> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => FoodDetails(
-                food: widget.food,
-              ),
-            ));
+        GoRouter.of(context).push(AppRouter.kFoodDetails,extra: widget.food);
+
       },
       child: Container(
         height: 210,
@@ -194,9 +191,14 @@ class _CartItemState extends State<CartItem> {
   }
 
   void _clickOnConfirm() {
-          setState(() {
-      confirm=!confirm;
-    });
+    if(uId == null){
+      GoRouter.of(context).push(AppRouter.kLoginOrRegister);
+    }else{
+      setState(() {
+        confirm=!confirm;
+      });
+    }
+
   }
 
   void _clickOnPlus() {

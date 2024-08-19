@@ -4,6 +4,7 @@ import 'package:ez_eat/features/favourite/domain/use_cases/add_to_favourite_usec
 import 'package:ez_eat/features/favourite/domain/use_cases/remove_from_favourite_usecase.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../../core/constants/constant.dart';
 import '../../../../dashboard/domain/entities/food_entity.dart';
 import 'favourite_state.dart';
 
@@ -33,13 +34,16 @@ class FavouriteCubit extends Cubit<FavouriteState> {
       }
     }
 
-    var result = await addToFavouriteUseCase.call(food.id);
+    if(uId != null){
+      var result = await addToFavouriteUseCase.call(food.id);
 
-    result.fold((failure) {
-      emit(AddToFavouriteErrorState(failure.message));
-    }, (r) {
-      emit(AddToFavouriteSuccessState());
-    });
+      result.fold((failure) {
+        emit(AddToFavouriteErrorState(failure.message));
+      }, (r) {
+        emit(AddToFavouriteSuccessState());
+      });
+    }
+
 
   }
 
@@ -56,12 +60,15 @@ class FavouriteCubit extends Cubit<FavouriteState> {
         break;
       }
     }
-    var result = await removeFromFavouriteUseCase.call(food.id);
-    result.fold((failure) {
-      emit(RemoveFromFavouriteErrorState(failure.message));
-    }, (r) {
-      emit(RemoveFromFavouriteSuccessState());
-    });
+    if(uId != null){
+      var result = await removeFromFavouriteUseCase.call(food.id);
+      result.fold((failure) {
+        emit(RemoveFromFavouriteErrorState(failure.message));
+      }, (r) {
+        emit(RemoveFromFavouriteSuccessState());
+      });
+    }
+
 
   }
 

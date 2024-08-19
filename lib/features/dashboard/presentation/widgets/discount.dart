@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../manager/dashboard_cubit/dashboard_cubit.dart';
-import 'best_seller_listview.dart';
-import 'offers_slider.dart';
+import 'best_seller_slider.dart';
+import 'banner_slider.dart';
 
 class Discount extends StatelessWidget {
   const Discount({super.key});
@@ -19,8 +19,8 @@ class Discount extends StatelessWidget {
                 SizedBox(
                   height: 15,
                 ),
-                OffersSlider(),
-                BestSellerListView(),
+                BannerSlider(),
+                BestSellerSlider(),
               ],
             ),
           );
