@@ -1,10 +1,11 @@
-
 import 'package:ez_eat/core/style/textStyles.dart';
+import 'package:ez_eat/core/widgets/glass_box.dart';
 import 'package:ez_eat/features/dashboard/domain/entities/food_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/constants/constant.dart';
+import '../../../../core/functions/custom_alert.dart';
 import '../../../../core/utils/app_router.dart';
 import '../../../favourite/presentation/manager/favourite_cubit/favourite_cubit.dart';
 import '../manager/cart_cubit/cart_cubit.dart';
@@ -19,14 +20,13 @@ class CartItem extends StatefulWidget {
 
 class _CartItemState extends State<CartItem> {
   late bool favourite = widget.food.favourite;
-  int counter=1;
-  bool confirm=false;
+  int counter = 1;
+  bool confirm = false;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        GoRouter.of(context).push(AppRouter.kFoodDetails,extra: widget.food);
-
+        GoRouter.of(context).push(AppRouter.kFoodDetails, extra: widget.food);
       },
       child: Container(
         height: 210,
@@ -39,14 +39,14 @@ class _CartItemState extends State<CartItem> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: const EdgeInsets.only(left: 15.0,right: 15,top: 15),
+              padding: const EdgeInsets.only(left: 15.0, right: 15, top: 15),
               child: Row(
                 children: [
                   _FoodImage(widget: widget),
                   const SizedBox(
                     width: 20,
                   ),
-                   _FoodInfo(widget: widget),
+                  _FoodInfo(widget: widget),
                   const Spacer(),
                   Column(
                     children: [
@@ -58,7 +58,6 @@ class _CartItemState extends State<CartItem> {
                         child: IconButton(
                           onPressed: () {
                             _clickOnFavourite(context);
-
                           },
                           icon: favourite
                               ? const Icon(Icons.favorite)
@@ -76,7 +75,7 @@ class _CartItemState extends State<CartItem> {
                         ),
                         child: IconButton(
                           onPressed: () {
-                              _clickOnDelete(context);
+                            _clickOnDelete(context);
                           },
                           icon: const Icon(
                             Icons.delete,
@@ -105,13 +104,10 @@ class _CartItemState extends State<CartItem> {
                       children: [
                         CircleAvatar(
                           radius: 18,
-                          backgroundColor:
-                          Colors.pinkAccent.withOpacity(.3),
+                          backgroundColor: Colors.pinkAccent.withOpacity(.3),
                           child: IconButton(
                             onPressed: () {
                               _clickOnMinus();
-
-
                             },
                             icon: const Icon(
                               Icons.remove,
@@ -123,10 +119,9 @@ class _CartItemState extends State<CartItem> {
                           width: 3,
                         ),
                         CircleAvatar(
-                            radius:  15,
-                            backgroundColor:
-                            Colors.black.withOpacity(.05),
-                            child:  Text(
+                            radius: 15,
+                            backgroundColor: Colors.black.withOpacity(.05),
+                            child: Text(
                               '$counter',
                               style: Styles.textStyle18,
                             )),
@@ -135,12 +130,10 @@ class _CartItemState extends State<CartItem> {
                         ),
                         CircleAvatar(
                           radius: 18,
-                          backgroundColor:
-                          Colors.tealAccent.withOpacity(.4),
+                          backgroundColor: Colors.tealAccent.withOpacity(.4),
                           child: IconButton(
                             onPressed: () {
                               _clickOnPlus();
-
                             },
                             icon: const Icon(
                               Icons.add,
@@ -151,35 +144,32 @@ class _CartItemState extends State<CartItem> {
                         const SizedBox(
                           width: 5,
                         ),
-                          Padding(
-                           padding: const EdgeInsets.symmetric(
-                               horizontal: 7.0, vertical: 2),
-                           child: Column(
-                             children: [
-                               const Text(
-                                 'Total Price',
-                                 style: Styles.textStyle12,
-                               ),
-                               const SizedBox(
-                                 height: 2,
-                               ),
-                               Text(
-                                 '${counter*widget.food.price!} \$',
-                                 style: Styles.textStyle14,
-                               ),
-                             ],
-                           ),
-                         ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 7.0, vertical: 2),
+                          child: Column(
+                            children: [
+                              const Text(
+                                'Total Price',
+                                style: Styles.textStyle12,
+                              ),
+                              const SizedBox(
+                                height: 2,
+                              ),
+                              Text(
+                                '${counter * widget.food.price!} \$',
+                                style: Styles.textStyle14,
+                              ),
+                            ],
+                          ),
+                        ),
                         const Spacer(),
-
                         GestureDetector(
                           onTap: () {
                             _clickOnConfirm();
-
                           },
                           child: _Confirm(confirm: confirm),
                         ),
-
                       ],
                     ),
                   )),
@@ -191,24 +181,34 @@ class _CartItemState extends State<CartItem> {
   }
 
   void _clickOnConfirm() {
-    if(uId == null){
-      GoRouter.of(context).push(AppRouter.kLoginOrRegister);
-    }else{
+    if (uId == null) {
+      customAlert(
+          context: context,
+          text: 'Login to confirm your order',
+          no: () {
+            GoRouter.of(context).pop();
+          },
+          yes: () {
+            GoRouter.of(context).pop();
+            GoRouter.of(context).push(AppRouter.kLoginOrRegister);
+          });
+    } else {
       setState(() {
-        confirm=!confirm;
+        confirm = !confirm;
       });
     }
-
   }
 
+
+
   void _clickOnPlus() {
-          setState(() {
+    setState(() {
       counter++;
     });
   }
 
   void _clickOnMinus() {
-        if(counter!=1){
+    if (counter != 1) {
       setState(() {
         counter--;
       });
@@ -216,26 +216,19 @@ class _CartItemState extends State<CartItem> {
   }
 
   void _clickOnDelete(BuildContext context) {
-     CartCubit.get(context)
-        .removeFromCart(
-        food: widget.food,
-        context: context);
+    CartCubit.get(context).removeFromCart(food: widget.food, context: context);
   }
 
   void _clickOnFavourite(BuildContext context) {
-     setState(() {
+    setState(() {
       if (favourite) {
         favourite = false;
         FavouriteCubit.get(context)
-            .removeFromFavourite(
-            food: widget.food,
-            context: context);
+            .removeFromFavourite(food: widget.food, context: context);
       } else {
         favourite = true;
         FavouriteCubit.get(context)
-            .addToFavourite(
-            food: widget.food,
-            context: context);
+            .addToFavourite(food: widget.food, context: context);
       }
     });
   }
@@ -251,11 +244,8 @@ class _Confirm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration:  BoxDecoration(
-        color:
-        confirm
-            ? Colors.redAccent
-            : Colors.teal,
+      decoration: BoxDecoration(
+        color: confirm ? Colors.redAccent : Colors.teal,
         borderRadius: const BorderRadius.only(
           bottomLeft: Radius.zero,
           bottomRight: Radius.circular(25),
@@ -264,13 +254,15 @@ class _Confirm extends StatelessWidget {
         ),
       ),
       child: Padding(
-        padding: const EdgeInsets.only(left: 15.0,right: 5,top: 5,bottom: 5),
+        padding: const EdgeInsets.only(left: 15.0, right: 5, top: 5, bottom: 5),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment:MainAxisAlignment.end ,
+          mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            const SizedBox(width: 10,),
-             Text(
+            const SizedBox(
+              width: 10,
+            ),
+            Text(
               confirm ? 'cancel' : 'Confirm',
               style: const TextStyle(
                 fontSize: 13,
@@ -278,20 +270,17 @@ class _Confirm extends StatelessWidget {
                 color: Colors.white,
               ),
             ),
-            const SizedBox(width: 20,),
+            const SizedBox(
+              width: 20,
+            ),
             CircleAvatar(
                 radius: 20,
                 backgroundColor: Colors.grey[300],
-                child:  Icon(
-                  confirm
-                      ? Icons.cancel
-                      : Icons.send,
-                  color: confirm
-                      ? Colors.redAccent
-                      : Colors.teal,
+                child: Icon(
+                  confirm ? Icons.cancel : Icons.send,
+                  color: confirm ? Colors.redAccent : Colors.teal,
                   size: 25,
                 )),
-
           ],
         ),
       ),
@@ -309,34 +298,34 @@ class _FoodInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-     child: Column(
-       crossAxisAlignment: CrossAxisAlignment.start,
-       children: [
-         Text(
-           widget.food.title!,
-           maxLines: 1,
-           overflow: TextOverflow.ellipsis,
-           style: Styles.textStyle18,
-         ),
-         const SizedBox(
-           height: 2,
-         ),
-         Text(
-           widget.food.subTitle!,
-           maxLines: 1,
-           overflow: TextOverflow.ellipsis,
-           style: Styles.textStyle14,
-         ),
-         const SizedBox(
-           height: 5,
-         ),
-         Text(
-           '\$ ${widget.food.price!}',
-           style: Styles.textStyle18,
-         ),
-       ],
-     ),
-                        );
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            widget.food.title!,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: Styles.textStyle18,
+          ),
+          const SizedBox(
+            height: 2,
+          ),
+          Text(
+            widget.food.subTitle!,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: Styles.textStyle14,
+          ),
+          const SizedBox(
+            height: 5,
+          ),
+          Text(
+            '\$ ${widget.food.price!}',
+            style: Styles.textStyle18,
+          ),
+        ],
+      ),
+    );
   }
 }
 
@@ -359,4 +348,3 @@ class _FoodImage extends StatelessWidget {
     );
   }
 }
-

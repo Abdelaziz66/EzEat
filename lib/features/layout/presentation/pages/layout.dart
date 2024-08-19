@@ -15,7 +15,7 @@ class Layout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: scaffoldKey,
+      key: layoutScaffoldKey,
       drawer: const CustomDrawer(),
       body: const LayoutBody(),
     );

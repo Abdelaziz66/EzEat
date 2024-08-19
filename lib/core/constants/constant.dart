@@ -13,4 +13,4 @@ const kStartBox = 'start_box';
   bool? isSkip;
   String? uId ;
 
-var scaffoldKey=GlobalKey<ScaffoldState>();
+var layoutScaffoldKey=GlobalKey<ScaffoldState>();

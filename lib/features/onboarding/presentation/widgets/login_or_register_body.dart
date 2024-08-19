@@ -1,5 +1,6 @@
 import 'package:ez_eat/core/style/textStyles.dart';
 import 'package:ez_eat/core/widgets/animation_background.dart';
+import 'package:ez_eat/features/dashboard/presentation/manager/dashboard_cubit/dashboard_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hive/hive.dart';
@@ -172,6 +173,8 @@ class _Skip extends StatelessWidget {
             isSkip=true;
             save('skip',isSkip,kStartBox);
             GoRouter.of(context).go(AppRouter.kLayout);
+            DashboardCubit.get(context).getFood();
+
           },
           child: const Row(
             children: [

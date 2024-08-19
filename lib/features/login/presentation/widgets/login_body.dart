@@ -1,3 +1,5 @@
+import 'package:ez_eat/features/cart/presentation/manager/cart_cubit/cart_cubit.dart';
+import 'package:ez_eat/features/cart/presentation/manager/cart_cubit/cart_state.dart';
 import 'package:ez_eat/features/dashboard/presentation/manager/dashboard_cubit/dashboard_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,6 +15,8 @@ import '../../../../core/widgets/animation_background.dart';
 import '../../../../core/widgets/back_icon.dart';
 import '../../../../core/widgets/custom_button.dart';
 import '../../../../core/widgets/custom_text_form_field.dart';
+import '../../../favourite/presentation/manager/favourite_cubit/favourite_cubit.dart';
+import '../../../favourite/presentation/manager/favourite_cubit/favourite_state.dart';
 import '../../data/models/login_model.dart';
 import '../manager/login_cubit/login_cubit.dart';
 
@@ -43,16 +47,16 @@ class _LoginBodyState extends State<LoginBody> {
         return AnimationBackground(
           widget: SafeArea(
             child: SingleChildScrollView(
-
               child: Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: Form(
                   key: formKey,
                   child: Column(
-              
                     children: [
                       const BackIcon(),
-                      SizedBox(height: MediaQuery.of(context).size.height*.1,),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * .1,
+                      ),
                       const Text(
                         'Hello Again !',
                         style: Styles.textStyle35,
@@ -63,8 +67,9 @@ class _LoginBodyState extends State<LoginBody> {
                       Text(
                         'Welcome back you have been missed!',
                         textAlign: TextAlign.center,
-                        style: Styles.textStyle30
-                            .copyWith(color: Colors.black54,),
+                        style: Styles.textStyle30.copyWith(
+                          color: Colors.black54,
+                        ),
                       ),
                       const SizedBox(
                         height: 30,
@@ -87,8 +92,7 @@ class _LoginBodyState extends State<LoginBody> {
                         prefixIcon: FontAwesomeIcons.lock,
                         obscureText: cubit.isVisible,
                         suffix: Padding(
-                          padding:
-                              const EdgeInsets.only(left: 15.0, right: 20),
+                          padding: const EdgeInsets.only(left: 15.0, right: 20),
                           child: GestureDetector(
                             onTap: () {
                               cubit.changeEye();
@@ -105,14 +109,14 @@ class _LoginBodyState extends State<LoginBody> {
                       const SizedBox(
                         height: 15,
                       ),
-                     state is LoginLoadingState?
-                     const CircularProgressIndicator():
-                      CustomButton(
-                        onTap: () {
-                          _clickOnLogin(cubit);
-                        },
-                        text: 'Login',
-                      ),
+                      state is LoginLoadingState
+                          ? const CircularProgressIndicator()
+                          : CustomButton(
+                              onTap: () {
+                                _clickOnLogin(cubit);
+                              },
+                              text: 'Login',
+                            ),
                       const SizedBox(
                         height: 20,
                       ),
@@ -132,22 +136,43 @@ class _LoginBodyState extends State<LoginBody> {
   void _clickOnLogin(LoginCubit cubit) {
     if (formKey.currentState!.validate()) {
       LoginDataModel loginDataModel = LoginDataModel(
-         email:  emailController.text,
-         password: passwordController.text,);
+        email: emailController.text,
+        password: passwordController.text,
+      );
       cubit.login(
-          loginDataModel:loginDataModel,
+        loginDataModel: loginDataModel,
       );
     }
   }
 
-  void _loginSuccess(LoginSuccessState state, BuildContext context) {
+  void _loginSuccess(LoginSuccessState state,context) async {
     showFlutterToastMessage(message: 'Login Successful');
-    save('isLogin',true, kStartBox);
-    save('uId',state.loginEntity.uid, kStartBox);
-    save('skip',false, kStartBox);
-    uId=state.loginEntity.uid;
+    save('isLogin', true, kStartBox);
+    save('uId', state.loginEntity.uid, kStartBox);
+    save('skip', false, kStartBox);
+    uId = state.loginEntity.uid;
+    await uploadLocalFavouriteCart(context);
     GoRouter.of(context).push(AppRouter.kLayout);
     DashboardCubit.get(context).getFood();
+
+  }
+
+  Future<void> uploadLocalFavouriteCart(context) async {
+    if( ChangeCartSuccessState.cart.isNotEmpty||ChangeFavouriteSuccessState.favourite.isNotEmpty){
+      showFlutterToastMessage(message: 'Connecting your last activity');
+
+    }
+    for (int i = 0; i < ChangeCartSuccessState.cart.length; i++){
+    await  CartCubit.get(context)
+          .addToCartCloud(food: ChangeCartSuccessState.cart[i]);
+    }
+    for (int i = 0; i < ChangeFavouriteSuccessState.favourite.length; i++) {
+     await FavouriteCubit.get(context).addToFavouriteCloud(
+          food: ChangeFavouriteSuccessState.favourite[i],);
+    }
+    DashboardCubit.get(context).foods = [];
+    ChangeCartSuccessState.cart=[];
+    ChangeFavouriteSuccessState.favourite=[];
   }
 }
 
@@ -184,5 +209,3 @@ class _GoToRegister extends StatelessWidget {
     );
   }
 }
-
-
