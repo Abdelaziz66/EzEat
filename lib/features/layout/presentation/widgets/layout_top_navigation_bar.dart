@@ -37,12 +37,14 @@ class _LayoutTopNavigationBar extends State<LayoutTopNavigationBar> {
                   onTap: (index) {
                     cubit.onTapNavigationBar(index);
                   },
+
                   indicatorColor:  Colors.black.withOpacity(0),
                   padding: EdgeInsets.zero,
                   splashBorderRadius: BorderRadius.circular(20),
                   splashFactory: NoSplash.splashFactory,
                   dividerHeight: 0,
                   dividerColor: Colors.black.withOpacity(.1),
+
 
                   labelPadding: EdgeInsets.zero,
                   tabAlignment: TabAlignment.fill,

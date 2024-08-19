@@ -7,14 +7,14 @@ import '../manager/favourite_cubit/favourite_cubit.dart';
 import '../manager/favourite_cubit/favourite_state.dart';
 import 'favourite_item.dart';
 
-class FavouriteListView extends StatefulWidget {
-  const FavouriteListView({super.key});
+class FavouriteGridView extends StatefulWidget {
+  const FavouriteGridView({super.key});
 
   @override
-  State<FavouriteListView> createState() => _FavouriteListViewState();
+  State<FavouriteGridView> createState() => _FavouriteGridViewState();
 }
 
-class _FavouriteListViewState extends State<FavouriteListView> {
+class _FavouriteGridViewState extends State<FavouriteGridView> {
   List<FoodEntity> favourite = ChangeFavouriteSuccessState.favourite;
   @override
   Widget build(BuildContext context) {

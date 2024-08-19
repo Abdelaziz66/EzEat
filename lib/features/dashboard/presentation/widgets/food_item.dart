@@ -1,8 +1,9 @@
 import 'package:ez_eat/core/style/textStyles.dart';
 import 'package:ez_eat/features/dashboard/domain/entities/food_entity.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
-import '../../../../core/widgets/food_details.dart';
+import '../../../../core/utils/app_router.dart';
 
 class FoodItem extends StatelessWidget {
   const FoodItem({super.key, required this.food, required this.index});
@@ -13,13 +14,8 @@ class FoodItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => FoodDetails(
-                food: food,
-              ),
-            ));
+        GoRouter.of(context).push(AppRouter.kFoodDetails,extra:food);
+
       },
       child: Stack(
         children: [

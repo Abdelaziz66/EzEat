@@ -106,8 +106,8 @@ class _OnboardingBodyState extends State<OnboardingBody> {
 
   void _clickOnNext(BuildContext context) {
      if (isLast) {
-      saveToHive('isOnboarding',true, kStartBox);
-      GoRouter.of(context).push(AppRouter.kLoginOrRegister);
+      save('isOnboarding',true, kStartBox);
+      GoRouter.of(context).go(AppRouter.kLoginOrRegister);
 
     } else {
       smoothPageController.nextPage(

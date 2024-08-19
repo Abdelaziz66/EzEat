@@ -22,25 +22,13 @@ class FoodRemoteDataSourceImpl extends FoodRemoteDataSource {
         .then((value) async {
       food = getFoodList(value);
 
-      favourite = await getFavourite();
-      cart = await getCart();
+      if(uId != null){
+        favourite = await getFavourite();
+        food =  setFavourite(favourite, food);
+        cart = await getCart();
+        food =  setCart(cart, food);
+      }
 
-      for (int i = 0; i < favourite.length; i++) {
-        for (int ii = 0; ii < food.length; ii++) {
-          if (favourite[i] == food[ii].id) {
-            food[ii].favourite = true;
-            break;
-          }
-        }
-      }
-      for (int i = 0; i < cart.length; i++) {
-        for (int ii = 0; ii < food.length; ii++) {
-          if (cart[i] == food[ii].id) {
-            food[ii].cart = true;
-            break;
-          }
-        }
-      }
 
       saveFoodHive(food, kFoodBox);
 
@@ -61,6 +49,30 @@ class FoodRemoteDataSourceImpl extends FoodRemoteDataSource {
       return food;
     });
 
+    return food;
+  }
+
+  List<FoodEntity> setCart(List<String> cart, List<FoodEntity> food) {
+    for (int i = 0; i < cart.length; i++) {
+      for (int ii = 0; ii < food.length; ii++) {
+        if (cart[i] == food[ii].id) {
+          food[ii].cart = true;
+          break;
+        }
+      }
+    }
+    return food;
+  }
+
+  List<FoodEntity> setFavourite(List<String> favourite, List<FoodEntity> food) {
+    for (int i = 0; i < favourite.length; i++) {
+      for (int ii = 0; ii < food.length; ii++) {
+        if (favourite[i] == food[ii].id) {
+          food[ii].favourite = true;
+          break;
+        }
+      }
+    }
     return food;
   }
 

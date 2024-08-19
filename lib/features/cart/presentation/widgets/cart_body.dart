@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/utils/strings.dart';
 import '../../../../core/widgets/custom_title.dart';
-import 'cart_listview.dart';
+import 'cart_gridview.dart';
 
 class CartBody extends StatelessWidget {
   const CartBody({super.key});
@@ -12,7 +12,7 @@ class CartBody extends StatelessWidget {
     return const Column(
       children: [
         Titles(title: Strings.dashboardTitle, subtitle: Strings.dashboardSubTitle,),
-        CartListView(),
+        CartGridView(),
       ],
 
     );
