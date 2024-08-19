@@ -33,18 +33,7 @@ class CartCubit extends Cubit<CartState> {
         break;
       }
     }
-    if(uId != null){
-      var result = await addToCartUseCase.call(food.id);
-      result.fold((failure) {
-        emit(AddToCartErrorState(failure.message));
-      }, (r) {
-        emit(AddToCartSuccessState());
-      });
-    }
-
-
-
-
+    await addToCartCloud(food: food);
   }
 
   void removeFromCart({required FoodEntity food,required context})async{
@@ -60,6 +49,20 @@ class CartCubit extends Cubit<CartState> {
         break;
       }
     }
+   await removeFromCartCloud(food: food);
+  }
+
+ Future<void>addToCartCloud({required FoodEntity food})async{
+    if(uId != null){
+      var result = await addToCartUseCase.call(food.id);
+      result.fold((failure) {
+        emit(AddToCartErrorState(failure.message));
+      }, (r) {
+        emit(AddToCartSuccessState());
+      });
+    }
+  }
+  Future<void> removeFromCartCloud({required FoodEntity food})async{
     if(uId != null){
       var result = await removeFromCartUseCase.call(food.id);
       result.fold((failure) {
@@ -71,7 +74,4 @@ class CartCubit extends Cubit<CartState> {
 
 
   }
-
-
-
 }

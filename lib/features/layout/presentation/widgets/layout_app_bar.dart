@@ -40,7 +40,7 @@ class DrawerIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => scaffoldKey.currentState?.openDrawer(),
+      onTap: () => layoutScaffoldKey.currentState?.openDrawer(),
       behavior: HitTestBehavior.translucent,
       child: Padding(
         padding: const EdgeInsets.only(top: 0.0, left: 20),

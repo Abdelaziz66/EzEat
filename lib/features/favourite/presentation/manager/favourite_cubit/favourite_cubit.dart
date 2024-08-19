@@ -34,15 +34,7 @@ class FavouriteCubit extends Cubit<FavouriteState> {
       }
     }
 
-    if(uId != null){
-      var result = await addToFavouriteUseCase.call(food.id);
-
-      result.fold((failure) {
-        emit(AddToFavouriteErrorState(failure.message));
-      }, (r) {
-        emit(AddToFavouriteSuccessState());
-      });
-    }
+    await addToFavouriteCloud(food: food);
 
 
   }
@@ -60,6 +52,13 @@ class FavouriteCubit extends Cubit<FavouriteState> {
         break;
       }
     }
+   await removeFromFavouriteCloud(food: food);
+
+
+  }
+
+  Future<void> removeFromFavouriteCloud({required FoodEntity food})async{
+
     if(uId != null){
       var result = await removeFromFavouriteUseCase.call(food.id);
       result.fold((failure) {
@@ -72,6 +71,18 @@ class FavouriteCubit extends Cubit<FavouriteState> {
 
   }
 
+  Future<void> addToFavouriteCloud({required FoodEntity food})async{
+    if(uId != null){
+      var result = await addToFavouriteUseCase.call(food.id);
 
+      result.fold((failure) {
+        emit(AddToFavouriteErrorState(failure.message));
+      }, (r) {
+        emit(AddToFavouriteSuccessState());
+      });
+    }
+
+
+  }
 
 }

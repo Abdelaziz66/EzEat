@@ -6,6 +6,7 @@ import 'package:ez_eat/features/dashboard/presentation/widgets/sandwiches.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../../core/constants/constant.dart';
 import '../../../../cart/presentation/manager/cart_cubit/cart_state.dart';
 import '../../../../favourite/presentation/manager/favourite_cubit/favourite_state.dart';
 import '../../../domain/entities/food_entity.dart';
@@ -35,14 +36,17 @@ class DashboardCubit extends Cubit<DashboardState> {
 
   List<FoodEntity> foods = [];
   Future<void> getFood() async {
+    if(uId != null || isSkip!){
+      print('start get fooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooood');
+      emit(GetDashBoardDataLoadingState());
+      var result = await foodUseCase.call();
+      result.fold((failure) {
+        emit(GetDashBoardDataErrorState(failure.message));
+      }, (food) {
+        emit(GetDashBoardDataSuccessState(food));
+      });
+    }
 
-    emit(GetDashBoardDataLoadingState());
-    var result = await foodUseCase.call();
-    result.fold((failure) {
-      emit(GetDashBoardDataErrorState(failure.message));
-    }, (food) {
-      emit(GetDashBoardDataSuccessState(food));
-    });
   }
 
   void getFavourite({required List<FoodEntity> foods}){

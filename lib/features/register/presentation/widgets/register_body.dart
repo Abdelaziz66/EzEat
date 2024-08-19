@@ -50,7 +50,7 @@ class _RegisterBodyState extends State<RegisterBody> {
                     child: Column(
                       children: [
                         const BackIcon(),
-                        SizedBox(height: MediaQuery.of(context).size.height*.05,),
+                        const SizedBox(height: 15,),
                         const Text(
                           'Register',
                           style: Styles.textStyle35,

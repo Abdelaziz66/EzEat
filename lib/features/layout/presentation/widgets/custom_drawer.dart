@@ -2,6 +2,8 @@
 import 'package:ez_eat/core/style/colors.dart';
 import 'package:ez_eat/core/style/textStyles.dart';
 import 'package:ez_eat/core/utils/app_router.dart';
+import 'package:ez_eat/features/dashboard/presentation/manager/dashboard_cubit/dashboard_cubit.dart';
+import 'package:ez_eat/features/dashboard/presentation/pages/dashboard.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -117,6 +119,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
     save('uId', null, kStartBox);
     ChangeFavouriteSuccessState.favourite = [];
     ChangeCartSuccessState.cart = [];
+    DashboardCubit.get(context).foods=[];
     GoRouter.of(context).go(AppRouter.kLoginOrRegister);
 
   }
