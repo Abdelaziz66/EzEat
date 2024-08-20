@@ -1,3 +1,4 @@
+
 import 'package:ez_eat/features/layout/presentation/manager/layout_cubit/layout_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -64,53 +65,40 @@ class Screen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<DashboardCubit, DashboardState>(
-      listener: (context, state) {
-        DashboardCubit  cubit=DashboardCubit.get(context);
-        if (state is GetDashBoardDataSuccessState) {
-          saveDataFromState(context, state);
-          cubit.getFavourite(foods: state.food);
-          cubit.getCart(foods: state.food);
-        }
-        if (state is GetDashBoardDataErrorState) {
-          showFlutterToastMessage(message: state.errMessage);
-        }
-      },
-      child:    Padding(
-        padding: const EdgeInsets.only(top: 70.0),
-        child: cubit.navigationBarScreens[cubit.currentNavigationBarIndex],
-      ),
+    return Padding(
+      padding: const EdgeInsets.only(top: 70.0),
+      child: cubit.navigationBarScreens[cubit.currentNavigationBarIndex],
     );
 
 
 
   }
-  void saveDataFromState(BuildContext context, GetDashBoardDataSuccessState state) {
-    DashboardCubit  cubit=DashboardCubit.get(context);
-
-    saveBestSellerCarousel(cubit, state);
-    saveOffersCarousel(cubit, state);
-    saveFoodCategory(cubit, state);
-
-  }
-
-  void saveFoodCategory(DashboardCubit cubit, GetDashBoardDataSuccessState state) {
-    cubit.foods=[];
-    cubit.foods.addAll(state.food);
-  }
-
-  void saveOffersCarousel(DashboardCubit cubit, GetDashBoardDataSuccessState state) {
-    cubit.offersCarouselList =[];
-    for(int i=0;i<4;i++){
-      cubit.offersCarouselList.add( BannerItem(food: state.food[i]),);
-    }
-  }
-
-  void saveBestSellerCarousel(DashboardCubit cubit, GetDashBoardDataSuccessState state) {
-    cubit.bestSellerCarouselList =[];
-    for(int i=4;i<8;i++){
-      cubit.bestSellerCarouselList.add( BestSellerItem(food: state.food[i]),);
-    }
-  }
+  // void saveDataFromState(BuildContext context, GetDashBoardDataSuccessState state) {
+  //   DashboardCubit  cubit=DashboardCubit.get(context);
+  //
+  //   saveBestSellerCarousel(cubit, state);
+  //   saveOffersCarousel(cubit, state);
+  //   saveFoodCategory(cubit, state);
+  //
+  // }
+  //
+  // void saveFoodCategory(DashboardCubit cubit, GetDashBoardDataSuccessState state) {
+  //   cubit.foods=[];
+  //   cubit.foods.addAll(state.food);
+  // }
+  //
+  // void saveOffersCarousel(DashboardCubit cubit, GetDashBoardDataSuccessState state) {
+  //   cubit.offersCarouselList =[];
+  //   for(int i=0;i<4;i++){
+  //     cubit.offersCarouselList.add( BannerItem(food: state.food[i]),);
+  //   }
+  // }
+  //
+  // void saveBestSellerCarousel(DashboardCubit cubit, GetDashBoardDataSuccessState state) {
+  //   cubit.bestSellerCarouselList =[];
+  //   for(int i=4;i<8;i++){
+  //     cubit.bestSellerCarouselList.add( BestSellerItem(food: state.food[i]),);
+  //   }
+  // }
 }
 

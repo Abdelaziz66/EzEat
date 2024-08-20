@@ -1,11 +1,9 @@
 import 'package:ez_eat/core/style/textStyles.dart';
-import 'package:ez_eat/core/widgets/glass_box.dart';
 import 'package:ez_eat/features/dashboard/domain/entities/food_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/constants/constant.dart';
-import '../../../../core/functions/custom_alert.dart';
 import '../../../../core/utils/app_router.dart';
 import '../../../favourite/presentation/manager/favourite_cubit/favourite_cubit.dart';
 import '../manager/cart_cubit/cart_cubit.dart';
@@ -182,16 +180,17 @@ class _CartItemState extends State<CartItem> {
 
   void _clickOnConfirm() {
     if (uId == null) {
-      customAlert(
-          context: context,
-          text: 'Login to confirm your order',
-          no: () {
-            GoRouter.of(context).pop();
-          },
-          yes: () {
-            GoRouter.of(context).pop();
-            GoRouter.of(context).push(AppRouter.kLoginOrRegister);
-          });
+      // customAlert(
+      //     context: context,
+      //     text: 'Login to confirm your order',
+      //     no: () {
+      //       GoRouter.of(context).pop();
+      //     },
+      //     yes: () {
+      //       GoRouter.of(context).pop();
+      //       GoRouter.of(context).push(AppRouter.kLoginOrRegister);
+      //       LayoutCubit.get(context).currentNavigationBarIndex=0;
+      //     });
     } else {
       setState(() {
         confirm = !confirm;

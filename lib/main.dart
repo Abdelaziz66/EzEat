@@ -63,7 +63,7 @@ class MyApp extends StatelessWidget {
               foodUseCase: FoodUseCase(
                 foodRepo: getIt.get<FoodRepoImpl>(),
               ),
-            )..getFood(),
+            )..mainGetFood(),
           ),
           BlocProvider(
             create: (context) => FavouriteCubit(

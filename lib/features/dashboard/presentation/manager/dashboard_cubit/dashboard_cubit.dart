@@ -35,9 +35,11 @@ class DashboardCubit extends Cubit<DashboardState> {
   List<Widget> offersCarouselList =[];
 
   List<FoodEntity> foods = [];
-  Future<void> getFood() async {
-    if(uId != null || isSkip!){
-      print('start get fooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooood');
+
+  Future<void> getFood({required String text}) async {
+      print(uId);
+      print(isSkip);
+      print(text);
       emit(GetDashBoardDataLoadingState());
       var result = await foodUseCase.call();
       result.fold((failure) {
@@ -45,8 +47,12 @@ class DashboardCubit extends Cubit<DashboardState> {
       }, (food) {
         emit(GetDashBoardDataSuccessState(food));
       });
-    }
+  }
 
+  void mainGetFood(){
+    if(isMainGetFood){
+      getFood(text: 'From Main');
+    }
   }
 
   void getFavourite({required List<FoodEntity> foods}){
