@@ -30,7 +30,7 @@ class LoginBody extends StatefulWidget {
 class _LoginBodyState extends State<LoginBody> {
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
-  var formKey = GlobalKey<FormState>();
+  var loginFormKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<LoginCubit, LoginState>(
@@ -50,7 +50,7 @@ class _LoginBodyState extends State<LoginBody> {
               child: Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: Form(
-                  key: formKey,
+                  key: loginFormKey,
                   child: Column(
                     children: [
                       const BackIcon(),
@@ -134,7 +134,7 @@ class _LoginBodyState extends State<LoginBody> {
   }
 
   void _clickOnLogin(LoginCubit cubit) {
-    if (formKey.currentState!.validate()) {
+    if (loginFormKey.currentState!.validate()) {
       LoginDataModel loginDataModel = LoginDataModel(
         email: emailController.text,
         password: passwordController.text,
@@ -149,26 +149,28 @@ class _LoginBodyState extends State<LoginBody> {
     showFlutterToastMessage(message: 'Login Successful');
     save('isLogin', true, kStartBox);
     save('uId', state.loginEntity.uid, kStartBox);
-    save('skip', false, kStartBox);
+    save('isSkip', false, kStartBox);
+    isSkip=false;
+    isLogin=true;
     uId = state.loginEntity.uid;
+    isMainGetFood=false;
     await uploadLocalFavouriteCart(context);
     GoRouter.of(context).push(AppRouter.kLayout);
-    DashboardCubit.get(context).getFood();
+    DashboardCubit.get(context).getFood(text: 'Get Food From Login');
 
   }
 
   Future<void> uploadLocalFavouriteCart(context) async {
     if( ChangeCartSuccessState.cart.isNotEmpty||ChangeFavouriteSuccessState.favourite.isNotEmpty){
       showFlutterToastMessage(message: 'Connecting your last activity');
-
-    }
-    for (int i = 0; i < ChangeCartSuccessState.cart.length; i++){
-    await  CartCubit.get(context)
-          .addToCartCloud(food: ChangeCartSuccessState.cart[i]);
-    }
-    for (int i = 0; i < ChangeFavouriteSuccessState.favourite.length; i++) {
-     await FavouriteCubit.get(context).addToFavouriteCloud(
+      for (int i = 0; i < ChangeCartSuccessState.cart.length; i++){
+        await  CartCubit.get(context)
+            .addToCartCloud(food: ChangeCartSuccessState.cart[i]);
+      }
+      for (int i = 0; i < ChangeFavouriteSuccessState.favourite.length; i++) {
+        await FavouriteCubit.get(context).addToFavouriteCloud(
           food: ChangeFavouriteSuccessState.favourite[i],);
+      }
     }
     DashboardCubit.get(context).foods = [];
     ChangeCartSuccessState.cart=[];

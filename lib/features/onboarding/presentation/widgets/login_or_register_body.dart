@@ -171,9 +171,10 @@ class _Skip extends StatelessWidget {
         TextButton(
           onPressed: () {
             isSkip=true;
+            isMainGetFood=false;
             save('skip',isSkip,kStartBox);
             GoRouter.of(context).go(AppRouter.kLayout);
-            DashboardCubit.get(context).getFood();
+            DashboardCubit.get(context).getFood(text: 'Get Food From Skip');
 
           },
           child: const Row(

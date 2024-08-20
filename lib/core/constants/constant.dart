@@ -12,5 +12,6 @@ const kStartBox = 'start_box';
   bool? isLogin;
   bool? isSkip;
   String? uId ;
+  bool isMainGetFood=true;
 
 var layoutScaffoldKey=GlobalKey<ScaffoldState>();

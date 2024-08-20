@@ -25,7 +25,7 @@ class _RegisterBodyState extends State<RegisterBody> {
   var passwordController = TextEditingController();
   var nameController = TextEditingController();
   var phoneController = TextEditingController();
-  var formKey = GlobalKey<FormState>();
+  var registerFormKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<RegisterCubit, RegisterState>(
@@ -46,7 +46,7 @@ class _RegisterBodyState extends State<RegisterBody> {
                 padding: const EdgeInsets.all(20.0),
                 child: Center(
                   child: Form(
-                    key: formKey,
+                    key: registerFormKey,
                     child: Column(
                       children: [
                         const BackIcon(),
@@ -149,7 +149,7 @@ class _RegisterBodyState extends State<RegisterBody> {
   }
 
   void _clickOnRegister(RegisterCubit cubit) {
-       if (formKey.currentState!.validate()) {
+       if (registerFormKey.currentState!.validate()) {
       RegisterModel registerModel = RegisterModel(
          email:  emailController.text,
          password: passwordController.text,
