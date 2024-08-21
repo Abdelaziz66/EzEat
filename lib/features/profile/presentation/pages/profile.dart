@@ -1,5 +1,6 @@
-import 'package:ez_eat/core/style/textStyles.dart';
 import 'package:flutter/material.dart';
+
+import '../widgets/profile_body.dart';
 
 
 class Profile extends StatelessWidget {
@@ -7,11 +8,10 @@ class Profile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Container(
-        child: Text('Account',style: Styles.textStyle27,),
-
-      ),
-    );
+    return const ProfileBody();
   }
 }
+
+
+
+

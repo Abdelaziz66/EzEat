@@ -74,7 +74,8 @@ class _LoginBodyState extends State<LoginBody> {
                       const SizedBox(
                         height: 30,
                       ),
-                      CustomTextFormField(
+                      CustomTextFormField(                        borderRadius: 20,
+
                         controller: emailController,
                         keyboardType: TextInputType.emailAddress,
                         hintText: 'Email',
@@ -85,7 +86,8 @@ class _LoginBodyState extends State<LoginBody> {
                       const SizedBox(
                         height: 12,
                       ),
-                      CustomTextFormField(
+                      CustomTextFormField(                        borderRadius: 20,
+
                         controller: passwordController,
                         keyboardType: TextInputType.visiblePassword,
                         hintText: 'Password',
@@ -134,29 +136,31 @@ class _LoginBodyState extends State<LoginBody> {
   }
 
   void _clickOnLogin(LoginCubit cubit) {
-    if (loginFormKey.currentState!.validate()) {
+    // if (loginFormKey.currentState!.validate()) {
       LoginDataModel loginDataModel = LoginDataModel(
-        email: emailController.text,
-        password: passwordController.text,
+        // email: emailController.text,
+        // password: passwordController.text,
+        email: 'serious@gmail.com',
+        password: '123456',
       );
       cubit.login(
         loginDataModel: loginDataModel,
       );
-    }
+    // }
   }
 
   void _loginSuccess(LoginSuccessState state,context) async {
     showFlutterToastMessage(message: 'Login Successful');
     save('isLogin', true, kStartBox);
-    save('uId', state.loginEntity.uid, kStartBox);
+    save('uId', LoginSuccessState.loginEntity?.uid, kStartBox);
     save('isSkip', false, kStartBox);
     isSkip=false;
     isLogin=true;
-    uId = state.loginEntity.uid;
+    uId = LoginSuccessState.loginEntity?.uid;
     isMainGetFood=false;
     await uploadLocalFavouriteCart(context);
-    GoRouter.of(context).push(AppRouter.kLayout);
-    DashboardCubit.get(context).getFood(text: 'Get Food From Login');
+    GoRouter.of(context).go(AppRouter.kLayout);
+    DashboardCubit.get(context).getFood();
 
   }
 

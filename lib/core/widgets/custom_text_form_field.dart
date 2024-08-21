@@ -1,3 +1,4 @@
+import 'package:ez_eat/core/widgets/glass_box.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -12,7 +13,7 @@ class CustomTextFormField extends StatelessWidget {
     required this.hintText,
     required this.prefixIcon,
     required this.obscureText,
-    required this.suffix,
+    required this.suffix, required this.borderRadius,
   });
 
   final TextEditingController controller;
@@ -21,17 +22,12 @@ class CustomTextFormField extends StatelessWidget {
   final IconData prefixIcon;
   final bool obscureText;
   final Widget suffix;
+  final double borderRadius;
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return GlassBox(widget: SizedBox(
       height: 70,
       width: MediaQuery.of(context).size.width<600? MediaQuery.of(context).size.width: 600,
-
-      decoration: BoxDecoration(
-        // border: Border.all(color: Colors.black),
-        borderRadius: BorderRadius.circular(20),
-        color: Colors.black.withOpacity(.1),
-      ),
       child: TextFormField(
         controller: controller,
         keyboardType: keyboardType,
@@ -80,6 +76,10 @@ class CustomTextFormField extends StatelessWidget {
 
         ),
       ),
-    );
+    ),  color: Colors.white.withOpacity(.3),
+      border: true,
+      borderRadius: borderRadius,
+      x: 20,
+      y: 20,);
   }
 }

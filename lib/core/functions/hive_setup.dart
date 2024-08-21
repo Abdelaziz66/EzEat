@@ -13,8 +13,4 @@ Future<void> hiveSetup() async {
   isLogin = startBoxData.get('isLogin') ?? false;
   isSkip=startBoxData.get('isSkip') ?? false;
   uId = startBoxData.get('uId');
-  print('uid');
-  print(uId);
-
-
 }

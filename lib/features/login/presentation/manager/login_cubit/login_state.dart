@@ -7,9 +7,11 @@ class LoginInitial extends LoginState {}
 
 class LoginLoadingState extends LoginState{}
 class LoginSuccessState extends LoginState{
-  final LoginEntity  loginEntity;
+  static LoginEntity?  loginEntity;
 
-  LoginSuccessState({required this.loginEntity});
+  static set({required LoginEntity loginEntity}){
+    LoginSuccessState.loginEntity=loginEntity;
+  }
 }
 class LoginErrorState extends LoginState{
   final String errMessage;

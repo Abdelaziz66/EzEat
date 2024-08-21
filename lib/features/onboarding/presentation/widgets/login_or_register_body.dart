@@ -58,6 +58,7 @@ class _CustomButton extends StatelessWidget {
             children: [
               Expanded(
                 child: GestureDetector(
+                  behavior:HitTestBehavior.translucent ,
                   onTap: () {
                     GoRouter.of(context).push(AppRouter.kRegister);
                   },
@@ -81,17 +82,16 @@ class _CustomButton extends StatelessWidget {
               ),
               Expanded(
                 child: GestureDetector(
+                  behavior:HitTestBehavior.translucent ,
                   onTap: () {
                     GoRouter.of(context).push(AppRouter.kLogin);
                   },
-                  child: const SizedBox(
-                    child: Center(
-                      child: Padding(
-                        padding: EdgeInsets.all(30.0),
-                        child: Text(
-                          'Login',
-                          style:Styles.textStyle20
-                        ),
+                  child:  const Center(
+                    child: Padding(
+                      padding: EdgeInsets.all(30.0),
+                      child: Text(
+                        'Login',
+                        style:Styles.textStyle20
                       ),
                     ),
                   ),
@@ -172,9 +172,9 @@ class _Skip extends StatelessWidget {
           onPressed: () {
             isSkip=true;
             isMainGetFood=false;
-            save('skip',isSkip,kStartBox);
+            save('isSkip',isSkip,kStartBox);
             GoRouter.of(context).go(AppRouter.kLayout);
-            DashboardCubit.get(context).getFood(text: 'Get Food From Skip');
+            DashboardCubit.get(context).getFood();
 
           },
           child: const Row(

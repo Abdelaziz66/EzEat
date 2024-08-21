@@ -14,6 +14,7 @@ import '../../../../core/functions/save_food.dart';
 import '../../../../core/widgets/glass_box.dart';
 import '../../../cart/presentation/manager/cart_cubit/cart_state.dart';
 import '../../../favourite/presentation/manager/favourite_cubit/favourite_state.dart';
+import '../../../login/presentation/manager/login_cubit/login_cubit.dart';
 import '../../../onboarding/presentation/pages/login_or_register.dart';
 
 class CustomDrawer extends StatefulWidget {
@@ -111,7 +112,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
     );
   }
 
-  void logout(BuildContext context) {
+  void logout(context) {
     GoRouter.of(context).pop();
     isLogin = false;
     uId = null;
@@ -120,6 +121,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
     ChangeFavouriteSuccessState.favourite = [];
     ChangeCartSuccessState.cart = [];
     DashboardCubit.get(context).foods=[];
+    LoginSuccessState.loginEntity=null;
     GoRouter.of(context).go(AppRouter.kLoginOrRegister);
 
   }

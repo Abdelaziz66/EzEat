@@ -36,10 +36,8 @@ class DashboardCubit extends Cubit<DashboardState> {
 
   List<FoodEntity> foods = [];
 
-  Future<void> getFood({required String text}) async {
-      print(uId);
-      print(isSkip);
-      print(text);
+  Future<void> getFood() async {
+
       emit(GetDashBoardDataLoadingState());
       var result = await foodUseCase.call();
       result.fold((failure) {
@@ -51,7 +49,7 @@ class DashboardCubit extends Cubit<DashboardState> {
 
   void mainGetFood(){
     if(isMainGetFood){
-      getFood(text: 'From Main');
+      getFood();
     }
   }
 
