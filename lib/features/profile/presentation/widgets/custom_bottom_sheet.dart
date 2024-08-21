@@ -36,96 +36,118 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
 
             child: Form(
               key: addressFormKey,
-              child: Column(
-                children: [
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Add Card',
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    const SizedBox(
+                      height: 10,
+                    ),
+                     Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Expanded(child: SizedBox(),),
+                        const Expanded(
+                          child: Text(
+                            'Address Card',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                            ),
+                          ),
                         ),
+                
+                        Expanded(
+                          child: Container(
+                            alignment: Alignment.centerRight,
+                            child: Padding(
+                              padding: const EdgeInsets.only(right: 12.0),
+                              child: IconButton(
+                                onPressed: (){
+                                  GoRouter.of(context).pop();
+                                },
+                                icon: const FaIcon(
+                                  FontAwesomeIcons.circleDown,
+                                  size: 30,
+                                  color: Colors.black38,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                      child: CustomTextFormField(
+                        controller: nameController,
+                        keyboardType: TextInputType.name,
+                        hintText: 'name',
+                        prefixIcon: FontAwesomeIcons.solidUser,
+                        obscureText: false,
+                        suffix: const SizedBox(),
+                        borderRadius: 20,
                       ),
-                      Icon(
-                        Icons.keyboard_arrow_down,
-                        size: 35,
+                    ),
+                    const SizedBox(
+                      height: 12,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                      child: CustomTextFormField(
+                        controller: addressController,
+                        keyboardType: TextInputType.text,
+                        hintText: 'address',
+                        prefixIcon: FontAwesomeIcons.locationDot,
+                        obscureText: false,
+                        suffix: const SizedBox(),
+                        borderRadius: 20,
                       ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                    child: CustomTextFormField(
-                      controller: nameController,
-                      keyboardType: TextInputType.name,
-                      hintText: 'name',
-                      prefixIcon: FontAwesomeIcons.user,
-                      obscureText: false,
-                      suffix: const SizedBox(),
-                      borderRadius: 20,
                     ),
-                  ),
-                  const SizedBox(
-                    height: 12,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                    child: CustomTextFormField(
-                      controller: addressController,
-                      keyboardType: TextInputType.text,
-                      hintText: 'address',
-                      prefixIcon: FontAwesomeIcons.location,
-                      obscureText: false,
-                      suffix: const SizedBox(),
-                      borderRadius: 20,
+                    const SizedBox(
+                      height: 12,
                     ),
-                  ),
-                  const SizedBox(
-                    height: 12,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                    child: CustomTextFormField(
-                      controller: numberController,
-                      keyboardType: TextInputType.name,
-                      hintText: 'number',
-                      prefixIcon: FontAwesomeIcons.phone,
-                      obscureText: false,
-                      suffix: const SizedBox(),
-                      borderRadius: 20,
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                      child: CustomTextFormField(
+                        controller: numberController,
+                        keyboardType: TextInputType.name,
+                        hintText: 'number',
+                        prefixIcon: FontAwesomeIcons.phone,
+                        obscureText: false,
+                        suffix: const SizedBox(),
+                        borderRadius: 20,
+                      ),
                     ),
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                    child: CustomButton(
-                      onTap: () {
-                        if (addressFormKey.currentState!.validate()) {
-                          AddressEntity addressEntity = AddressEntity(
-                            name: nameController.text,
-                            phone: numberController.text,
-                            address: addressController.text,
-                          );
-                          AddressCubit.get(context).uploadAddress(
-                            addressEntity: addressEntity,
-                          );
-                          GoRouter.of(context).pop();
-                        }
-                      },
-                      text: 'Confirm',
+                    const SizedBox(
+                      height: 15,
                     ),
-                  ),
-                ],
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                      child: CustomButton(
+                        onTap: () {
+                          if (addressFormKey.currentState!.validate()) {
+                            AddressEntity addressEntity = AddressEntity(
+                              name: nameController.text,
+                              phone: numberController.text,
+                              address: addressController.text,
+                            );
+                            AddressCubit.get(context).uploadAddress(
+                              addressEntity: addressEntity,
+                            );
+                            GoRouter.of(context).pop();
+                          }
+                        },
+                        text: 'Add',
+                      ),
+                    ),
+                    const SizedBox(height: 100,),
+                  ],
+                ),
               ),
             ),
           ),
