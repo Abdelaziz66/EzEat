@@ -28,16 +28,14 @@ class _AddressGridViewState extends State<AddressGridView> {
       },
       builder: (context, state) {
         if(state is GetAddressSuccessState || address.isNotEmpty){
-          return Expanded(
-            child: GridView.builder(
-
-              itemBuilder: (context, index) =>
-                  AddressCard(addressEntity: address[index]),
-              itemCount: address.length,
-              gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                maxCrossAxisExtent: 430,
-                mainAxisExtent: 220,
-              ),
+          return GridView.builder(
+            physics: const NeverScrollableScrollPhysics(),
+            itemBuilder: (context, index) =>
+                AddressCard(addressEntity: address[index]),
+            itemCount: address.length,
+            gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+              maxCrossAxisExtent: 430,
+              mainAxisExtent: 220,
             ),
           );
         }else if(state is GetAddressErrorState){

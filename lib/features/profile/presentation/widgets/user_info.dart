@@ -23,17 +23,18 @@ class UserInfo extends StatelessWidget {
               ),
               Container(
                 decoration:
-                const BoxDecoration(shape: BoxShape.circle, boxShadow: [
+                 const BoxDecoration(shape: BoxShape.circle, boxShadow: [
                   BoxShadow(
-                    color: Colors.black,
+                    color: Colors.white12,
                     blurRadius: 2,
                     spreadRadius: 2,
                   ),
                 ]),
-                child: const CircleAvatar(
+                child:  const CircleAvatar(
                   radius: 45,
+                  backgroundColor: Colors.white10,
                   backgroundImage:
-                  NetworkImage('https://qph.cf2.quoracdn.net/main-thumb-68740262-100-mlglakfoyejhwmdfaehswroxehmirqem.jpeg',),
+                  NetworkImage('https://www.kaericature.com/wp-content/uploads/2023/05/custom_avatar_3d-800x800.jpg',),
                 ),
               ),
               const SizedBox(
