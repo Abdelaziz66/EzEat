@@ -1,6 +1,5 @@
 import 'package:ez_eat/core/functions/setup_service_locator.dart';
 import 'package:ez_eat/features/profile/data/repositories/address_repo_impl.dart';
-import 'package:ez_eat/features/profile/domain/entities/address_entity.dart';
 import 'package:ez_eat/features/profile/domain/use_cases/get_address_usecase.dart';
 import 'package:ez_eat/features/profile/presentation/widgets/user_info.dart';
 import 'package:ez_eat/features/profile/presentation/widgets/verify_account.dart';
@@ -20,38 +19,33 @@ import 'address_gridview.dart';
 import 'custom_bottom_sheet.dart';
 import 'custom_profile_button.dart';
 
-class ProfileBody extends StatefulWidget {
+class ProfileBody extends StatelessWidget {
   const ProfileBody({super.key});
 
-  @override
-  State<ProfileBody> createState() => _ProfileBodyState();
-}
-
-class _ProfileBodyState extends State<ProfileBody> {
-  var isFloatingActionButton = false;
-  var profileScaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => AddressCubit(
-          getAddressUseCase: GetAddressUseCase(
-              addressRepo: getIt.get<AddressRepoImpl>()),
-          uploadAddressUseCase: UploadAddressUseCase(
-              addressRepo: getIt.get<AddressRepoImpl>()),)..getAddress(),
+        getAddressUseCase: GetAddressUseCase(
+            addressRepo: getIt.get<AddressRepoImpl>()),
+        uploadAddressUseCase: UploadAddressUseCase(
+            addressRepo: getIt.get<AddressRepoImpl>()),)..getAddress(),
       child: BlocConsumer<AddressCubit, AddressState>(
         listener: (context, state) {
           AddressCubit cubit =AddressCubit.get(context);
           if(state is UploadAddressSuccessState){
             cubit.getAddress();
           }
-         },
+        },
         builder: (context, state) {
           return Scaffold(
             backgroundColor: Colors.transparent,
             key: profileScaffoldKey,
             body: NestedScrollView(
               physics: const BouncingScrollPhysics(),
+
+
               floatHeaderSlivers: true,
               headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) =>[
                 SliverToBoxAdapter(
@@ -94,17 +88,11 @@ class _ProfileBodyState extends State<ProfileBody> {
   }
 
   void showCustomBottomSheet(context) {
-    if (isFloatingActionButton) {
-      Navigator.pop(context);
-      isFloatingActionButton = false;
-    } else {
-      profileScaffoldKey.currentState!.showBottomSheet(
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          enableDrag: false,
-          (context) => const CustomBottomSheet());
-      isFloatingActionButton = true;
-    }
+    profileScaffoldKey.currentState!.showBottomSheet(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        enableDrag: true,
+            (context) => const CustomBottomSheet());
   }
 
   void logout(context) {
@@ -119,3 +107,5 @@ class _ProfileBodyState extends State<ProfileBody> {
     GoRouter.of(context).go(AppRouter.kLoginOrRegister);
   }
 }
+
+

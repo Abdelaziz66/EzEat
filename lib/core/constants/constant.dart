@@ -15,3 +15,4 @@ const kStartBox = 'start_box';
   bool isMainGetFood=true;
 
 var layoutScaffoldKey=GlobalKey<ScaffoldState>();
+var profileScaffoldKey = GlobalKey<ScaffoldState>();
