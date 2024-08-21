@@ -1,9 +1,12 @@
 import 'package:ez_eat/core/widgets/custom_text_form_field.dart';
 import 'package:ez_eat/core/widgets/glass_box.dart';
+import 'package:ez_eat/features/profile/domain/entities/address_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../core/widgets/custom_button.dart';
+import '../manager/address_cubit.dart';
 
 class CustomBottomSheet extends StatefulWidget {
   const CustomBottomSheet({
@@ -61,12 +64,14 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 15.0),
                     child: CustomTextFormField(
-                        controller: nameController,
-                        keyboardType: TextInputType.name,
-                        hintText: 'name',
-                        prefixIcon: FontAwesomeIcons.user,
-                        obscureText: false,
-                        suffix: const SizedBox(), borderRadius: 20,),
+                      controller: nameController,
+                      keyboardType: TextInputType.name,
+                      hintText: 'name',
+                      prefixIcon: FontAwesomeIcons.user,
+                      obscureText: false,
+                      suffix: const SizedBox(),
+                      borderRadius: 20,
+                    ),
                   ),
                   const SizedBox(
                     height: 12,
@@ -74,12 +79,14 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 15.0),
                     child: CustomTextFormField(
-                        controller: addressController,
-                        keyboardType: TextInputType.text,
-                        hintText: 'address',
-                        prefixIcon: FontAwesomeIcons.location,
-                        obscureText: false,
-                        suffix: const SizedBox(), borderRadius: 20,),
+                      controller: addressController,
+                      keyboardType: TextInputType.text,
+                      hintText: 'address',
+                      prefixIcon: FontAwesomeIcons.location,
+                      obscureText: false,
+                      suffix: const SizedBox(),
+                      borderRadius: 20,
+                    ),
                   ),
                   const SizedBox(
                     height: 12,
@@ -87,37 +94,37 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 15.0),
                     child: CustomTextFormField(
-                        controller: numberController,
-                        keyboardType: TextInputType.name,
-                        hintText: 'number',
-                        prefixIcon: FontAwesomeIcons.phone,
-                        obscureText: false,
-                        suffix: const SizedBox(), borderRadius: 20,),
+                      controller: numberController,
+                      keyboardType: TextInputType.name,
+                      hintText: 'number',
+                      prefixIcon: FontAwesomeIcons.phone,
+                      obscureText: false,
+                      suffix: const SizedBox(),
+                      borderRadius: 20,
+                    ),
                   ),
                   const SizedBox(
                     height: 15,
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                    child: CustomButton(onTap: (){
-                      // if (formkey.currentState!
-                      //     .validate()) {
-                      //   print(NameController.text);
-                      //   print(AdressController.text);
-                      //   print(NumberController.text);
-                      //   cubit.InsertToDataBase(
-                      //       NameController.text,
-                      //       AdressController.text,
-                      //       NumberController.text,
-                      //       1,1,1,1,
-                      //       cubit.table1);
-                      //   print("Insert Ended");
-                      //   cubit.GetFromDataBase(
-                      //       cubit.database, cubit.table1);
-                      // }
-                    },text: 'Confirm',),
+                    child: CustomButton(
+                      onTap: () {
+                        if (addressFormKey.currentState!.validate()) {
+                          AddressEntity addressEntity = AddressEntity(
+                            name: nameController.text,
+                            phone: numberController.text,
+                            address: addressController.text,
+                          );
+                          AddressCubit.get(context).uploadAddress(
+                            addressEntity: addressEntity,
+                          );
+                          GoRouter.of(context).pop();
+                        }
+                      },
+                      text: 'Confirm',
+                    ),
                   ),
-
                 ],
               ),
             ),

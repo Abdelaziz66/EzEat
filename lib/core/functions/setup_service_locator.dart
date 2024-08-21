@@ -9,12 +9,12 @@ import '../../features/favourite/data/data_sources/favourite_remote_data_source.
 import '../../features/favourite/data/repositories/favourite_repo_impl.dart';
 import '../../features/login/data/data_sources/login_remote_data_source.dart';
 import '../../features/login/data/repositories/login_repo_impl.dart';
+import '../../features/profile/data/data_sources/address_remote_data_source.dart';
+import '../../features/profile/data/repositories/address_repo_impl.dart';
 
 final getIt = GetIt.instance;
 
 void setupServiceLocator() {
-
-
   getIt.registerSingleton<FoodRepoImpl>(
     FoodRepoImpl(
       foodRemoteDataSource: FoodRemoteDataSourceImpl(),
@@ -28,15 +28,15 @@ void setupServiceLocator() {
   );
 
   getIt.registerSingleton<CartRepoImpl>(
-
-    CartRepoImpl(
-        cartRemoteDataSource: CartRemoteDataSourceImpl()),
-
+    CartRepoImpl(cartRemoteDataSource: CartRemoteDataSourceImpl()),
   );
 
   getIt.registerSingleton<LoginRepoImpl>(
-
-      LoginRepoImpl(
-          loginRemoteDataSource: LoginRemoteDataSourceImpl()),
+    LoginRepoImpl(loginRemoteDataSource: LoginRemoteDataSourceImpl()),
   );
+
+  getIt.registerSingleton<AddressRepoImpl>(
+    AddressRepoImpl(addressRemoteDataSource: AddressRemoteDataSourceImpl()),
+  );
+
 }
