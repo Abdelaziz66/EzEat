@@ -29,20 +29,26 @@ class DashboardBody extends StatelessWidget {
       },
       builder: (context, state) {
         DashboardCubit cubit = DashboardCubit.get(context);
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            const Titles(title: Strings.dashboardTitle,
-              subtitle: Strings.dashboardSubTitle,),
-            const SizedBox(
-              height: 10,
+        return NestedScrollView(
+          physics: const BouncingScrollPhysics(),
+          floatHeaderSlivers: true,
+          headerSliverBuilder: (context, innerBoxIsScrolled) => [
+            const SliverToBoxAdapter(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Titles(title: Strings.dashboardTitle,
+                    subtitle: Strings.dashboardSubTitle,),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  CustomTabBar(),
+                ],
+              ),
             ),
-            const CustomTabBar(),
-            Expanded(
-              child: cubit.tabBarScreens[cubit.currentTabBarIndex],
-            ),
-          ],
+
+          ], body:   cubit.tabBarScreens[cubit.currentTabBarIndex],
         );
       },
     );

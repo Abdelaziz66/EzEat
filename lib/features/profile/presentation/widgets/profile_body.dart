@@ -50,34 +50,42 @@ class _ProfileBodyState extends State<ProfileBody> {
           return Scaffold(
             backgroundColor: Colors.transparent,
             key: profileScaffoldKey,
-            body: Column(
-              children: [
-                const UserInfo(),
-                Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: Row(
+            body: NestedScrollView(
+              physics: const BouncingScrollPhysics(),
+              floatHeaderSlivers: true,
+              headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) =>[
+                SliverToBoxAdapter(
+
+                  child:Column(
                     children: [
-                      CustomProfileButton(
-                        text: 'Add Address',
-                        function: () {
-                          showCustomBottomSheet(context);
-                        },
+                      const UserInfo(),
+                      Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: Row(
+                          children: [
+                            CustomProfileButton(
+                              text: 'Add Address',
+                              function: () {
+                                showCustomBottomSheet(context);
+                              },
+                            ),
+                            const SizedBox(
+                              width: 7,
+                            ),
+                            CustomProfileButton(
+                              text: 'Logout',
+                              function: () {
+                                logout(context);
+                              },
+                            ),
+                          ],
+                        ),
                       ),
-                      const SizedBox(
-                        width: 7,
-                      ),
-                      CustomProfileButton(
-                        text: 'Logout',
-                        function: () {
-                          logout(context);
-                        },
-                      ),
+                      const VerifyAccount(),
                     ],
                   ),
                 ),
-                const VerifyAccount(),
-                const AddressGridView(),
-              ],
+              ], body:  const AddressGridView(),
             ),
           );
         },
