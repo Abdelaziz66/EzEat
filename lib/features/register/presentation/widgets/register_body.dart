@@ -66,7 +66,8 @@ class _RegisterBodyState extends State<RegisterBody> {
                         const SizedBox(
                           height: 30,
                         ),
-                        CustomTextFormField(
+                        CustomTextFormField(                        borderRadius: 20,
+
                           controller: nameController,
                           keyboardType: TextInputType.name,
                           hintText: 'User name',
@@ -77,7 +78,8 @@ class _RegisterBodyState extends State<RegisterBody> {
                         const SizedBox(
                           height: 12,
                         ),
-                        CustomTextFormField(
+                        CustomTextFormField(                        borderRadius: 20,
+
                           controller: phoneController,
                           keyboardType: TextInputType.phone,
                           hintText: 'Phone number',
@@ -88,7 +90,8 @@ class _RegisterBodyState extends State<RegisterBody> {
                         const SizedBox(
                           height: 12,
                         ),
-                        CustomTextFormField(
+                        CustomTextFormField(                        borderRadius: 20,
+
                           controller: emailController,
                           keyboardType: TextInputType.emailAddress,
                           hintText: 'Email',
@@ -100,6 +103,7 @@ class _RegisterBodyState extends State<RegisterBody> {
                           height: 12,
                         ),
                         CustomTextFormField(
+                        borderRadius: 20,
                           controller: passwordController,
                           keyboardType: TextInputType.visiblePassword,
                           hintText: 'Password',

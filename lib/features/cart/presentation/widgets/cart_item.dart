@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/constants/constant.dart';
+import '../../../../core/functions/custom_alert.dart';
 import '../../../../core/utils/app_router.dart';
 import '../../../favourite/presentation/manager/favourite_cubit/favourite_cubit.dart';
+import '../../../layout/presentation/manager/layout_cubit/layout_cubit.dart';
 import '../manager/cart_cubit/cart_cubit.dart';
 
 class CartItem extends StatefulWidget {
@@ -180,17 +182,17 @@ class _CartItemState extends State<CartItem> {
 
   void _clickOnConfirm() {
     if (uId == null) {
-      // customAlert(
-      //     context: context,
-      //     text: 'Login to confirm your order',
-      //     no: () {
-      //       GoRouter.of(context).pop();
-      //     },
-      //     yes: () {
-      //       GoRouter.of(context).pop();
-      //       GoRouter.of(context).push(AppRouter.kLoginOrRegister);
-      //       LayoutCubit.get(context).currentNavigationBarIndex=0;
-      //     });
+      customAlert(
+          context: context,
+          text: 'Login to confirm your order',
+          no: () {
+            GoRouter.of(context).pop();
+          },
+          yes: () {
+            GoRouter.of(context).pop();
+            GoRouter.of(context).push(AppRouter.kLoginOrRegister);
+            LayoutCubit.get(context).currentNavigationBarIndex=0;
+          });
     } else {
       setState(() {
         confirm = !confirm;
