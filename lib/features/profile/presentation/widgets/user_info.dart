@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/constants/constant.dart';
 import '../../../../core/style/textStyles.dart';
 import '../../../login/presentation/manager/login_cubit/login_cubit.dart';
 
@@ -126,7 +127,7 @@ class Name extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-                LoginSuccessState.loginEntity==null?'Guest':    LoginSuccessState.loginEntity!.name!,
+                loginEntity==null?'Guest':loginEntity!.name!,
               style: Styles.textStyle16black
 
             ),
@@ -135,7 +136,7 @@ class Name extends StatelessWidget {
             ),
             Text(
 
-                LoginSuccessState.loginEntity==null?'':    LoginSuccessState.loginEntity!.email!,
+                loginEntity==null?'':loginEntity!.email!,
                 style: Styles.textStyle16black
 
             ),

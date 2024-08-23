@@ -1,21 +1,11 @@
 
 import 'package:ez_eat/core/style/colors.dart';
 import 'package:ez_eat/core/style/textStyles.dart';
-import 'package:ez_eat/core/utils/app_router.dart';
-import 'package:ez_eat/features/dashboard/presentation/manager/dashboard_cubit/dashboard_cubit.dart';
-import 'package:ez_eat/features/dashboard/presentation/pages/dashboard.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
-
-import '../../../../core/constants/constant.dart';
-import '../../../../core/functions/save_food.dart';
+import '../../../../core/functions/logout.dart';
 import '../../../../core/widgets/glass_box.dart';
-import '../../../cart/presentation/manager/cart_cubit/cart_state.dart';
-import '../../../favourite/presentation/manager/favourite_cubit/favourite_state.dart';
-import '../../../login/presentation/manager/login_cubit/login_cubit.dart';
-import '../../../onboarding/presentation/pages/login_or_register.dart';
 
 class CustomDrawer extends StatefulWidget {
   const CustomDrawer({
@@ -81,7 +71,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                           case 3:
                             break;
                           case 4:
-                            logout(context);
+                            clickOnLogout(context);
                             break;
 
                         }
@@ -112,25 +102,14 @@ class _CustomDrawerState extends State<CustomDrawer> {
     );
   }
 
-  void logout(context) {
+  void clickOnLogout(context) {
     GoRouter.of(context).pop();
-    isLogin = false;
-    uId = null;
-    save('isLogin', false, kStartBox);
-    save('uId', null, kStartBox);
-    ChangeFavouriteSuccessState.favourite = [];
-    ChangeCartSuccessState.cart = [];
-    DashboardCubit.get(context).foods=[];
-    LoginSuccessState.loginEntity=null;
-    GoRouter.of(context).go(AppRouter.kLoginOrRegister);
-
+    logout(context);
   }
 }
 
 class _DrawerImage extends StatelessWidget {
-  const _DrawerImage({
-    super.key,
-  });
+  const _DrawerImage();
 
   @override
   Widget build(BuildContext context) {

@@ -3,10 +3,8 @@ import 'package:ez_eat/core/widgets/animation_background.dart';
 import 'package:ez_eat/features/dashboard/presentation/manager/dashboard_cubit/dashboard_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:hive/hive.dart';
-
 import '../../../../core/constants/constant.dart';
-import '../../../../core/functions/save_food.dart';
+import '../../../../core/functions/hive_function.dart';
 import '../../../../core/utils/app_router.dart';
 
 

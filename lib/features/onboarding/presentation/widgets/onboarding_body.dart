@@ -3,8 +3,7 @@ import 'package:ez_eat/core/widgets/animation_background.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-
-import '../../../../core/functions/save_food.dart';
+import '../../../../core/functions/hive_function.dart';
 import '../../../../core/utils/app_router.dart';
 import '../../../../core/widgets/custom_button.dart';
 import 'onboarding_item.dart';

@@ -7,7 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/constants/constant.dart';
-import '../../../../core/functions/save_food.dart';
+import '../../../../core/functions/logout.dart';
+import '../../../../core/functions/hive_function.dart';
 import '../../../../core/utils/app_router.dart';
 import '../../../cart/presentation/manager/cart_cubit/cart_state.dart';
 import '../../../dashboard/presentation/manager/dashboard_cubit/dashboard_cubit.dart';
@@ -69,7 +70,7 @@ class ProfileBody extends StatelessWidget {
                             CustomProfileButton(
                               text: 'Logout',
                               function: () {
-                                logout(context);
+                                clickOnLogout(context);
                               },
                             ),
                           ],
@@ -95,16 +96,8 @@ class ProfileBody extends StatelessWidget {
             (context) => const CustomBottomSheet());
   }
 
-  void logout(context) {
-    isLogin = false;
-    uId = null;
-    save('isLogin', false, kStartBox);
-    save('uId', null, kStartBox);
-    ChangeFavouriteSuccessState.favourite = [];
-    ChangeCartSuccessState.cart = [];
-    DashboardCubit.get(context).foods = [];
-    LoginSuccessState.loginEntity = null;
-    GoRouter.of(context).go(AppRouter.kLoginOrRegister);
+  void clickOnLogout(context) {
+    logout(context);
   }
 }
 

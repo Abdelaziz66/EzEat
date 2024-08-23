@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:ez_eat/core/functions/save_food.dart';
 import 'package:ez_eat/features/dashboard/domain/entities/food_entity.dart';
 
 import '../../../../core/constants/constant.dart';
+import '../../../../core/functions/hive_function.dart';
 import '../models/food_model.dart';
 
 abstract class FoodRemoteDataSource {
