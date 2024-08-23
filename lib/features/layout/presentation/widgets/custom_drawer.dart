@@ -120,7 +120,7 @@ class _DrawerImage extends StatelessWidget {
         radius: 75.0,
         backgroundColor: Colors.transparent,
         backgroundImage: AssetImage(
-          'assets/images/background/Spline.png',
+          'assets/images/avatar.png',
         ),
       ),
     );

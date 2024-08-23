@@ -35,7 +35,7 @@ class UserInfo extends StatelessWidget {
                   radius: 45,
                   backgroundColor: Colors.white10,
                   backgroundImage:
-                  NetworkImage('https://www.kaericature.com/wp-content/uploads/2023/05/custom_avatar_3d-800x800.jpg',),
+                  AssetImage('assets/images/avatar.png',),
                 ),
               ),
               const SizedBox(

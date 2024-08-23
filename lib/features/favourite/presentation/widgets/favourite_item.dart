@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/utils/app_router.dart';
+import '../../../../core/widgets/image_error.dart';
 import '../../../cart/presentation/manager/cart_cubit/cart_cubit.dart';
 import '../manager/favourite_cubit/favourite_cubit.dart';
 
@@ -315,7 +316,8 @@ class _FavouriteImage extends StatelessWidget {
 
       children: [
         Image.network(
-          '${widget.food.imageUrl}',
+          '${widget.food.imageUrl}'
+        ,errorBuilder: (context, error, stackTrace) => const ImageError(),
           height: 190,
         ),
       ],
