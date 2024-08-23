@@ -17,7 +17,7 @@ void logout(context) {
   ChangeCartSuccessState.cart = [];
   DashboardCubit.get(context).foods = [];
   LoginSuccessState.loginEntity = null;
-  delete(kFoodBox);
-  delete(kUserBox);
+  // delete(kFoodBox);
+  // delete(kUserBox);
   GoRouter.of(context).go(AppRouter.kLoginOrRegister);
 }

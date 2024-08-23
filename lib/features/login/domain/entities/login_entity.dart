@@ -1,7 +1,7 @@
 import 'package:hive/hive.dart';
 part'login_entity.g.dart';
 
-@HiveType(typeId: 0)
+@HiveType(typeId: 1)
 class LoginEntity{
  @HiveField(0)
  final String? email;

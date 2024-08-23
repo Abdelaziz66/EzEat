@@ -9,8 +9,9 @@ const kFoodBox = 'food_box';
 const kFavouriteBox = 'favourite_box';
 const kStartBox = 'start_box';
 const kUserBox = 'user_box';
-late LoginEntity? loginEntity;
 
+
+late LoginEntity? loginEntity;
   bool? isOnboarding;
   bool? isLogin;
   bool? isSkip;

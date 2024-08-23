@@ -14,10 +14,10 @@ class FoodRepoImpl extends FoodRepo {
   Future<Either<Failure, List<FoodEntity>>> getFood() async {
     try {
       List<FoodEntity> food=[];
-      // food=foodLocalDataSource.getFood();
-      // if(food.isNotEmpty){
-      //   return right(food);
-      // }
+      food=foodLocalDataSource.getFood();
+      if(food.isNotEmpty){
+        return right(food);
+      }
       food = await foodRemoteDataSource.getFood();
       return right(food);
     } catch (e) {

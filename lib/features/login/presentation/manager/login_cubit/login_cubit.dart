@@ -25,6 +25,7 @@ class LoginCubit extends Cubit<LoginState> {
     emit(LoginLoadingState());
     var result =await loginUseCase.call(loginDataModel);
     result.fold((failure){
+      print(failure.message);
       emit(LoginErrorState(failure.toString()));
     },(right){
       LoginSuccessState.set(loginEntity: right);

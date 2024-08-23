@@ -38,7 +38,6 @@ class LoginRemoteDataSourceImpl extends LoginRemoteDataSource{
         .then((value) {
           loginEntity = LoginModel.fromJson(value.data());
           saveUserLoginHive(loginEntity!,kUserBox);
-
           return  loginEntity;
     });
     return  loginEntity!;

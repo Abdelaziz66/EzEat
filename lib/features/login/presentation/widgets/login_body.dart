@@ -156,6 +156,7 @@ class _LoginBodyState extends State<LoginBody> {
     save('isSkip', false, kStartBox);
     isSkip=false;
     isLogin=true;
+    loginEntity=LoginSuccessState.loginEntity;
     uId = LoginSuccessState.loginEntity?.uid;
     isMainGetFood=false;
     await uploadLocalFavouriteCart(context);
