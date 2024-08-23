@@ -8,9 +8,16 @@ Future<void> hiveSetup() async {
   Hive.registerAdapter(FoodEntityAdapter());
   await Hive.openBox<FoodEntity>(kFoodBox);
   await Hive.openBox(kStartBox);
+  await Hive.openBox(kUserBox);
+
   var startBoxData = Hive.box(kStartBox);
   isOnboarding = startBoxData.get('isOnboarding') ?? false;
   isLogin = startBoxData.get('isLogin') ?? false;
   isSkip=startBoxData.get('isSkip') ?? false;
   uId = startBoxData.get('uId');
+  startBoxData = Hive.box(kUserBox);
+  loginEntity=startBoxData.get('loginEntity');
+
+
+
 }

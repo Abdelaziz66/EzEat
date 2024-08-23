@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ez_eat/features/login/domain/entities/login_entity.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+import '../../../../core/constants/constant.dart';
+import '../../../../core/functions/hive_function.dart';
 import '../models/login_model.dart';
 
 abstract class LoginRemoteDataSource{
@@ -20,6 +22,7 @@ class LoginRemoteDataSourceImpl extends LoginRemoteDataSource{
         .then((value) async {
 
       loginEntity = await getUserDataFunction(uid: value.user?.uid);
+
       return loginEntity;
     });
     return loginEntity!;
@@ -34,6 +37,8 @@ class LoginRemoteDataSourceImpl extends LoginRemoteDataSource{
         .get()
         .then((value) {
           loginEntity = LoginModel.fromJson(value.data());
+          saveUserLoginHive(loginEntity!,kUserBox);
+
           return  loginEntity;
     });
     return  loginEntity!;
