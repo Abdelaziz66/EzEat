@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ez_eat/features/profile/data/models/address_model.dart';
 
 import '../../../../core/constants/constant.dart';
+import '../../../../core/functions/hive_function.dart';
 import '../../domain/entities/address_entity.dart';
 
 abstract class AddressRemoteDataSource {
@@ -20,7 +21,7 @@ class AddressRemoteDataSourceImpl extends AddressRemoteDataSource {
         .get()
         .then((value){
         addressEntity= getAddressList(value);
-
+        saveAddressHive(addressEntity,kAddressBox);
       return addressEntity;
     });
     return addressEntity;

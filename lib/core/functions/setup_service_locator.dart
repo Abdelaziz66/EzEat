@@ -1,3 +1,4 @@
+import 'package:ez_eat/features/profile/data/data_sources/address_local_data_source.dart';
 import 'package:get_it/get_it.dart';
 
 import '../../features/cart/data/data_sources/cart_remote_data_source.dart';
@@ -36,7 +37,7 @@ void setupServiceLocator() {
   );
 
   getIt.registerSingleton<AddressRepoImpl>(
-    AddressRepoImpl(addressRemoteDataSource: AddressRemoteDataSourceImpl()),
+    AddressRepoImpl(addressRemoteDataSource: AddressRemoteDataSourceImpl(), addressLocalDataSource: AddressLocalDataSourceImpl()),
   );
 
 }

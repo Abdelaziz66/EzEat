@@ -6,19 +6,26 @@ import 'package:ez_eat/features/profile/data/data_sources/address_remote_data_so
 import 'package:ez_eat/features/profile/domain/entities/address_entity.dart';
 
 import '../../domain/repositories/address_repo.dart';
+import '../data_sources/address_local_data_source.dart';
 
 class AddressRepoImpl extends AddressRepo{
  final AddressRemoteDataSource addressRemoteDataSource;
+ final AddressLocalDataSource addressLocalDataSource;
 
-  AddressRepoImpl({required this.addressRemoteDataSource});
+  AddressRepoImpl( {required this.addressRemoteDataSource,required this.addressLocalDataSource,});
 
 
   @override
   Future<Either<Failure, List<AddressEntity>>> getAddress() async {
     try{
-      List<AddressEntity> addressEntity;
+      List<AddressEntity> addressEntity=[];
       addressEntity= await addressRemoteDataSource.getAddress();
-      return right(addressEntity);
+      if(addressEntity.isNotEmpty){
+        return right(addressEntity);
+      }else{
+        addressEntity= await addressLocalDataSource.getAddress();
+        return right(addressEntity);
+      }
     }catch (e){
       return left(ServerFailure(e.toString()));
     }
