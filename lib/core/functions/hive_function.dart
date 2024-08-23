@@ -22,7 +22,7 @@ void save(String key, value,String boxName) {
 
 
 
-void delete(String boxName) {
+void clear(String boxName) {
   var box = Hive.box(boxName);
   box.clear();
 }
