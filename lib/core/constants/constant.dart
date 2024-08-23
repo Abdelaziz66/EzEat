@@ -8,6 +8,7 @@ const kGtSectraFine = 'GT Sectra Fine';
 const kFoodBox = 'food_box';
 const kStartBox = 'start_box';
 const kUserBox = 'user_box';
+const kAddressBox = 'address_box';
 
 
 late LoginEntity? loginEntity;
