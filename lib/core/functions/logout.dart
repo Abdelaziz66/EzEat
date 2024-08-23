@@ -1,5 +1,8 @@
 import 'package:ez_eat/core/functions/hive_function.dart';
+import 'package:ez_eat/features/dashboard/domain/entities/food_entity.dart';
+import 'package:ez_eat/features/login/domain/entities/login_entity.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hive/hive.dart';
 
 import '../../features/cart/presentation/manager/cart_cubit/cart_state.dart';
 import '../../features/dashboard/presentation/manager/dashboard_cubit/dashboard_cubit.dart';
@@ -17,7 +20,8 @@ void logout(context) {
   ChangeCartSuccessState.cart = [];
   DashboardCubit.get(context).foods = [];
   LoginSuccessState.loginEntity = null;
-  // delete(kFoodBox);
-  // delete(kUserBox);
+  Hive.box<FoodEntity>(kFoodBox).clear();
+  Hive.box<LoginEntity>(kUserBox).clear();
+
   GoRouter.of(context).go(AppRouter.kLoginOrRegister);
 }
