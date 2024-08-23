@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import '../../../../core/constants/constant.dart';
 import '../../../../core/functions/custom_alert.dart';
 import '../../../../core/utils/app_router.dart';
+import '../../../../core/widgets/image_error.dart';
 import '../../../favourite/presentation/manager/favourite_cubit/favourite_cubit.dart';
 import '../../../layout/presentation/manager/layout_cubit/layout_cubit.dart';
 import '../manager/cart_cubit/cart_cubit.dart';
@@ -343,7 +344,7 @@ class _FoodImage extends StatelessWidget {
       radius: 45,
       backgroundColor: Colors.black.withOpacity(.1),
       child: Image.network(
-        '${widget.food.imageUrl}',
+        '${widget.food.imageUrl}',errorBuilder: (context, error, stackTrace) => const ImageError(),
         height: 190,
       ),
     );

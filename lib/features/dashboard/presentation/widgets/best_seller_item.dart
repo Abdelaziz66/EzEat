@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
 import '../../../../core/utils/app_router.dart';
+import '../../../../core/widgets/image_error.dart';
 import '../../../cart/presentation/manager/cart_cubit/cart_cubit.dart';
 import '../../../favourite/presentation/manager/favourite_cubit/favourite_cubit.dart';
 import 'custom_linear_percent.dart';
@@ -148,7 +149,7 @@ class FoodImage extends StatelessWidget {
     return CircleAvatar(
       radius: 45,
       backgroundColor: Colors.black.withOpacity(.1),
-      child: Image.network(widget.food.imageUrl!),
+      child: Image.network(widget.food.imageUrl!,errorBuilder: (context, error, stackTrace) => const ImageError(),),
     );
   }
 }

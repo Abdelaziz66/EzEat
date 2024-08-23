@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/utils/app_router.dart';
+import '../../../../core/widgets/image_error.dart';
 
 class FoodItem extends StatelessWidget {
   const FoodItem({super.key, required this.food, required this.index});
@@ -122,7 +123,7 @@ class CustomImage extends StatelessWidget {
         SizedBox(
           height: 160,
           child: Image.network(
-            '${food.imageUrl}',
+            '${food.imageUrl}',errorBuilder: (context, error, stackTrace) => const ImageError(),
           ),
         )
       ],

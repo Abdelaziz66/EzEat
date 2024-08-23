@@ -8,6 +8,7 @@ import '../../features/cart/presentation/manager/cart_cubit/cart_cubit.dart';
 import '../../features/favourite/presentation/manager/favourite_cubit/favourite_cubit.dart';
 import '../style/textStyles.dart';
 import 'background.dart';
+import 'image_error.dart';
 
 class FoodDetails extends StatefulWidget {
   const FoodDetails({super.key, required this.food,});
@@ -320,7 +321,7 @@ class _FoodImage extends StatelessWidget {
             shape: BoxShape.circle,
             color:  Colors.black.withOpacity(.1),
           ),
-          child:Image.network(widget.food.imageUrl!),
+          child:Image.network(widget.food.imageUrl!,errorBuilder: (context, error, stackTrace) => const ImageError(),),
         ),
       ),
     );

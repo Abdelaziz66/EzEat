@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/utils/app_router.dart';
+import '../../../../core/widgets/image_error.dart';
 import '../../domain/entities/food_entity.dart';
 
 class BannerItem extends StatelessWidget {
@@ -127,6 +128,7 @@ class _CustomImage extends StatelessWidget {
             padding: const EdgeInsets.only(right: 8.0),
             child: Image.network(
               food.imageUrl!,
+              errorBuilder: (context, error, stackTrace) => const ImageError(),
               height: MediaQuery.of(context).size.height * .18,
 
               // width: 190,
