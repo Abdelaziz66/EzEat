@@ -8,7 +8,7 @@ part of 'login_entity.dart';
 
 class LoginEntityAdapter extends TypeAdapter<LoginEntity> {
   @override
-  final int typeId = 0;
+  final int typeId = 1;
 
   @override
   LoginEntity read(BinaryReader reader) {

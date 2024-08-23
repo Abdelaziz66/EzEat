@@ -5,6 +5,7 @@ import 'package:ez_eat/features/favourite/domain/use_cases/remove_from_favourite
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/constants/constant.dart';
+import '../../../../../core/functions/hive_function.dart';
 import '../../../../dashboard/domain/entities/food_entity.dart';
 import 'favourite_state.dart';
 
@@ -28,7 +29,7 @@ class FavouriteCubit extends Cubit<FavouriteState> {
         }
         DashboardCubit.get(context).foods[i].favourite=true;
         ChangeFavouriteSuccessState.add(food:food);
-        // saveFoodHive( DashboardCubit.get(context).foods, kFoodBox);
+        saveFoodHive( DashboardCubit.get(context).foods, kFoodBox);
         emit(ChangeFavouriteSuccessState());
         break;
       }
@@ -47,7 +48,7 @@ class FavouriteCubit extends Cubit<FavouriteState> {
         }
         DashboardCubit.get(context).foods[i].favourite=false;
         ChangeFavouriteSuccessState.remove(food:food);
-        // saveFoodHive( DashboardCubit.get(context).foods, kFoodBox);
+        saveFoodHive( DashboardCubit.get(context).foods, kFoodBox);
         emit(ChangeFavouriteSuccessState());
         break;
       }
