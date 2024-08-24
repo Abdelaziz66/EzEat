@@ -1,12 +1,9 @@
 import 'package:ez_eat/features/login/domain/entities/login_entity.dart';
 
 class LoginModel extends LoginEntity {
-  String? email;
-  String? uid;
-  String? name;
-  String? phone;
 
-  LoginModel({this.email, this.uid, this.name, this.phone}) : super(email: email,uid:uid ,name:name ,phone: phone);
+
+  LoginModel({super.email, super.uid, super.name, super.phone});
 
 
   factory LoginModel.fromJson(Map<String?, dynamic>?json)=> LoginModel(
@@ -18,10 +15,10 @@ class LoginModel extends LoginEntity {
 
   Map<String, dynamic> toMap() {
     return {
-      'email': email,
-      'uid': uid,
-      'name': name,
-      'phone': phone,
+      'email': super.email,
+      'uid': super.uid,
+      'name': super.name,
+      'phone': super.phone,
     };
   }
 

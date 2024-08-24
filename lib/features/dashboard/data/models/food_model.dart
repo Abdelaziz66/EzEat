@@ -1,24 +1,15 @@
 import 'package:ez_eat/features/dashboard/domain/entities/food_entity.dart';
 
 class FoodModel extends FoodEntity{
-  String? id;
-  String? title;
-  String? subTitle;
-  num? price;
-  String? protein;
-  String? carb;
-  String? fat;
-  String? imageUrl;
-
-  FoodModel({this.id,
-      this.title,
-      this.subTitle,
-      this.price,
-      this.protein,
-      this.carb,
-      this.fat,
-    this.imageUrl
-  }):super(id: id, title: title, subTitle: subTitle, price: price, protein: protein, carb: carb, fat: fat,imageUrl:imageUrl);
+  FoodModel({super.id,
+    super.title,
+    super.subTitle,
+    super.price,
+    super.protein,
+    super.carb,
+    super.fat,
+    super.imageUrl
+  });
 
   factory FoodModel.fromJson(Map<String?, dynamic>?json)=> FoodModel(
       id : json?['id'],
@@ -32,14 +23,14 @@ class FoodModel extends FoodEntity{
   );
   Map<String, dynamic> toMap() {
     return {
-      'id': id,
-      'title': title,
-      'subTitle': subTitle,
-      'price': price,
-      'protein': protein,
-      'carb': carb,
-      'fat': fat,
-      'imageUrl':imageUrl,
+      'id': super.id,
+      'title': super.title,
+      'subTitle': super.subTitle,
+      'price': super.price,
+      'protein': super.protein,
+      'carb':super.carb,
+      'fat': super.fat,
+      'imageUrl':super.imageUrl,
 
     };
   }
