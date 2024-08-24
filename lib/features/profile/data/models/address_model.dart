@@ -1,11 +1,11 @@
 import 'package:ez_eat/features/profile/domain/entities/address_entity.dart';
 
 class AddressModel extends AddressEntity {
-  String? name;
-  String? phone;
-  String? address;
 
-  AddressModel({this.name, this.phone, this.address}) : super(name: name,phone:phone ,address:address );
+
+
+
+  AddressModel({super.name, super.phone, super.address});
 
 
   factory AddressModel.fromJson(Map<String?, dynamic>?json)=> AddressModel(
@@ -16,12 +16,15 @@ class AddressModel extends AddressEntity {
 
   Map<String, dynamic> toMap() {
     return {
-      'name': name,
-      'phone': phone,
-      'address': address,
+      'name':super.name,
+      'phone':super.phone,
+      'address':super.address,
     };
   }
 
 }
+
+
+
 
 

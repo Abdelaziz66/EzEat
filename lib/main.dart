@@ -68,10 +68,10 @@ class MyApp extends StatelessWidget {
           BlocProvider(
             create: (context) => FavouriteCubit(
               addToFavouriteUseCase: AddToFavouriteUseCase(
-                favouriteRepo:   getIt.get<FavouriteRepoImpl>()
+                  favouriteRepo:   getIt.get<FavouriteRepoImpl>()
               ),
               removeFromFavouriteUseCase: RemoveFromFavouriteUseCase(
-                favouriteRepo:   getIt.get<FavouriteRepoImpl>()
+                  favouriteRepo:   getIt.get<FavouriteRepoImpl>()
               ),
             ),
           ),
