@@ -1,5 +1,4 @@
 import 'package:ez_eat/features/profile/domain/entities/address_entity.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class AddressCard extends StatelessWidget {

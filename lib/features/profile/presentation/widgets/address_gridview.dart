@@ -1,3 +1,4 @@
+import 'package:ez_eat/features/profile/presentation/widgets/shimmer_address_gridview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -42,7 +43,16 @@ class _AddressGridViewState extends State<AddressGridView> {
           return Text(state.errMessage);
         }
         else{
-          return  const Center(child: CircularProgressIndicator());
+          return GridView.builder(
+            physics: const NeverScrollableScrollPhysics(),
+            itemBuilder: (context, index) =>
+                const LoadingAddressGridView(),
+            itemCount: 7,
+            gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+              maxCrossAxisExtent: 430,
+              mainAxisExtent: 220,
+            ),
+          );
 
         }
 
