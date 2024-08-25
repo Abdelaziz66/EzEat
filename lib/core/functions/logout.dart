@@ -24,6 +24,5 @@ void logout(context) {
   Hive.box<FoodEntity>(kFoodBox).clear();
   Hive.box<LoginEntity>(kUserBox).clear();
   Hive.box<AddressEntity>(kAddressBox).clear();
-
   GoRouter.of(context).go(AppRouter.kLoginOrRegister);
 }
