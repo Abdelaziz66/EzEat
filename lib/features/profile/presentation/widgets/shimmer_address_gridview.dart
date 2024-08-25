@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
-class LoadingAddressGridView extends StatefulWidget {
+import '../../../../core/widgets/shimmer_text.dart';
+
+class LoadingAddressGridView extends StatelessWidget {
   const LoadingAddressGridView({super.key});
 
-  @override
-  State<LoadingAddressGridView> createState() => _LoadingAddressGridViewState();
-}
-
-class _LoadingAddressGridViewState extends State<LoadingAddressGridView> {
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
@@ -60,6 +57,8 @@ class _LoadingAddressGridViewState extends State<LoadingAddressGridView> {
   }
 }
 
+
+
 class AddressAction extends StatelessWidget {
   const AddressAction({
     super.key,
@@ -95,43 +94,22 @@ class AddressText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
+    return const Expanded(
       child: Padding(
-        padding: const EdgeInsets.all(30.0),
+        padding: EdgeInsets.all(30.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
-              margin: const EdgeInsets.only(right: 100),
-              height: 25,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: Colors.white54,
-              ),
-            ),
-            const SizedBox(
+            ShimmerText(paddingRight: 100, height: 25,),
+            SizedBox(
               height: 10,
             ),
-            Container(
-              margin: const EdgeInsets.only(right: 50),
-              height: 25,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: Colors.white54,
-              ),
-            ),
-            const SizedBox(
+            ShimmerText(paddingRight: 50, height: 25,),
+            SizedBox(
               height: 10,
             ),
-            Container(
-              margin: const EdgeInsets.only(right: 0),
-              height: 25,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: Colors.white54,
-              ),
-            ),
+            ShimmerText(paddingRight: 0, height: 25,),
           ],
         ),
       ),
