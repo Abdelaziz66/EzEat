@@ -41,8 +41,11 @@ class LoadingFavouriteGridView extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   ShimmerText(paddingRight: 100, height: 25,),
-                                  ShimmerText(paddingRight: 50, height: 25,),
-                                  ShimmerText(paddingRight: 50, height: 25,),
+                                  SizedBox(height: 10,),
+                                  ShimmerText(paddingRight: 50, height: 20,),
+                                  SizedBox(height: 5,),
+
+                                  ShimmerText(paddingRight: 50, height: 20,),
 
 
                                 ],
@@ -93,7 +96,7 @@ class _CustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
-        color: Colors.black,
+        color: Colors.white30,
         borderRadius: BorderRadius.only(
           bottomLeft: Radius.zero,
           bottomRight: Radius.circular(35),
@@ -112,12 +115,12 @@ class _CustomButton extends StatelessWidget {
             ),
             const ShimmerText(height: 25,paddingRight: 0,),
             const SizedBox(
-              width: 20,
+              width: 80,
             ),
             CircleAvatar(
                 radius: 17,
                 backgroundColor:
-                     Colors.grey[300]),
+                     Colors.black),
           ],
         ),
       ),
