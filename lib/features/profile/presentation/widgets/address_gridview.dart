@@ -6,7 +6,6 @@ import '../../domain/entities/address_entity.dart';
 import '../manager/address_cubit.dart';
 import 'address_card.dart';
 
-
 class AddressGridView extends StatefulWidget {
   const AddressGridView({
     super.key,
@@ -23,39 +22,22 @@ class _AddressGridViewState extends State<AddressGridView> {
   Widget build(BuildContext context) {
     return BlocConsumer<AddressCubit, AddressState>(
       listener: (context, state) {
-        if(state is GetAddressSuccessState){
+        if (state is GetAddressSuccessState) {
           address = GetAddressSuccessState.addressEntity;
         }
       },
       builder: (context, state) {
-        if(state is GetAddressSuccessState || address.isNotEmpty){
-          return GridView.builder(
-            physics: const NeverScrollableScrollPhysics(),
-            itemBuilder: (context, index) =>
-                AddressCard(addressEntity: address[index]),
-            itemCount: address.length,
-            gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-              maxCrossAxisExtent: 430,
-              mainAxisExtent: 220,
-            ),
-          );
-        }else if(state is GetAddressErrorState){
-          return Text(state.errMessage);
-        }
-        else{
-          return GridView.builder(
-            physics: const NeverScrollableScrollPhysics(),
-            itemBuilder: (context, index) =>
-                const LoadingAddressGridView(),
-            itemCount: 7,
-            gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-              maxCrossAxisExtent: 430,
-              mainAxisExtent: 220,
-            ),
-          );
-
-        }
-
+        return GridView.builder(
+          physics: const NeverScrollableScrollPhysics(),
+          itemBuilder: (context, index) => address.isNotEmpty
+              ? AddressCard(addressEntity: address[index])
+              : const LoadingAddressGridView(),
+          itemCount: address.isNotEmpty ? address.length : 7,
+          gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+            maxCrossAxisExtent: 430,
+            mainAxisExtent: 220,
+          ),
+        );
       },
     );
   }
