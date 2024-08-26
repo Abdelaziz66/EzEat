@@ -1,3 +1,4 @@
+import 'package:ez_eat/core/widgets/custom_shimmer.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -8,52 +9,45 @@ class LoadingAddressGridView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Shimmer.fromColors(
-        baseColor: Colors.white,
-        highlightColor: Colors.grey.shade300,
-        enabled: true,
-        child: SingleChildScrollView(
-          physics: const NeverScrollableScrollPhysics(),
-          child: Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Container(
-              height: 200,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(35),
-                color: Colors.white30,
-              ),
-              child: const Padding(
-                padding: EdgeInsets.all(15.0),
-                child: Row(
-                  children: [
-                    // Container(
-                    //   decoration: BoxDecoration(
-                    //     shape: BoxShape.circle,
-                    //     boxShadow: [
-                    //       BoxShadow(
-                    //         color: Colors.black.withOpacity(.5),
-                    //         spreadRadius: 3,
-                    //         blurRadius: 25,
-                    //         offset: const Offset(0, 15),
-                    //
-                    //         // changes position of shadow
-                    //       ),
-                    //     ],
-                    //   ),
-                    //   child: const CircleAvatar(
-                    //     radius: 70,
-                    //     backgroundImage: AssetImage('assets/images/onboarding/sheif.png'),
-                    //   ),
-                    // ),
-                    AddressText(),
-                    AddressAction(),
-                  ],
-                ),
-              ),
-            ),
+    return CustomShimmer(widget: Padding(
+      padding: const EdgeInsets.all(10.0),
+      child: Container(
+        height: 200,
+        width: double.infinity,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(35),
+          color: Colors.white30,
+        ),
+        child: const Padding(
+          padding: EdgeInsets.all(15.0),
+          child: Row(
+            children: [
+              // Container(
+              //   decoration: BoxDecoration(
+              //     shape: BoxShape.circle,
+              //     boxShadow: [
+              //       BoxShadow(
+              //         color: Colors.black.withOpacity(.5),
+              //         spreadRadius: 3,
+              //         blurRadius: 25,
+              //         offset: const Offset(0, 15),
+              //
+              //         // changes position of shadow
+              //       ),
+              //     ],
+              //   ),
+              //   child: const CircleAvatar(
+              //     radius: 70,
+              //     backgroundImage: AssetImage('assets/images/onboarding/sheif.png'),
+              //   ),
+              // ),
+              AddressText(),
+              AddressAction(),
+            ],
           ),
-        ));
+        ),
+      ),
+    ),);
   }
 }
 

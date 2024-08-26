@@ -1,4 +1,3 @@
-import 'package:ez_eat/features/dashboard/presentation/manager/dashboard_cubit/dashboard_cubit.dart';
 import 'package:ez_eat/features/favourite/presentation/widgets/shimmer_favourite_gridview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,84 +21,40 @@ class _FavouriteGridViewState extends State<FavouriteGridView> {
   Widget build(BuildContext context) {
     return BlocBuilder<FavouriteCubit, FavouriteState>(
       builder: (context, state) {
-        if(DashboardCubit.get(context).foods.isNotEmpty){
-          return Expanded(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10.0),
-              child: GridView.builder(
-                itemCount: favourite.length,
-                scrollDirection: Axis.vertical,
-                // shrinkWrap: true,
+        return Expanded(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10.0),
+            child: GridView.builder(
+              itemCount: favourite.isNotEmpty
+                  ? favourite.length
+                  : 7,
+              scrollDirection: Axis.vertical,
+              // shrinkWrap: true,
 
-                physics: const BouncingScrollPhysics(),
-                itemBuilder: (context, index) {
-                  return Center(child: _favouriteItemBuilder(index, context));
-                },
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisSpacing: 5,
-                  mainAxisSpacing: 5,
-                  mainAxisExtent: 340,
-                  crossAxisCount: MediaQuery.of(context).size.width < 800
-                      ? 1
-                      : MediaQuery.of(context).size.width >= 800 &&
-                      MediaQuery.of(context).size.width < 1200
-                      ? 2
-                      :  MediaQuery.of(context).size.width >= 1200 &&
-                      MediaQuery.of(context).size.width < 1600
-                      ? 3:4,
-                ),
-
-                // gridDelegate:  SliverGridDelegateWithMaxCrossAxisExtent(
-                //   maxCrossAxisExtent: 430,
-                //   // childAspectRatio: 430/ 340,
-                //   // crossAxisSpacing:true? MediaQuery.of(context).size.width*:5,
-                //   mainAxisSpacing: 5,
-                //   mainAxisExtent: 340,
-                //
-                // ),
+              physics: const BouncingScrollPhysics(),
+              itemBuilder: (context, index) {
+                return Center(
+                    child: favourite.isNotEmpty
+                        ? _favouriteItemBuilder(index, context)
+                        : const LoadingFavouriteGridView());
+              },
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisSpacing: 5,
+                mainAxisSpacing: 5,
+                mainAxisExtent: 340,
+                crossAxisCount: MediaQuery.of(context).size.width < 800
+                    ? 1
+                    : MediaQuery.of(context).size.width >= 800 &&
+                            MediaQuery.of(context).size.width < 1200
+                        ? 2
+                        : MediaQuery.of(context).size.width >= 1200 &&
+                                MediaQuery.of(context).size.width < 1600
+                            ? 3
+                            : 4,
               ),
             ),
-          );
-        }else{
-          return Expanded(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10.0),
-              child: GridView.builder(
-                itemCount: 7,
-                scrollDirection: Axis.vertical,
-                // shrinkWrap: true,
-
-                physics: const BouncingScrollPhysics(),
-                itemBuilder: (context, index) {
-                  return const Center(child: LoadingFavouriteGridView());
-                },
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisSpacing: 5,
-                  mainAxisSpacing: 5,
-                  mainAxisExtent: 340,
-                  crossAxisCount: MediaQuery.of(context).size.width < 800
-                      ? 1
-                      : MediaQuery.of(context).size.width >= 800 &&
-                      MediaQuery.of(context).size.width < 1200
-                      ? 2
-                      :  MediaQuery.of(context).size.width >= 1200 &&
-                      MediaQuery.of(context).size.width < 1600
-                      ? 3:4,
-                ),
-
-                // gridDelegate:  SliverGridDelegateWithMaxCrossAxisExtent(
-                //   maxCrossAxisExtent: 430,
-                //   // childAspectRatio: 430/ 340,
-                //   // crossAxisSpacing:true? MediaQuery.of(context).size.width*:5,
-                //   mainAxisSpacing: 5,
-                //   mainAxisExtent: 340,
-                //
-                // ),
-              ),
-            ),
-          );
-        }
-
+          ),
+        );
       },
     );
   }
