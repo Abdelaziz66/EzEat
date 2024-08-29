@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:ez_eat/core/utils/api_service.dart';
 import 'package:ez_eat/features/payment/data/models/payment_intent_input_model.dart';
 import 'package:ez_eat/features/payment/data/models/payment_intent_model.dart';
@@ -10,16 +11,20 @@ class StripeService {
 
   Future<PaymentIntentModel> createPaymentIntent(
       {required PaymentIntentInputModel data}) async {
+    print('____________________________________________________________');
     var response = await apiService.post(
-        endPoint: 'payment_intents',
-        token: ApiKeys.secretKey,
-        data: data.toJson());
+      contentType: Headers.formUrlEncodedContentType,
+      endPoint: 'v1/payment_intents',
+      token: ApiKeys.secretKey,
+      data: data.toJson(),
+    );
+    print('____________________________________________________________');
     PaymentIntentModel paymentIntentModel=PaymentIntentModel.fromJson(response.data);
     return paymentIntentModel;
   }
 
   Future initPaymentSheet({required String paymentIntentClientSecret})async{
-    Stripe.instance.initPaymentSheet(paymentSheetParameters:SetupPaymentSheetParameters(
+    await Stripe.instance.initPaymentSheet(paymentSheetParameters:SetupPaymentSheetParameters(
       paymentIntentClientSecret: paymentIntentClientSecret,
       merchantDisplayName: 'Taste Trek'
     ));
@@ -32,7 +37,6 @@ class StripeService {
   }
 
   Future makePayment({required PaymentIntentInputModel data})async{
-
     PaymentIntentModel paymentIntentModel=await createPaymentIntent(data: data);
     await initPaymentSheet(paymentIntentClientSecret: paymentIntentModel.clientSecret!);
     await displayPaymentSheet();

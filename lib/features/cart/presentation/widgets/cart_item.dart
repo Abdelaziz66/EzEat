@@ -1,5 +1,6 @@
 import 'package:ez_eat/core/style/textStyles.dart';
 import 'package:ez_eat/features/dashboard/domain/entities/food_entity.dart';
+import 'package:ez_eat/features/payment/presentation/manager/payment_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -9,6 +10,7 @@ import '../../../../core/utils/app_router.dart';
 import '../../../../core/widgets/image_error.dart';
 import '../../../favourite/presentation/manager/favourite_cubit/favourite_cubit.dart';
 import '../../../layout/presentation/manager/layout_cubit/layout_cubit.dart';
+import '../../../payment/data/models/payment_intent_input_model.dart';
 import '../manager/cart_cubit/cart_cubit.dart';
 
 class CartItem extends StatefulWidget {
@@ -196,7 +198,9 @@ class _CartItemState extends State<CartItem> {
           });
     } else {
       setState(() {
-        confirm = !confirm;
+        PaymentIntentInputModel paymentIntentInputModel=PaymentIntentInputModel(amount: '${counter * widget.food.price!}00' , currency: 'USD');
+        PaymentCubit.get(context).createPayment(paymentIntentInputModel: paymentIntentInputModel);
+        // confirm = !confirm;
       });
     }
   }
