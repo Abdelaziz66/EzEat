@@ -1,3 +1,0 @@
-class ApiKeys{
-  static const String secretKey='sk_test_51Pt6Wj1KCJkhIo3VyA1mJKRlKIWSIz1pJgaMnYsEGvGejGScbu9le7NH5sVy84KDkvWjiLWC2vAfva9nc1hYx5ek00v2NIceqy';
-}
