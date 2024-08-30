@@ -7,19 +7,22 @@ class PaymentItemInfo extends StatelessWidget {
   final String title, value;
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          title,
-          textAlign: TextAlign.center,
-          style: Styles.textStyle25,
-        ),
-        Text(
-          value,
-          style: Styles.textStyle25,
-        )
-      ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            title,
+            textAlign: TextAlign.center,
+            style: Styles.textStyle18,
+          ),
+          Text(
+            value,
+            style: Styles.textStyle18,
+          )
+        ],
+      ),
     );
   }
 }

@@ -8,20 +8,23 @@ class TotalPrice extends StatelessWidget {
   final String title, value;
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Text(
-          title,
-          textAlign: TextAlign.center,
-          style: Styles.textStyle25,
-        ),
-        const Spacer(),
-        Text(
-          value,
-          textAlign: TextAlign.center,
-          style: Styles.textStyle25,
-        )
-      ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 15.0),
+      child: Row(
+        children: [
+          Text(
+            title,
+            textAlign: TextAlign.center,
+            style: Styles.textStyle25,
+          ),
+          const Spacer(),
+          Text(
+            value,
+            textAlign: TextAlign.center,
+            style: Styles.textStyle25,
+          )
+        ],
+      ),
     );
   }
 }

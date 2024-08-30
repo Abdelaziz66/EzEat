@@ -7,12 +7,7 @@ class ThankYou extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Transform.translate(
-          offset: const Offset(0, -16), child: const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.0,vertical: 50),
-            child: ThankYouViewBody(),
-          )),
-    );
+    return Transform.translate(
+        offset: const Offset(0, -16), child: const ThankYouViewBody());
   }
 }

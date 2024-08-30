@@ -3,14 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../core/functions/custom_dialog.dart';
 import '../../../../core/functions/show_flutter_toast_message.dart';
-import '../../../../core/utils/app_router.dart';
 import '../../../../core/widgets/custom_button.dart';
 import '../../data/models/payment_intent_input_model.dart';
-import '../../data/repositories/payment_repo_impl.dart';
-import '../../domain/use_cases/payment_usecase.dart';
 import '../manager/payment_cubit.dart';
 import '../manager/payment_state.dart';
+import '../pages/thank_you.dart';
 
 class PaymentMethodsBottomSheet extends StatelessWidget {
   const PaymentMethodsBottomSheet(
@@ -66,7 +65,7 @@ class CustomButtonBlocConsumer extends StatelessWidget {
         }
         if (state is PaymentSuccessState) {
           GoRouter.of(context).pop();
-          GoRouter.of(context).push(AppRouter.kThankYou);
+          customDialog(context: context, widget: const ThankYou());
           showFlutterToastMessage(message: 'Payment Success');
         }
       },
