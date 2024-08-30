@@ -71,7 +71,7 @@ class CustomButtonBlocConsumer extends StatelessWidget {
       },
       builder: (context, state) {
         return state is PaymentLoadingState
-            ? const Center(child: CircularProgressIndicator())
+            ? const SizedBox(height:70,child: Center(child: CircularProgressIndicator()))
             : CustomButton(
                 text: 'Continue',
                 onTap: function,
