@@ -47,6 +47,7 @@ dependencies:
   firebase_messaging: ^15.0.4
   shimmer: ^3.0.0
   flutter_stripe: ^11.0.0
+  flutter_svg: ^2.0.10+1
 
 
 
@@ -70,4 +71,5 @@ flutter:
     - assets/images/background/
     - assets/images/rive/
     - assets/images/onboarding/
+    - assets/images/payment/
 
