@@ -2,11 +2,12 @@
 import 'package:ez_eat/features/payment/presentation/widgets/payment_info_item.dart';
 import 'package:ez_eat/features/payment/presentation/widgets/total_price_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../../core/style/textStyles.dart';
 import 'card_info_widget.dart';
+import 'custom_check_icon.dart';
+import 'custom_dashed_line.dart';
 
 class ThankYouCard extends StatelessWidget {
   const ThankYouCard({
@@ -15,60 +16,73 @@ class ThankYouCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      decoration: ShapeDecoration(
-        color: const Color(0xFFEDEDED),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
-      ),
-      child: Padding(
-        padding:  EdgeInsets.only(top: 50 + 16, left: 22, right: 22),
-        child: Column(
-          children: [
-             Text(
-              'Thank you!',
-              textAlign: TextAlign.center,
-              style: Styles.textStyle25,
+    return Padding(
+      padding:  const EdgeInsets.only(top: 35, left: 15, right: 15),
+      child: Column(
+        children: [
+          const CustomCheckIcon(),
+           const SizedBox(height: 15,),
+           const Text(
+            'Thank you!',
+            textAlign: TextAlign.center,
+            style: Styles.textStyle25,
+          ),
+          const Text(
+            'Your transaction was successful',
+            textAlign: TextAlign.center,
+            style: Styles.textStyle20,
+          ),
+          const SizedBox(
+            height: 30,
+          ),
+          Container(
+            padding: const EdgeInsets.symmetric(vertical: 20),
+            decoration: BoxDecoration(
+              color: Colors.white12,
+              borderRadius: BorderRadius.circular(20),
             ),
-            Text(
-              'Your transaction was successful',
-              textAlign: TextAlign.center,
-              style: Styles.textStyle25,
+            child: Column(
+              children: [
+                PaymentItemInfo(
+                  title: 'Data',
+                  value: '${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}',
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                PaymentItemInfo(
+                  title: 'Time',
+                  value: '${DateTime.now().hour}:${DateTime.now().minute}',
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                const PaymentItemInfo(
+                  title: 'To',
+                  value: 'Taste Trek',
+                ),
+              ],
             ),
-            const SizedBox(
-              height: 42,
-            ),
-            const PaymentItemInfo(
-              title: 'Date',
-              value: '01/24/2023',
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            const PaymentItemInfo(
-              title: 'Time',
-              value: '10:15 AM',
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            const PaymentItemInfo(
-              title: 'To',
-              value: 'Sam Louis',
-            ),
-            const Divider(
-              height: 60,
-              thickness: 2,
-            ),
-            const TotalPrice(title: 'Total', value: r'$50.97'),
-            const SizedBox(
-              height: 30,
-            ),
-            const CardInfoWidget(),
-            const Spacer(),
-            Row(
+          ),
+          const Divider(
+            height: 60,
+            thickness: 1,
+          ),
+          const TotalPrice(title: 'Total', value: '\$50.97'),
+          const SizedBox(
+            height: 30,
+          ),
+          const CardInfoWidget(),
+          const SizedBox(
+            height: 30,
+          ),
+          const CustomDashedLine(),
+          const SizedBox(
+            height: 30,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const Icon(
@@ -81,7 +95,7 @@ class ThankYouCard extends StatelessWidget {
                   decoration: ShapeDecoration(
                     shape: RoundedRectangleBorder(
                       side: const BorderSide(
-                          width: 1.50, color: Color(0xFF34A853)),
+                          width: 2, color:Color(0xff34A853)),
                       borderRadius: BorderRadius.circular(15),
                     ),
                   ),
@@ -96,11 +110,11 @@ class ThankYouCard extends StatelessWidget {
                 )
               ],
             ),
-            SizedBox(
-              height: ((MediaQuery.sizeOf(context).height * .2 + 20) / 2) - 29,
-            ),
-          ],
-        ),
+          ),
+          const SizedBox(
+            height: 15,
+          ),
+        ],
       ),
     );
   }
