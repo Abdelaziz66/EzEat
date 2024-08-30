@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import '../../features/layout/presentation/pages/layout.dart';
 import '../../features/login/presentation/pages/login.dart';
 import '../../features/onboarding/presentation/pages/onboarding.dart';
+import '../../features/payment/presentation/pages/thank_you.dart';
 import '../../features/register/presentation/pages/register.dart';
 import '../constants/constant.dart';
 import '../widgets/food_details.dart';
@@ -17,6 +18,8 @@ abstract class AppRouter {
   static const kRegister = '/Register';
   static const kOnboarding = '/Onboarding';
   static const kLoginOrRegister = '/LoginOrRegister';
+  static const kThankYou = '/ThankYou';
+
   static final router = GoRouter(
     routes: [
       GoRoute(
@@ -74,6 +77,10 @@ abstract class AppRouter {
       GoRoute(
         path: kLoginOrRegister,
         builder: (context, state) => const LoginOrRegister(),
+      ),
+      GoRoute(
+        path: kThankYou,
+        builder: (context, state) => const ThankYou(),
       ),
     ],
   );
