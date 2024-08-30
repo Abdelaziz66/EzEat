@@ -19,23 +19,25 @@ class PaymentMethodItem extends StatelessWidget {
       decoration: ShapeDecoration(
         shape: RoundedRectangleBorder(
           side: BorderSide(
-            width: 1.50,
-            color: isActive ? const Color(0xFF34A853) : Colors.grey,
+            width: 2,
+            color: isActive ?  Colors.black : Colors.white54,
           ),
           borderRadius: BorderRadius.circular(15),
         ),
-        shadows: [
-          BoxShadow(
-            color: isActive ? const Color(0xFF34A853) : Colors.white,
-            blurRadius: 4,
-            offset: const Offset(0, 0),
-            spreadRadius: 0,
-          )
-        ],
+
+        // shadows: [
+        //   BoxShadow(
+        //     color: isActive ? const Color(0xFF34A853) : Colors.white,
+        //     blurRadius: 4,
+        //     offset: const Offset(0, 0),
+        //     spreadRadius: 0,
+        //   )
+        // ],
       ),
       child: Container(
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15), color: Colors.white),
+            borderRadius: BorderRadius.circular(15),
+            color:isActive? Colors.white54:Colors.white30),
         child: Center(
           child: SvgPicture.asset(
             image,

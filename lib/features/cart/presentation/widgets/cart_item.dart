@@ -7,6 +7,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../core/constants/constant.dart';
 import '../../../../core/functions/custom_alert.dart';
+import '../../../../core/functions/custom_bottomsheet.dart';
 import '../../../../core/utils/app_router.dart';
 import '../../../../core/widgets/image_error.dart';
 import '../../../favourite/presentation/manager/favourite_cubit/favourite_cubit.dart';
@@ -201,14 +202,7 @@ class _CartItemState extends State<CartItem> {
             LayoutCubit.get(context).currentNavigationBarIndex = 0;
           });
     } else {
-
-      showModalBottomSheet(
-          context: context,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-          builder: (context) {
-            return PaymentMethodsBottomSheet( price: widget.food.price!, counter: counter,);
-          });
+      customBottomSheet(context: context, widget: PaymentMethodsBottomSheet( price: widget.food.price!, counter: counter,));
     }
   }
 
