@@ -1,3 +1,4 @@
+import 'package:ez_eat/core/functions/show_flutter_toast_message.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -12,19 +13,22 @@ class Cart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) =>
-          PaymentCubit(
-              paymentUseCase: PaymentUseCase(paymentRepo: PaymentRepoImpl())),
-
-      child: BlocConsumer<PaymentCubit, PaymentState>(
-        listener: (context, state) {
-
-        },
-        builder: (context, state) {
-          return const CartBody();
-        },
-      ),
+    return BlocConsumer<PaymentCubit, PaymentState>(
+      listener: (context, state) {
+        if (State is PaymentErrorState) {
+          print(
+              '____________________________________________________________________________________________________');
+          showFlutterToastMessage(message: 'Payment Failed');
+        }
+        if (State is PaymentSuccessState) {
+          print(
+              '____________________________________________________________________________________________________');
+          showFlutterToastMessage(message: 'Payment Success');
+        }
+      },
+      builder: (context, state) {
+        return CartBody();
+      },
     );
   }
 }
