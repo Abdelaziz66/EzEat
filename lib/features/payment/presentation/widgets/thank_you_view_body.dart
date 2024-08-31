@@ -2,8 +2,6 @@
 import 'package:ez_eat/features/payment/presentation/widgets/thank_you_card.dart';
 import 'package:flutter/material.dart';
 
-import 'custom_check_icon.dart';
-import 'custom_dashed_line.dart';
 
 class ThankYouViewBody extends StatelessWidget {
   const ThankYouViewBody({super.key});
