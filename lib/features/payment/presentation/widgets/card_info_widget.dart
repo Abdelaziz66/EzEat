@@ -12,7 +12,7 @@ class CardInfoWidget extends StatelessWidget {
       width: 305,
       padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 22),
       decoration: ShapeDecoration(
-        color: Colors.white30,
+        color: Colors.white24,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15),
         ),

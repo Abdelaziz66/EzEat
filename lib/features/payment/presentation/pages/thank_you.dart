@@ -7,7 +7,6 @@ class ThankYou extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Transform.translate(
-        offset: const Offset(0, -16), child: const ThankYouViewBody());
+    return const ThankYouViewBody();
   }
 }
