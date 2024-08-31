@@ -11,7 +11,7 @@ class PaymentRepoImpl extends PaymentRepo{
   @override
   Future<Either<Failure, void>> createPayment({required PaymentIntentInputModel paymentIntentInputModel}) async{
     try{
-      await stripeService.makePayment(data: paymentIntentInputModel);
+      await stripeService.makePayment(paymentIntentInputModel: paymentIntentInputModel,);
      return right(null);
     }
     catch(e){

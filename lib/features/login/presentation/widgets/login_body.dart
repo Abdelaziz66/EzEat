@@ -140,7 +140,7 @@ class _LoginBodyState extends State<LoginBody> {
       LoginDataModel loginDataModel = LoginDataModel(
         // email: emailController.text,
         // password: passwordController.text,
-        email: 'serious@gmail.com',
+        email: '3bdel3zizelsayed123@gmail.com',
         password: '123456',
       );
       cubit.login(
@@ -154,17 +154,17 @@ class _LoginBodyState extends State<LoginBody> {
     save('isLogin', true, kStartBox);
     save('uId', LoginSuccessState.loginEntity?.uid, kStartBox);
     save('isSkip', false, kStartBox);
+    save('id', LoginSuccessState.loginEntity?.id, kStartBox);
     isSkip=false;
     isLogin=true;
     loginEntity=LoginSuccessState.loginEntity;
     uId = LoginSuccessState.loginEntity?.uid;
+    customerId=LoginSuccessState.loginEntity?.id;
     isMainGetFood=false;
     await uploadLocalFavouriteCart(context);
     GoRouter.of(context).go(AppRouter.kLayout);
     DashboardCubit.get(context).getFood();
-
   }
-
   Future<void> uploadLocalFavouriteCart(context) async {
     if( ChangeCartSuccessState.cart.isNotEmpty||ChangeFavouriteSuccessState.favourite.isNotEmpty){
       showFlutterToastMessage(message: 'Connecting your last activity');

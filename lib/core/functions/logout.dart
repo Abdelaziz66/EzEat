@@ -15,8 +15,10 @@ import '../utils/app_router.dart';
 void logout(context) {
   isLogin = false;
   uId = null;
+  customerId=null;
   save('isLogin', false, kStartBox);
   save('uId', null, kStartBox);
+  save('id', null, kStartBox);
   ChangeFavouriteSuccessState.favourite = [];
   ChangeCartSuccessState.cart = [];
   DashboardCubit.get(context).foods = [];

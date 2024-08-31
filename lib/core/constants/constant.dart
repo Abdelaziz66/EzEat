@@ -11,12 +11,14 @@ const kUserBox = 'user_box';
 const kAddressBox = 'address_box';
 
 
+
 late LoginEntity? loginEntity;
   bool? isOnboarding;
   bool? isLogin;
   bool? isSkip;
   String? uId ;
   bool isMainGetFood=true;
+  String? customerId ;
 
 var layoutScaffoldKey=GlobalKey<ScaffoldState>();
 var profileScaffoldKey = GlobalKey<ScaffoldState>();

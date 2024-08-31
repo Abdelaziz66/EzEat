@@ -11,7 +11,10 @@ class LoginEntity{
  final String? name;
  @HiveField(3)
  final String? phone;
+ @HiveField(4)
+ final String? id;
 
-  LoginEntity( {required this.email,required this.uid, required this.name,required this.phone});
+
+ LoginEntity({required this.id,required this.email,required this.uid, required this.name,required this.phone});
 
 }
