@@ -1,3 +1,4 @@
+import 'package:ez_eat/core/constants/constant.dart';
 import 'package:ez_eat/features/payment/presentation/widgets/payment_method_listview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -35,11 +36,11 @@ class PaymentMethodsBottomSheet extends StatelessWidget {
             PaymentCubit cubit = PaymentCubit.get(context);
             PaymentIntentInputModel paymentIntentInputModel =
                 PaymentIntentInputModel(
-                    amount: '${counter * price}00', currency: 'USD');
+                    amount: '${counter * price}00',
+                    currency: 'USD',
+                    customerId: customerId!);
             cubit.createPayment(
                 paymentIntentInputModel: paymentIntentInputModel);
-
-
           }),
         ],
       ),
@@ -59,9 +60,9 @@ class CustomButtonBlocConsumer extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<PaymentCubit, PaymentState>(
       listener: (context, state) {
-          if (state is PaymentErrorState) {
-            GoRouter.of(context).pop();
-            showFlutterToastMessage(message: 'Payment Failed');
+        if (state is PaymentErrorState) {
+          GoRouter.of(context).pop();
+          showFlutterToastMessage(message: 'Payment Failed');
         }
         if (state is PaymentSuccessState) {
           GoRouter.of(context).pop();
@@ -71,7 +72,8 @@ class CustomButtonBlocConsumer extends StatelessWidget {
       },
       builder: (context, state) {
         return state is PaymentLoadingState
-            ? const SizedBox(height:70,child: Center(child: CircularProgressIndicator()))
+            ? const SizedBox(
+                height: 70, child: Center(child: CircularProgressIndicator()))
             : CustomButton(
                 text: 'Continue',
                 onTap: function,

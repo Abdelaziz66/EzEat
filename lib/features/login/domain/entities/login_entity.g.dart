@@ -17,6 +17,7 @@ class LoginEntityAdapter extends TypeAdapter<LoginEntity> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return LoginEntity(
+      id: fields[4] as String?,
       email: fields[0] as String?,
       uid: fields[1] as String?,
       name: fields[2] as String?,
@@ -27,7 +28,7 @@ class LoginEntityAdapter extends TypeAdapter<LoginEntity> {
   @override
   void write(BinaryWriter writer, LoginEntity obj) {
     writer
-      ..writeByte(4)
+      ..writeByte(5)
       ..writeByte(0)
       ..write(obj.email)
       ..writeByte(1)
@@ -35,7 +36,9 @@ class LoginEntityAdapter extends TypeAdapter<LoginEntity> {
       ..writeByte(2)
       ..write(obj.name)
       ..writeByte(3)
-      ..write(obj.phone);
+      ..write(obj.phone)
+      ..writeByte(4)
+      ..write(obj.id);
   }
 
   @override
