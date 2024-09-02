@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../core/functions/show_flutter_toast_message.dart';
+import '../../../../core/functions/custom_snack_bar_message.dart';
 import '../../../../core/utils/strings.dart';
 import '../manager/dashboard_cubit/dashboard_cubit.dart';
 import 'banner_slider_item.dart';
@@ -24,7 +24,7 @@ class DashboardBody extends StatelessWidget {
           cubit.getCart(foods: state.food);
         }
         if (state is GetDashBoardDataErrorState) {
-          showFlutterToastMessage(message: state.errMessage);
+          showSnackBar(message: state.errMessage, context: context);
         }
       },
       builder: (context, state) {

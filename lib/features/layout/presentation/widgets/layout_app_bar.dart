@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../../core/constants/constant.dart';
+import '../../../../core/functions/custom_snack_bar_message.dart';
 
 class LayoutAppBar extends StatelessWidget {
   const LayoutAppBar({
@@ -11,18 +12,23 @@ class LayoutAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SafeArea(
+    return  SafeArea(
       child: SizedBox(
         height: 60,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
 
-            DrawerIcon(),
-            Spacer(),
-            Padding(
-              padding: EdgeInsets.only(top: 0.0, right: 20),
-              child: FaIcon(FontAwesomeIcons.opencart),
+            const DrawerIcon(),
+            const Spacer(),
+            InkWell(
+              onTap: (){
+                showSnackBar(message: 'coming soon :)',context: context);
+              },
+              child: const Padding(
+                padding: EdgeInsets.only(top: 0.0, right: 20),
+                child: FaIcon(FontAwesomeIcons.opencart),
+              ),
             ),
 
           ],

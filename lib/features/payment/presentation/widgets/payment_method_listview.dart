@@ -1,3 +1,4 @@
+import 'package:ez_eat/features/cart/presentation/manager/cart_cubit/cart_cubit.dart';
 import 'package:ez_eat/features/payment/presentation/widgets/payment_method_item.dart';
 import 'package:flutter/material.dart';
 
@@ -13,8 +14,6 @@ class _PaymentMethodsListViewState extends State<PaymentMethodsListView> {
     'assets/images/payment/card.svg',
     'assets/images/payment/paypal.svg'
   ];
-
-  int activeIndex = 0;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -27,11 +26,11 @@ class _PaymentMethodsListViewState extends State<PaymentMethodsListView> {
               padding: const EdgeInsets.symmetric(horizontal: 8),
               child: GestureDetector(
                 onTap: () {
-                  activeIndex = index;
+                  CartCubit.get(context).activePaymentIndex=index;
                   setState(() {});
                 },
                 child: PaymentMethodItem(
-                  isActive: activeIndex == index,
+                  isActive:   CartCubit.get(context).activePaymentIndex == index,
                   image: paymentMethodsItems[index],
                 ),
               ),

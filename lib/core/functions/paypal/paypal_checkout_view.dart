@@ -1,4 +1,4 @@
-import 'package:ez_eat/core/functions/papal/paypal_service.dart';
+import 'package:ez_eat/core/functions/paypal/paypal_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 

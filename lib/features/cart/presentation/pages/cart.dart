@@ -1,4 +1,4 @@
-import 'package:ez_eat/core/functions/show_flutter_toast_message.dart';
+import 'package:ez_eat/core/functions/custom_snack_bar_message.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../payment/presentation/manager/payment_cubit.dart';

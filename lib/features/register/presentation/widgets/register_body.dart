@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
-import '../../../../core/functions/show_flutter_toast_message.dart';
+import '../../../../core/functions/custom_snack_bar_message.dart';
 import '../../../../core/style/colors.dart';
 import '../../../../core/style/textStyles.dart';
 import '../../../../core/utils/app_router.dart';
@@ -31,10 +31,10 @@ class _RegisterBodyState extends State<RegisterBody> {
     return BlocConsumer<RegisterCubit, RegisterState>(
       listener: (context, state) {
         if (state is RegisterSuccessState) {
-          showFlutterToastMessage(message: 'Register Successful');
+          showSnackBar(message: 'Register Successful', context: context);
         }
         if (state is RegisterErrorState) {
-          showFlutterToastMessage(message: 'Register Failed');
+          showSnackBar(message: 'Register Failed', context: context);
         }
       },
       builder: (context, state) {
