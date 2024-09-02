@@ -76,8 +76,6 @@ class PaypalCheckoutViewState extends State<PaypalCheckoutView> {
           if (res["approvalUrl"] != null) {
             setState(() {
               checkoutUrl = res["approvalUrl"];
-
-
               executeUrl = res["executeUrl"];
             });
           } else {
@@ -169,6 +167,7 @@ class PaypalCheckoutViewState extends State<PaypalCheckoutView> {
 
   void executePayment(Uri? url, BuildContext context) {
     final payerID = url!.queryParameters['PayerID'];
+
     if (payerID != null) {
       services.executePayment(url: executeUrl, payerId: payerID, accessToken: accessToken).then(
         (id) {

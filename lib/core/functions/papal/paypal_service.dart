@@ -40,9 +40,6 @@ class PaypalServices {
         'message': "Your PayPal credentials seems incorrect"
       };
     } catch (e) {
-      print('--------------------hh----------------------');
-      print(e.toString());
-      print('------------------------------------------');
       return {
         'error': true,
         'message': "Unable to proceed, check your internet connection."
@@ -71,7 +68,6 @@ class PaypalServices {
       final body = response.data;
       if (body["links"] != null && body["links"].length > 0) {
         List links = body["links"];
-
         String executeUrl = "";
         String approvalUrl = "";
         final item = links.firstWhere((o) => o["rel"] == "approval_url",
@@ -116,18 +112,12 @@ class PaypalServices {
       final body = response.data;
       return {'error': false, 'message': "Success", 'data': body};
     } on DioException catch (e) {
-      print('------------------when execute payment------------------------');
-      print(e.toString());
-      print('------------------------------------------');
       return {
         'error': true,
         'message': "Payment Failed.",
         'data': e.response?.data,
       };
     } catch (e) {
-      print('---------------------jj---------------------');
-      print(e.toString());
-      print('------------------------------------------');
 
       return {'error': true, 'message': e, 'exception': true, 'data': null};
     }
