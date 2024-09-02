@@ -16,7 +16,9 @@ class CartCubit extends Cubit<CartState> {
   static CartCubit get(context) => BlocProvider.of(context);
 
  final AddToCartUseCase addToCartUseCase;
-  final RemoveFromCartUseCase removeFromCartUseCase;
+ final RemoveFromCartUseCase removeFromCartUseCase;
+ int activePaymentIndex = 0;
+
 
 
 

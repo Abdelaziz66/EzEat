@@ -3,7 +3,7 @@ import 'package:ez_eat/features/layout/presentation/manager/layout_cubit/layout_
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../core/functions/show_flutter_toast_message.dart';
+import '../../../../core/functions/custom_snack_bar_message.dart';
 import '../../../../core/widgets/background_shape.dart';
 import '../../../../core/widgets/blur_layer.dart';
 import '../../../dashboard/presentation/manager/dashboard_cubit/dashboard_cubit.dart';

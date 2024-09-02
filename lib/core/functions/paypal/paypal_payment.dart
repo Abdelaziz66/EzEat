@@ -1,5 +1,5 @@
 import 'dart:developer';
-import 'package:ez_eat/core/functions/papal/paypal_checkout_view.dart';
+import 'package:ez_eat/core/functions/paypal/paypal_checkout_view.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../../features/payment/data/models/paypal_model/amount_model.dart';

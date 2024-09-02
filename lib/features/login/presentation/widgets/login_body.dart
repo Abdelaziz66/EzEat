@@ -7,7 +7,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/constants/constant.dart';
 import '../../../../core/functions/hive_function.dart';
-import '../../../../core/functions/show_flutter_toast_message.dart';
+import '../../../../core/functions/custom_snack_bar_message.dart';
 import '../../../../core/style/colors.dart';
 import '../../../../core/style/textStyles.dart';
 import '../../../../core/utils/app_router.dart';
@@ -39,7 +39,7 @@ class _LoginBodyState extends State<LoginBody> {
           _loginSuccess(state, context);
         }
         if (state is LoginErrorState) {
-          showFlutterToastMessage(message: 'Login Failed');
+          showSnackBar(message: 'Login Failed', context: context);
         }
       },
       builder: (context, state) {
@@ -150,7 +150,7 @@ class _LoginBodyState extends State<LoginBody> {
   }
 
   void _loginSuccess(LoginSuccessState state,context) async {
-    showFlutterToastMessage(message: 'Login Successful');
+    showSnackBar(message: 'Login Successful', context: context);
     save('isLogin', true, kStartBox);
     save('uId', LoginSuccessState.loginEntity?.uid, kStartBox);
     save('isSkip', false, kStartBox);
@@ -167,7 +167,7 @@ class _LoginBodyState extends State<LoginBody> {
   }
   Future<void> uploadLocalFavouriteCart(context) async {
     if( ChangeCartSuccessState.cart.isNotEmpty||ChangeFavouriteSuccessState.favourite.isNotEmpty){
-      showFlutterToastMessage(message: 'Connecting your last activity');
+      showSnackBar(message: 'Connecting your last activity', context: context);
       for (int i = 0; i < ChangeCartSuccessState.cart.length; i++){
         await  CartCubit.get(context)
             .addToCartCloud(food: ChangeCartSuccessState.cart[i]);

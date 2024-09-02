@@ -1,13 +1,14 @@
 import 'package:ez_eat/core/constants/constant.dart';
+import 'package:ez_eat/features/cart/presentation/manager/cart_cubit/cart_cubit.dart';
 import 'package:ez_eat/features/payment/presentation/widgets/payment_method_listview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/functions/custom_dialog.dart';
-import '../../../../core/functions/papal/get_transctions.dart';
-import '../../../../core/functions/papal/paypal_payment.dart';
-import '../../../../core/functions/show_flutter_toast_message.dart';
+import '../../../../core/functions/paypal/get_transctions.dart';
+import '../../../../core/functions/paypal/paypal_payment.dart';
+import '../../../../core/functions/custom_snack_bar_message.dart';
 import '../../../../core/widgets/custom_button.dart';
 import '../../data/models/stripe_model/payment_intent_input_model.dart';
 import '../manager/payment_cubit.dart';
@@ -41,9 +42,13 @@ class PaymentMethodsBottomSheet extends StatelessWidget {
                     amount: '${counter * price}00',
                     currency: 'USD',
                     customerId: customerId!);
-            // cubit.createPayment(
-            //     paymentIntentInputModel: paymentIntentInputModel);
-            executePaypalPayment(context: context, transactionsData:getTransactionsData());
+            if(CartCubit.get(context).activePaymentIndex==0){
+              cubit.createPayment(
+                  paymentIntentInputModel: paymentIntentInputModel);
+            }else if(CartCubit.get(context).activePaymentIndex==1){
+              executePaypalPayment(context: context, transactionsData:getTransactionsData());
+            }
+
           }
           ),
         ],
@@ -66,12 +71,12 @@ class CustomButtonBlocConsumer extends StatelessWidget {
       listener: (context, state) {
         if (state is PaymentErrorState) {
           GoRouter.of(context).pop();
-          showFlutterToastMessage(message: 'Payment Failed');
+          showSnackBar(message: 'Payment Failed', context: context);
         }
         if (state is PaymentSuccessState) {
           GoRouter.of(context).pop();
           customDialog(context: context, widget: const ThankYou());
-          showFlutterToastMessage(message: 'Payment Success');
+          showSnackBar(message: 'Payment Success', context: context);
         }
       },
       builder: (context, state) {
