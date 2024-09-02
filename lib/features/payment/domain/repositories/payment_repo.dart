@@ -5,5 +5,4 @@ import '../../../../core/errors/failure.dart';
 
 abstract class PaymentRepo{
   Future<Either<Failure,void>> createPayment({required PaymentIntentInputModel paymentIntentInputModel});
-  Future<Either<Failure,void>> createPaypalPayment({required PaymentIntentInputModel paymentIntentInputModel});
 }
