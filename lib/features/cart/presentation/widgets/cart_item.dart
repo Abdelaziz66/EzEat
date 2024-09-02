@@ -12,7 +12,7 @@ import '../../../../core/utils/app_router.dart';
 import '../../../../core/widgets/image_error.dart';
 import '../../../favourite/presentation/manager/favourite_cubit/favourite_cubit.dart';
 import '../../../layout/presentation/manager/layout_cubit/layout_cubit.dart';
-import '../../../payment/data/models/payment_intent_input_model.dart';
+import '../../../payment/data/models/stripe_model/payment_intent_input_model.dart';
 import '../../../payment/data/repositories/payment_repo_impl.dart';
 import '../../../payment/domain/use_cases/payment_usecase.dart';
 import '../../../payment/presentation/widgets/payment_sheet.dart';

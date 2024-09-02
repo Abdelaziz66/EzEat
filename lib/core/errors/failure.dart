@@ -2,7 +2,6 @@ import 'package:dio/dio.dart';
 
 abstract class Failure {
   final String message;
-
   Failure(this.message);
 }
 
@@ -13,7 +12,6 @@ class ServerFailure extends Failure {
     switch (e.type) {
       case DioErrorType.connectionTimeout:
         return ServerFailure('Connection timeout with api server');
-
       case DioErrorType.sendTimeout:
         return ServerFailure('Send timeout with ApiServer');
       case DioErrorType.receiveTimeout:

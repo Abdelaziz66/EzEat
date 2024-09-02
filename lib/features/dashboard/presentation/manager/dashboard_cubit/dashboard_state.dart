@@ -11,7 +11,6 @@ class TabBarState extends DashboardState{}
 class GetDashBoardDataLoadingState extends DashboardState{}
 class GetDashBoardDataSuccessState extends DashboardState{
   final List<FoodEntity> food;
-
   GetDashBoardDataSuccessState(this.food);
 }
 class GetDashBoardDataErrorState extends DashboardState{
