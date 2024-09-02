@@ -48,6 +48,8 @@ dependencies:
   shimmer: ^3.0.0
   flutter_stripe: ^11.0.0
   flutter_svg: ^2.0.10+1
+  flutter_inappwebview: ^6.0.0
+#  flutter_paypal_payment: ^1.0.0
 
 
 

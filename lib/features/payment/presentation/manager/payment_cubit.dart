@@ -1,4 +1,4 @@
-import 'package:ez_eat/features/payment/data/models/payment_intent_input_model.dart';
+import 'package:ez_eat/features/payment/data/models/stripe_model/payment_intent_input_model.dart';
 import 'package:ez_eat/features/payment/domain/use_cases/payment_usecase.dart';
 import 'package:ez_eat/features/payment/presentation/manager/payment_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,4 +23,6 @@ class PaymentCubit extends Cubit<PaymentState> {
       emit(PaymentSuccessState());
     });
   }
+
+
 }

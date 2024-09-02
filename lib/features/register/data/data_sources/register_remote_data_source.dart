@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ez_eat/core/utils/stripe_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-import '../../../payment/data/models/customer_model.dart';
+import '../../../payment/data/models/stripe_model/customer_model.dart';
 import '../models/register_model.dart';
 
 abstract class RegisterRemoteDataSource {

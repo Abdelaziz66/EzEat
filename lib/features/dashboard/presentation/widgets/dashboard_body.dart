@@ -53,6 +53,7 @@ class DashboardBody extends StatelessWidget {
       },
     );
   }
+
   void saveDataFromState(BuildContext context, GetDashBoardDataSuccessState state) {
     DashboardCubit  cubit=DashboardCubit.get(context);
 

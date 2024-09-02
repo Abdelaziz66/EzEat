@@ -5,9 +5,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/functions/custom_dialog.dart';
+import '../../../../core/functions/papal/get_transctions.dart';
+import '../../../../core/functions/papal/paypal_payment.dart';
 import '../../../../core/functions/show_flutter_toast_message.dart';
 import '../../../../core/widgets/custom_button.dart';
-import '../../data/models/payment_intent_input_model.dart';
+import '../../data/models/stripe_model/payment_intent_input_model.dart';
 import '../manager/payment_cubit.dart';
 import '../manager/payment_state.dart';
 import '../pages/thank_you.dart';
@@ -39,9 +41,11 @@ class PaymentMethodsBottomSheet extends StatelessWidget {
                     amount: '${counter * price}00',
                     currency: 'USD',
                     customerId: customerId!);
-            cubit.createPayment(
-                paymentIntentInputModel: paymentIntentInputModel);
-          }),
+            // cubit.createPayment(
+            //     paymentIntentInputModel: paymentIntentInputModel);
+            executePaypalPayment(context: context, transactionsData:getTransactionsData());
+          }
+          ),
         ],
       ),
     );
