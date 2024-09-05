@@ -11,6 +11,7 @@ import '../../../../core/functions/custom_snack_bar_message.dart';
 import '../../../../core/style/colors.dart';
 import '../../../../core/style/textStyles.dart';
 import '../../../../core/utils/app_router.dart';
+import '../../../../core/utils/google_auth.dart';
 import '../../../../core/widgets/animation_background.dart';
 import '../../../../core/widgets/back_icon.dart';
 import '../../../../core/widgets/custom_button.dart';
@@ -201,7 +202,8 @@ class _GoToRegister extends StatelessWidget {
         ),
         TextButton(
           onPressed: () {
-            GoRouter.of(context).push(AppRouter.kRegister);
+            AuthService.signInWithGoogle();
+            // GoRouter.of(context).push(AppRouter.kRegister);
           },
           child: const Text(
             'Register Now',

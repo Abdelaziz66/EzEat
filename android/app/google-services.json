@@ -12,7 +12,20 @@
           "package_name": "com.example.ez_eat"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "339204339904-ob02ts19hrbpnqhiokjtt0ugvmehrffl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ez_eat",
+            "certificate_hash": "11c6f85e198afea489c5c602446a9a29a419e324"
+          }
+        },
+        {
+          "client_id": "339204339904-00p1pafq1e0di0ugg1cu9do7i2t09si6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyDx0WGdBizPmMa72pGSFw-dVWqEClQsZb0"
@@ -20,7 +33,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "339204339904-00p1pafq1e0di0ugg1cu9do7i2t09si6.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "339204339904-up164o6u7vdo08qmkadjtsaqbc0cqc3n.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.ezEat"
+              }
+            }
+          ]
         }
       }
     }
