@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../../core/utils/google_auth.dart';
 import '../../../data/models/login_model.dart';
 import '../../../domain/entities/login_entity.dart';
 import '../../../domain/use_cases/login_usecase.dart';
@@ -31,6 +32,20 @@ class LoginCubit extends Cubit<LoginState> {
       LoginSuccessState.set(loginEntity: right);
       emit(LoginSuccessState());
     });
+  }
+
+
+
+  void loginWithGoogle() async {
+    emit(LoginLoadingState());
+    var result= await AuthService.signInWithGoogle();
+    if(result != null){
+      // LoginSuccessState.set(loginEntity: right);
+      emit(LoginSuccessState());
+    }else{
+      emit(LoginErrorState('login with google failed'));
+    }
+
   }
 
 

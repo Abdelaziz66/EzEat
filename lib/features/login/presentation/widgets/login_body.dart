@@ -1,3 +1,4 @@
+import 'package:ez_eat/core/widgets/glass_box.dart';
 import 'package:ez_eat/features/cart/presentation/manager/cart_cubit/cart_cubit.dart';
 import 'package:ez_eat/features/cart/presentation/manager/cart_cubit/cart_state.dart';
 import 'package:ez_eat/features/dashboard/presentation/manager/dashboard_cubit/dashboard_cubit.dart';
@@ -38,6 +39,8 @@ class _LoginBodyState extends State<LoginBody> {
       listener: (context, state) {
         if (state is LoginSuccessState) {
           _loginSuccess(state, context);
+          showSnackBar(message: 'Login Success', context: context);
+
         }
         if (state is LoginErrorState) {
           showSnackBar(message: 'Login Failed', context: context);
@@ -75,8 +78,8 @@ class _LoginBodyState extends State<LoginBody> {
                       const SizedBox(
                         height: 30,
                       ),
-                      CustomTextFormField(                        borderRadius: 20,
-
+                      CustomTextFormField(
+                        borderRadius: 20,
                         controller: emailController,
                         keyboardType: TextInputType.emailAddress,
                         hintText: 'Email',
@@ -87,8 +90,8 @@ class _LoginBodyState extends State<LoginBody> {
                       const SizedBox(
                         height: 12,
                       ),
-                      CustomTextFormField(                        borderRadius: 20,
-
+                      CustomTextFormField(
+                        borderRadius: 20,
                         controller: passwordController,
                         keyboardType: TextInputType.visiblePassword,
                         hintText: 'Password',
@@ -121,7 +124,18 @@ class _LoginBodyState extends State<LoginBody> {
                               text: 'Login',
                             ),
                       const SizedBox(
-                        height: 20,
+                        height: 25,
+                      ),
+                      const Text(
+                        'Or continue with',
+                        style: Styles.textStyle18,
+                      ),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      const SignWithGoogle(),
+                      const SizedBox(
+                        height: 25,
                       ),
                       const _GoToRegister(),
                       // SizedBox(height: MediaQuery.of(context).size.height*.2,),
@@ -138,49 +152,79 @@ class _LoginBodyState extends State<LoginBody> {
 
   void _clickOnLogin(LoginCubit cubit) {
     // if (loginFormKey.currentState!.validate()) {
-      LoginDataModel loginDataModel = LoginDataModel(
-        // email: emailController.text,
-        // password: passwordController.text,
-        email: '3bdel3zizelsayed123@gmail.com',
-        password: '123456',
-      );
-      cubit.login(
-        loginDataModel: loginDataModel,
-      );
+    LoginDataModel loginDataModel = LoginDataModel(
+      // email: emailController.text,
+      // password: passwordController.text,
+      email: '3bdel3zizelsayed123@gmail.com',
+      password: '123456',
+    );
+    cubit.login(
+      loginDataModel: loginDataModel,
+    );
     // }
   }
 
-  void _loginSuccess(LoginSuccessState state,context) async {
+  void _loginSuccess(LoginSuccessState state, context) async {
     showSnackBar(message: 'Login Successful', context: context);
     save('isLogin', true, kStartBox);
     save('uId', LoginSuccessState.loginEntity?.uid, kStartBox);
     save('isSkip', false, kStartBox);
     save('id', LoginSuccessState.loginEntity?.id, kStartBox);
-    isSkip=false;
-    isLogin=true;
-    loginEntity=LoginSuccessState.loginEntity;
+    isSkip = false;
+    isLogin = true;
+    loginEntity = LoginSuccessState.loginEntity;
     uId = LoginSuccessState.loginEntity?.uid;
-    customerId=LoginSuccessState.loginEntity?.id;
-    isMainGetFood=false;
+    customerId = LoginSuccessState.loginEntity?.id;
+    isMainGetFood = false;
     await uploadLocalFavouriteCart(context);
     GoRouter.of(context).go(AppRouter.kLayout);
     DashboardCubit.get(context).getFood();
   }
+
   Future<void> uploadLocalFavouriteCart(context) async {
-    if( ChangeCartSuccessState.cart.isNotEmpty||ChangeFavouriteSuccessState.favourite.isNotEmpty){
+    if (ChangeCartSuccessState.cart.isNotEmpty ||
+        ChangeFavouriteSuccessState.favourite.isNotEmpty) {
       showSnackBar(message: 'Connecting your last activity', context: context);
-      for (int i = 0; i < ChangeCartSuccessState.cart.length; i++){
-        await  CartCubit.get(context)
+      for (int i = 0; i < ChangeCartSuccessState.cart.length; i++) {
+        await CartCubit.get(context)
             .addToCartCloud(food: ChangeCartSuccessState.cart[i]);
       }
       for (int i = 0; i < ChangeFavouriteSuccessState.favourite.length; i++) {
         await FavouriteCubit.get(context).addToFavouriteCloud(
-          food: ChangeFavouriteSuccessState.favourite[i],);
+          food: ChangeFavouriteSuccessState.favourite[i],
+        );
       }
     }
     DashboardCubit.get(context).foods = [];
-    ChangeCartSuccessState.cart=[];
-    ChangeFavouriteSuccessState.favourite=[];
+    ChangeCartSuccessState.cart = [];
+    ChangeFavouriteSuccessState.favourite = [];
+  }
+}
+
+class SignWithGoogle extends StatelessWidget {
+  const SignWithGoogle({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      borderRadius: BorderRadius.circular(30),
+
+      onTap: (){
+        LoginCubit.get(context).loginWithGoogle();
+      },
+      child: const GlassBox(
+          widget: Padding(
+            padding: EdgeInsets.all(10.0),
+            child: FaIcon(FontAwesomeIcons.google),
+          ),
+          color: Colors.white30,
+          borderRadius: 30,
+          x: 10,
+          y: 10,
+          border: false),
+    );
   }
 }
 
@@ -202,8 +246,7 @@ class _GoToRegister extends StatelessWidget {
         ),
         TextButton(
           onPressed: () {
-            AuthService.signInWithGoogle();
-            // GoRouter.of(context).push(AppRouter.kRegister);
+            GoRouter.of(context).push(AppRouter.kRegister);
           },
           child: const Text(
             'Register Now',
