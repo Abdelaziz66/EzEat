@@ -50,6 +50,7 @@ dependencies:
   flutter_stripe_web: ^6.0.0
   flutter_svg: ^2.0.10+1
   flutter_inappwebview: ^6.0.0
+  google_sign_in: ^6.2.1
 
 #  flutter_paypal_payment: ^1.0.0
 

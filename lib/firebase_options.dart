@@ -69,6 +69,9 @@ class DefaultFirebaseOptions {
     messagingSenderId: '339204339904',
     projectId: 'ezeat-17178',
     storageBucket: 'ezeat-17178.appspot.com',
+    androidClientId: '339204339904-ob02ts19hrbpnqhiokjtt0ugvmehrffl.apps.googleusercontent.com',
+    iosClientId: '339204339904-up164o6u7vdo08qmkadjtsaqbc0cqc3n.apps.googleusercontent.com',
     iosBundleId: 'com.example.ezEat',
   );
+
 }
