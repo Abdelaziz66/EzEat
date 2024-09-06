@@ -7,4 +7,5 @@ import '../../data/models/login_model.dart';
 abstract class LoginRepo{
 
   Future<Either<Failure,LoginEntity>> login({required LoginDataModel loginDataModel,});
+  Future<Either<Failure,LoginEntity>> googleLogin();
 }

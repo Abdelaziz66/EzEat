@@ -22,6 +22,12 @@ class LoginRepoImpl extends LoginRepo{
       return left(ServerFailure(e.toString()));
     }
   }
+
+  @override
+  Future<Either<Failure, LoginEntity>> googleLogin() {
+    // TODO: implement googleLogin
+    throw UnimplementedError();
+  }
  
 
   

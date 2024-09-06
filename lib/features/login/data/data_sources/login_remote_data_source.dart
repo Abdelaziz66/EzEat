@@ -43,24 +43,6 @@ class LoginRemoteDataSourceImpl extends LoginRemoteDataSource{
     return  loginEntity!;
   }
 
-  //
-  // @override
-  // Future<void> getUserDataFunction({required LoginModel loginModel,required uid}) async {
-  //
-  //   LoginModel loginModelI = LoginModel(
-  //     name:  loginModel.name,
-  //     email: loginModel.email,
-  //     phone: loginModel.phone,
-  //   );
-  //
-  //   await FirebaseFirestore.instance
-  //       .collection('users')
-  //       .doc(uid)
-  //       .set(loginModelI.tomap())
-  //       .then((value) {
-  //
-  //   });
-  // }
 
 
 }

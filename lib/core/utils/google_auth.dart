@@ -6,18 +6,17 @@ abstract class AuthService{
 
 
     try{
-      final GoogleSignInAccount? gUser= await GoogleSignIn().signIn().catchError((onError){
-        print('=========================1============');
-        print(onError.toString());
-      });
-
-      final GoogleSignInAuthentication gAuth=await gUser!.authentication;
-
+      final GoogleSignInAccount? googleUser= await GoogleSignIn().signIn();
+      print("User Name: ${googleUser!.displayName}");
+      print("User Email: ${googleUser.email}");
+      print("User ID: ${googleUser.id}");
+      print("User Photo URL: ${googleUser.photoUrl}");
+      final GoogleSignInAuthentication gAuth=await googleUser.authentication;
       final credential= GoogleAuthProvider.credential(
         accessToken:gAuth.accessToken ,
         idToken:gAuth.idToken,
       );
-      return await FirebaseAuth.instance.signInWithCredential(credential);
+    return await FirebaseAuth.instance.signInWithCredential(credential);
     }catch (onError){
       print('=========================3============');
 
