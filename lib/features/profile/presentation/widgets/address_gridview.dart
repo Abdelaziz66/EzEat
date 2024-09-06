@@ -35,7 +35,7 @@ class _AddressGridViewState extends State<AddressGridView> {
           itemCount: address.isNotEmpty ? address.length : 7,
           gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
             maxCrossAxisExtent: 430,
-            mainAxisExtent: 220,
+            mainAxisExtent: 235,
           ),
         );
       },
