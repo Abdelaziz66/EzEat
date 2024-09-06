@@ -1,4 +1,3 @@
-
 import 'package:ez_eat/core/style/colors.dart';
 import 'package:ez_eat/core/style/textStyles.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +16,7 @@ class CustomDrawer extends StatefulWidget {
 }
 
 class _CustomDrawerState extends State<CustomDrawer> {
-  int checkIndex=0;
+  int checkIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -60,8 +59,8 @@ class _CustomDrawerState extends State<CustomDrawer> {
                     physics: const NeverScrollableScrollPhysics(),
                     itemCount: 5,
                     itemBuilder: (context, index) => GestureDetector(
-                      onTap: (){
-                        switch (index){
+                      onTap: () {
+                        switch (index) {
                           case 0:
                             break;
                           case 1:
@@ -73,12 +72,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                           case 4:
                             clickOnLogout(context);
                             break;
-
                         }
-
-
-
-
                       },
                       child: DrawerItem(
                         title: drawerTitle[index],
@@ -140,7 +134,6 @@ class DrawerItem extends StatelessWidget {
   final int itemIndex;
   final IconData iconData;
 
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -161,8 +154,9 @@ class DrawerItem extends StatelessWidget {
               FaIcon(
                 iconData,
                 size: 20,
-                color: index == itemIndex ? KColors.primaryColor
-                  : KColors.secondaryColor.withOpacity(.8),
+                color: index == itemIndex
+                    ? KColors.primaryColor
+                    : KColors.secondaryColor.withOpacity(.8),
               ),
               const SizedBox(
                 width: 5,
@@ -185,7 +179,6 @@ class DrawerItem extends StatelessWidget {
     );
   }
 }
-
 
 const List<String> drawerTitle = [
   'Dashboard',

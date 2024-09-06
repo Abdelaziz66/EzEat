@@ -5,15 +5,8 @@ import 'package:ez_eat/features/profile/presentation/widgets/user_info.dart';
 import 'package:ez_eat/features/profile/presentation/widgets/verify_account.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import '../../../../core/constants/constant.dart';
 import '../../../../core/functions/logout.dart';
-import '../../../../core/functions/hive_function.dart';
-import '../../../../core/utils/app_router.dart';
-import '../../../cart/presentation/manager/cart_cubit/cart_state.dart';
-import '../../../dashboard/presentation/manager/dashboard_cubit/dashboard_cubit.dart';
-import '../../../favourite/presentation/manager/favourite_cubit/favourite_state.dart';
-import '../../../login/presentation/manager/login_cubit/login_cubit.dart';
 import '../../domain/use_cases/upload_address_usecase.dart';
 import '../manager/address_cubit.dart';
 import 'address_gridview.dart';
@@ -34,9 +27,8 @@ class ProfileBody extends StatelessWidget {
             addressRepo: getIt.get<AddressRepoImpl>()),)..getAddress(),
       child: BlocConsumer<AddressCubit, AddressState>(
         listener: (context, state) {
-          AddressCubit cubit =AddressCubit.get(context);
           if(state is UploadAddressSuccessState){
-            cubit.getAddress();
+            AddressCubit.get(context).getAddress();
           }
         },
         builder: (context, state) {

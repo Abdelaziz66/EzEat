@@ -26,11 +26,11 @@ class _PaymentMethodsListViewState extends State<PaymentMethodsListView> {
               padding: const EdgeInsets.symmetric(horizontal: 8),
               child: GestureDetector(
                 onTap: () {
-                  CartCubit.get(context).activePaymentIndex=index;
+                  CartCubit.get(context).activePaymentIndex = index;
                   setState(() {});
                 },
                 child: PaymentMethodItem(
-                  isActive:   CartCubit.get(context).activePaymentIndex == index,
+                  isActive: CartCubit.get(context).activePaymentIndex == index,
                   image: paymentMethodsItems[index],
                 ),
               ),

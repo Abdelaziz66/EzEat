@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-
 import '../../../../core/constants/constant.dart';
 import '../../../../core/style/textStyles.dart';
-import '../../../login/presentation/manager/login_cubit/login_cubit.dart';
-
 
 class UserInfo extends StatelessWidget {
   const UserInfo({
@@ -12,100 +9,108 @@ class UserInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
+    return const Padding(
+      padding: EdgeInsets.all(8.0),
       child: Column(
         children: [
-          const SizedBox(height: 15,),
+          SizedBox(
+            height: 15,
+          ),
           Row(
             children: [
-              const SizedBox(
+              SizedBox(
                 width: 20,
               ),
-              Container(
-                decoration:
-                 const BoxDecoration(shape: BoxShape.circle, boxShadow: [
-                  BoxShadow(
-                    color: Colors.white12,
-                    blurRadius: 2,
-                    spreadRadius: 2,
-                  ),
-                ]),
-                child:  const CircleAvatar(
-                  radius: 45,
-                  backgroundColor: Colors.white10,
-                  backgroundImage:
-                  AssetImage('assets/images/avatar.png',),
-                ),
-              ),
-              const SizedBox(
+              _ProfileImage(),
+              SizedBox(
                 width: 15,
               ),
-              const Expanded(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          '0.0',
-                            style: Styles.textStyle18Bold
-
-                        ),
-                        SizedBox(
-                          height: 7,
-                        ),
-                        Text(
-                          'Balance',
-                            style: Styles.textStyle16
-
-                        ),
-                      ],
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          '0',
-                            style: Styles.textStyle18Bold
-                        ),
-                        SizedBox(
-                          height: 7,
-                        ),
-                        Text(
-                          'Points',
-                            style: Styles.textStyle16
-                        ),
-                      ],
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          '1',
-                            style: Styles.textStyle18Bold
-                        ),
-                        SizedBox(
-                          height: 7,
-                        ),
-                        Text(
-                          'Level',
-                            style: Styles.textStyle16
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
+              _ProfileDetails(),
             ],
           ),
-          const SizedBox(height: 15,),
-          const Name(),
+          SizedBox(
+            height: 15,
+          ),
+          Name(),
         ],
+      ),
+    );
+  }
+}
+
+
+
+
+
+
+class _ProfileDetails extends StatelessWidget {
+  const _ProfileDetails();
+
+  @override
+  Widget build(BuildContext context) {
+    return const Expanded(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('0.0', style: Styles.textStyle18Bold),
+              SizedBox(
+                height: 7,
+              ),
+              Text('Balance', style: Styles.textStyle16),
+            ],
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('0', style: Styles.textStyle18Bold),
+              SizedBox(
+                height: 7,
+              ),
+              Text('Points', style: Styles.textStyle16),
+            ],
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('1', style: Styles.textStyle18Bold),
+              SizedBox(
+                height: 7,
+              ),
+              Text('Level', style: Styles.textStyle16),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _ProfileImage extends StatelessWidget {
+  const _ProfileImage();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration:
+          const BoxDecoration(shape: BoxShape.circle, boxShadow: [
+        BoxShadow(
+          color: Colors.white12,
+          blurRadius: 2,
+          spreadRadius: 2,
+        ),
+      ]),
+      child: const CircleAvatar(
+        radius: 45,
+        backgroundColor: Colors.white10,
+        backgroundImage: AssetImage(
+          'assets/images/avatar.png',
+        ),
       ),
     );
   }
@@ -118,7 +123,7 @@ class Name extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Padding(
+    return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15.0),
       child: SizedBox(
         width: double.infinity,
@@ -126,20 +131,13 @@ class Name extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-                loginEntity==null?'Guest':loginEntity!.name!,
-              style: Styles.textStyle16black
-
-            ),
+            Text(loginEntity == null ? 'Guest' : loginEntity!.name!,
+                style: Styles.textStyle16black),
             const SizedBox(
               height: 2,
             ),
-            Text(
-
-                loginEntity==null?'':loginEntity!.email!,
-                style: Styles.textStyle16black
-
-            ),
+            Text(loginEntity == null ? '' : loginEntity!.email!,
+                style: Styles.textStyle16black),
           ],
         ),
       ),

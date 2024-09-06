@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 
 class AddressCard extends StatelessWidget {
   const AddressCard({
-    super.key, required this.addressEntity,
+    super.key,
+    required this.addressEntity,
   });
   final AddressEntity addressEntity;
 
@@ -22,19 +23,15 @@ class AddressCard extends StatelessWidget {
         ),
         child: Column(
           children: [
-            const AddressAction(),
-            Container(color: Colors.white24,height: 2,),
+            const _AddressAction(),
+            Container(
+              color: Colors.white24,
+              height: 2,
+            ),
             Row(
               children: [
-                const Padding(
-                  padding: EdgeInsets.only(bottom: 10.0,left: 10),
-                  child: CircleAvatar(
-                    radius: 75,
-                    backgroundColor: Colors.transparent,
-                    backgroundImage: AssetImage('assets/images/location.png'),
-                  ),
-                ),
-                AddressText(addressEntity: addressEntity),
+                const _CustomImage(),
+                _AddressText(addressEntity: addressEntity),
               ],
             ),
           ],
@@ -44,38 +41,68 @@ class AddressCard extends StatelessWidget {
   }
 }
 
-class AddressAction extends StatelessWidget {
-  const AddressAction({
-    super.key,
-  });
+
+
+
+
+class _CustomImage extends StatelessWidget {
+  const _CustomImage();
 
   @override
   Widget build(BuildContext context) {
     return const Padding(
-      padding:
-      EdgeInsets.symmetric(vertical: 8.0, horizontal: 10),
+      padding: EdgeInsets.only(bottom: 10.0, left: 10),
+      child: CircleAvatar(
+        radius: 75,
+        backgroundColor: Colors.transparent,
+        backgroundImage: AssetImage('assets/images/location.png'),
+      ),
+    );
+  }
+}
+
+class _AddressAction extends StatelessWidget {
+  const _AddressAction();
+
+  @override
+  Widget build(BuildContext context) {
+    return const Padding(
+      padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 10),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          SizedBox(width: 15,),
-          Text('Address Card',style: Styles.textStyle18,),
+          SizedBox(
+            width: 15,
+          ),
+          Text(
+            'Address Card',
+            style: Styles.textStyle18,
+          ),
           Spacer(),
-          CardIcons(iconData:Icons.delete_outline ,),
-          SizedBox(width: 7,),
-          CardIcons(iconData:Icons.edit ,),
-          SizedBox(width: 7,),
-          CardIcons(iconData: Icons.radio_button_off,),
-
-
+          _CardIcons(
+            iconData: Icons.delete_outline,
+          ),
+          SizedBox(
+            width: 7,
+          ),
+          _CardIcons(
+            iconData: Icons.edit,
+          ),
+          SizedBox(
+            width: 7,
+          ),
+          _CardIcons(
+            iconData: Icons.radio_button_off,
+          ),
         ],
       ),
     );
   }
 }
 
-class CardIcons extends StatelessWidget {
-  const CardIcons({
-    super.key, required this.iconData,
+class _CardIcons extends StatelessWidget {
+  const _CardIcons({
+    required this.iconData,
   });
   final IconData iconData;
 
@@ -88,8 +115,8 @@ class CardIcons extends StatelessWidget {
         onPressed: () {
           showSnackBar(context: context, message: 'Soon :)');
         },
-        icon:  Icon(
-          iconData ,
+        icon: Icon(
+          iconData,
           color: Colors.black87,
           size: 20,
         ),
@@ -98,9 +125,8 @@ class CardIcons extends StatelessWidget {
   }
 }
 
-class AddressText extends StatelessWidget {
-  const AddressText({
-    super.key,
+class _AddressText extends StatelessWidget {
+  const _AddressText({
     required this.addressEntity,
   });
 
@@ -115,31 +141,24 @@ class AddressText extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-             Text(
-              addressEntity.name!,
-              overflow: TextOverflow.ellipsis,
-              maxLines: 1,
-              style: Styles.textStyle20
-            ),
+            Text(addressEntity.name!,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 1,
+                style: Styles.textStyle20),
             const SizedBox(
               height: 10,
             ),
-            Text(
-              addressEntity.phone!,
-              overflow: TextOverflow.ellipsis,
-              maxLines: 1,
-              style: Styles.textStyle16
-            ),
+            Text(addressEntity.phone!,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 1,
+                style: Styles.textStyle16),
             const SizedBox(
               height: 10,
             ),
-             Text(
-              addressEntity.address!,
-              overflow: TextOverflow.ellipsis,
-              maxLines: 1,
-                 style: Styles.textStyle16
-
-             ),
+            Text(addressEntity.address!,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 1,
+                style: Styles.textStyle16),
           ],
         ),
       ),

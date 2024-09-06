@@ -11,9 +11,7 @@ class AddToCartUseCase extends UseCase<void,String>{
 
   @override
   Future<Either<Failure, void>> call([String? itemId])async {
-
     return cartRepo.addToCart(itemId: itemId!);
-
   }
 
 

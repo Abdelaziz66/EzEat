@@ -2,12 +2,11 @@ import 'package:dio/dio.dart';
 import 'package:ez_eat/core/utils/api_service.dart';
 import 'package:ez_eat/features/payment/data/models/stripe_model/payment_intent_input_model.dart';
 import 'package:ez_eat/features/payment/data/models/stripe_model/payment_intent_model.dart';
-import 'package:flutter/material.dart';
-import '../../features/payment/data/models/stripe_model/customer_model.dart';
-import '../../features/payment/data/models/stripe_model/ephemeral_key_model.dart';
-import '../../features/payment/data/models/stripe_model/init_payment_sheet_input_model.dart';
-import '../../features/register/data/models/register_model.dart';
-import 'api_keys.dart';
+import '../models/stripe_model/customer_model.dart';
+import '../models/stripe_model/ephemeral_key_model.dart';
+import '../models/stripe_model/init_payment_sheet_input_model.dart';
+import '../../../register/data/models/register_model.dart';
+import '../../../../core/utils/api_keys.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 
 class StripeService {

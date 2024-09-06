@@ -1,7 +1,5 @@
 import 'package:dartz/dartz.dart';
-
 import 'package:ez_eat/core/errors/failure.dart';
-
 import '../../../../core/use_cases/use_case.dart';
 import '../entities/address_entity.dart';
 import '../repositories/address_repo.dart';

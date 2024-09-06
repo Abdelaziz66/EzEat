@@ -5,12 +5,14 @@ abstract class AddressState {}
 class AddressInitial extends AddressState {}
 
 class GetAddressLoadingState extends AddressState {}
+
 class GetAddressSuccessState extends AddressState {
-  static List<AddressEntity> addressEntity=[];
-  static set({required List<AddressEntity> addressEntity}){
-    GetAddressSuccessState.addressEntity=addressEntity;
+  static List<AddressEntity> addressEntity = [];
+  static set({required List<AddressEntity> addressEntity}) {
+    GetAddressSuccessState.addressEntity = addressEntity;
   }
 }
+
 class GetAddressErrorState extends AddressState {
   final String errMessage;
 
@@ -18,7 +20,9 @@ class GetAddressErrorState extends AddressState {
 }
 
 class UploadAddressLoadingState extends AddressState {}
+
 class UploadAddressSuccessState extends AddressState {}
+
 class UploadAddressErrorState extends AddressState {
   final String errMessage;
 

@@ -11,15 +11,14 @@ import '../../../../core/widgets/custom_title.dart';
 class DashboardBody extends StatelessWidget {
   const DashboardBody({super.key});
 
-
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<DashboardCubit, DashboardState>(
       listener: (context, state) {
-        DashboardCubit  cubit=DashboardCubit.get(context);
+        DashboardCubit cubit = DashboardCubit.get(context);
 
         if (state is GetDashBoardDataSuccessState) {
-          saveDataFromState(context, state);
+          _saveDataFromState(context, state);
           cubit.getFavourite(foods: state.food);
           cubit.getCart(foods: state.food);
         }
@@ -38,8 +37,10 @@ class DashboardBody extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Titles(title: Strings.dashboardTitle,
-                    subtitle: Strings.dashboardSubTitle,),
+                  Titles(
+                    title: Strings.dashboardTitle,
+                    subtitle: Strings.dashboardSubTitle,
+                  ),
                   SizedBox(
                     height: 10,
                   ),
@@ -47,38 +48,45 @@ class DashboardBody extends StatelessWidget {
                 ],
               ),
             ),
-
-          ], body:   cubit.tabBarScreens[cubit.currentTabBarIndex],
+          ],
+          body: cubit.tabBarScreens[cubit.currentTabBarIndex],
         );
       },
     );
   }
 
-  void saveDataFromState(BuildContext context, GetDashBoardDataSuccessState state) {
-    DashboardCubit  cubit=DashboardCubit.get(context);
+  void _saveDataFromState(
+      BuildContext context, GetDashBoardDataSuccessState state) {
+    DashboardCubit cubit = DashboardCubit.get(context);
 
-    saveBestSellerCarousel(cubit, state);
-    saveOffersCarousel(cubit, state);
-    saveFoodCategory(cubit, state);
-
+    _saveBestSellerCarousel(cubit, state);
+    _saveOffersCarousel(cubit, state);
+    _saveFoodCategory(cubit, state);
   }
 
-  void saveFoodCategory(DashboardCubit cubit, GetDashBoardDataSuccessState state) {
-    cubit.foods=[];
+  void _saveFoodCategory(
+      DashboardCubit cubit, GetDashBoardDataSuccessState state) {
+    cubit.foods = [];
     cubit.foods.addAll(state.food);
   }
 
-  void saveOffersCarousel(DashboardCubit cubit, GetDashBoardDataSuccessState state) {
-    cubit.offersCarouselList =[];
-    for(int i=0;i<4;i++){
-      cubit.offersCarouselList.add( BannerItem(food: state.food[i]),);
+  void _saveOffersCarousel(
+      DashboardCubit cubit, GetDashBoardDataSuccessState state) {
+    cubit.offersCarouselList = [];
+    for (int i = 0; i < 4; i++) {
+      cubit.offersCarouselList.add(
+        BannerItem(food: state.food[i]),
+      );
     }
   }
 
-  void saveBestSellerCarousel(DashboardCubit cubit, GetDashBoardDataSuccessState state) {
-    cubit.bestSellerCarouselList =[];
-    for(int i=4;i<8;i++){
-      cubit.bestSellerCarouselList.add( BestSellerItem(food: state.food[i]),);
+  void _saveBestSellerCarousel(
+      DashboardCubit cubit, GetDashBoardDataSuccessState state) {
+    cubit.bestSellerCarouselList = [];
+    for (int i = 4; i < 8; i++) {
+      cubit.bestSellerCarouselList.add(
+        BestSellerItem(food: state.food[i]),
+      );
     }
   }
 }

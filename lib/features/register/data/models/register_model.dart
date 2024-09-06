@@ -6,14 +6,14 @@ class RegisterModel{
 
   RegisterModel({ this.email,  this.password,  this.name,  this.phone});
 
-  RegisterModel.fromjson(Map<String?,dynamic>?json){
+  RegisterModel.fromJson(Map<String?,dynamic>?json){
     name=json?['name'];
     email=json?['email'];
     phone=json?['phone'];
     password=json?['password'];
   }
 
-  Map<String,dynamic>tomap(){
+  Map<String,dynamic>toMap(){
     return {
       'name':name,
       'email':email,

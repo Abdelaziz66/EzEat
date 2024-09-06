@@ -12,6 +12,7 @@ import '../../../../core/widgets/custom_button.dart';
 import '../../../../core/widgets/custom_text_form_field.dart';
 import '../../data/models/register_model.dart';
 import '../manager/register_cubit/register_cubit.dart';
+import 'have_account.dart';
 
 class RegisterBody extends StatefulWidget {
   const RegisterBody({super.key});
@@ -50,7 +51,9 @@ class _RegisterBodyState extends State<RegisterBody> {
                     child: Column(
                       children: [
                         const BackIcon(),
-                        const SizedBox(height: 15,),
+                        const SizedBox(
+                          height: 15,
+                        ),
                         const Text(
                           'Register',
                           style: Styles.textStyle35,
@@ -66,8 +69,8 @@ class _RegisterBodyState extends State<RegisterBody> {
                         const SizedBox(
                           height: 30,
                         ),
-                        CustomTextFormField(                        borderRadius: 20,
-
+                        CustomTextFormField(
+                          borderRadius: 20,
                           controller: nameController,
                           keyboardType: TextInputType.name,
                           hintText: 'User name',
@@ -78,8 +81,8 @@ class _RegisterBodyState extends State<RegisterBody> {
                         const SizedBox(
                           height: 12,
                         ),
-                        CustomTextFormField(                        borderRadius: 20,
-
+                        CustomTextFormField(
+                          borderRadius: 20,
                           controller: phoneController,
                           keyboardType: TextInputType.phone,
                           hintText: 'Phone number',
@@ -90,8 +93,8 @@ class _RegisterBodyState extends State<RegisterBody> {
                         const SizedBox(
                           height: 12,
                         ),
-                        CustomTextFormField(                        borderRadius: 20,
-
+                        CustomTextFormField(
+                          borderRadius: 20,
                           controller: emailController,
                           keyboardType: TextInputType.emailAddress,
                           hintText: 'Email',
@@ -103,7 +106,7 @@ class _RegisterBodyState extends State<RegisterBody> {
                           height: 12,
                         ),
                         CustomTextFormField(
-                        borderRadius: 20,
+                          borderRadius: 20,
                           controller: passwordController,
                           keyboardType: TextInputType.visiblePassword,
                           hintText: 'Password',
@@ -128,18 +131,18 @@ class _RegisterBodyState extends State<RegisterBody> {
                         const SizedBox(
                           height: 15,
                         ),
-                        state is RegisterLoadingState?
-                        const CircularProgressIndicator():
-                        CustomButton(
-                          onTap: () {
-                            _clickOnRegister(cubit);
-                          },
-                          text: 'Register',
-                        ),
+                        state is RegisterLoadingState
+                            ? const CircularProgressIndicator()
+                            : CustomButton(
+                                onTap: () {
+                                  _clickOnRegister(cubit);
+                                },
+                                text: 'Register',
+                              ),
                         const SizedBox(
                           height: 20,
                         ),
-                        const _HaveAccount(),
+                        const HaveAccount(),
                       ],
                     ),
                   ),
@@ -153,12 +156,12 @@ class _RegisterBodyState extends State<RegisterBody> {
   }
 
   void _clickOnRegister(RegisterCubit cubit) {
-       if (registerFormKey.currentState!.validate()) {
+    if (registerFormKey.currentState!.validate()) {
       RegisterModel registerModel = RegisterModel(
-         email:  emailController.text,
-         password: passwordController.text,
-        name: nameController.text,
-         phone: phoneController.text);
+          email: emailController.text,
+          password: passwordController.text,
+          name: nameController.text,
+          phone: phoneController.text);
       cubit.register(
         registerModel: registerModel,
       );
@@ -166,36 +169,3 @@ class _RegisterBodyState extends State<RegisterBody> {
   }
 }
 
-class _HaveAccount extends StatelessWidget {
-  const _HaveAccount();
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text(
-          'Have an account !',
-          style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.w500,
-            color: Colors.grey[700],
-          ),
-        ),
-        TextButton(
-          onPressed: () {
-            GoRouter.of(context).push(AppRouter.kLogin);
-          },
-          child: const Text(
-            'Login now',
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w500,
-              color: Colors.blue,
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}

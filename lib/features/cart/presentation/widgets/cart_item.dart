@@ -1,8 +1,6 @@
 import 'package:ez_eat/core/style/textStyles.dart';
 import 'package:ez_eat/features/dashboard/domain/entities/food_entity.dart';
-import 'package:ez_eat/features/payment/presentation/manager/payment_cubit.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/constants/constant.dart';
@@ -12,9 +10,6 @@ import '../../../../core/utils/app_router.dart';
 import '../../../../core/widgets/image_error.dart';
 import '../../../favourite/presentation/manager/favourite_cubit/favourite_cubit.dart';
 import '../../../layout/presentation/manager/layout_cubit/layout_cubit.dart';
-import '../../../payment/data/models/stripe_model/payment_intent_input_model.dart';
-import '../../../payment/data/repositories/payment_repo_impl.dart';
-import '../../../payment/domain/use_cases/payment_usecase.dart';
 import '../../../payment/presentation/widgets/payment_sheet.dart';
 import '../manager/cart_cubit/cart_cubit.dart';
 
@@ -202,7 +197,12 @@ class _CartItemState extends State<CartItem> {
             LayoutCubit.get(context).currentNavigationBarIndex = 0;
           });
     } else {
-      customBottomSheet(context: context, widget: PaymentMethodsBottomSheet( price: widget.food.price!, counter: counter,));
+      customBottomSheet(
+          context: context,
+          widget: PaymentMethodsBottomSheet(
+            price: widget.food.price!,
+            counter: counter,
+          ));
     }
   }
 

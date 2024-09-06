@@ -89,16 +89,15 @@ class _Image extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height*.5,
+      height: MediaQuery.of(context).size.height * .5,
       child: AspectRatio(
-        aspectRatio: .8/1,
+        aspectRatio: .8 / 1,
         child: Container(
           alignment: AlignmentDirectional.center,
           child: Padding(
             padding: const EdgeInsets.all(0.0),
             child: Image.asset(
               'assets/images/onboarding/$imageName',
-
             ),
           ),
         ),

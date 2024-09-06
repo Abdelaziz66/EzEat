@@ -1,11 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import '../../../features/login/data/models/login_model.dart';
 import '../../../features/login/domain/entities/login_entity.dart';
 import '../../../features/payment/data/models/stripe_model/customer_model.dart';
 import '../../../features/register/data/models/register_model.dart';
 import '../../constants/constant.dart';
-import '../../utils/stripe_service.dart';
+import '../../../features/payment/data/data_sources/stripe_service.dart';
 import '../hive_function.dart';
 
 
@@ -46,4 +47,19 @@ Future<LoginEntity> getUserDataFunction({required uid}) async{
     return  loginEntity;
   });
   return  loginEntity!;
+}
+
+Future<void> newAccount(onValue, User user) async {
+  if (onValue.additionalUserInfo!.isNewUser) {
+    RegisterModel registerModel = RegisterModel(
+        phone: user.phoneNumber, name: user.displayName, email: user.email);
+    CustomerModel customerModel = await createCustomer(
+      registerModel: registerModel,
+    );
+    await createUserData(
+      registerModel: registerModel,
+      uid: onValue.user.uid,
+      customerId: customerModel.id!,
+    );
+  }
 }

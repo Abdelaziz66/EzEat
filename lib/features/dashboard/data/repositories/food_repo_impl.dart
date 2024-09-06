@@ -9,13 +9,14 @@ class FoodRepoImpl extends FoodRepo {
   final FoodRemoteDataSource foodRemoteDataSource;
   final FoodLocalDataSource foodLocalDataSource;
 
-  FoodRepoImpl({required this.foodRemoteDataSource,required this.foodLocalDataSource});
+  FoodRepoImpl(
+      {required this.foodRemoteDataSource, required this.foodLocalDataSource});
   @override
   Future<Either<Failure, List<FoodEntity>>> getFood() async {
     try {
-      List<FoodEntity> food=[];
-      food=foodLocalDataSource.getFood();
-      if(food.isNotEmpty){
+      List<FoodEntity> food = [];
+      food = foodLocalDataSource.getFood();
+      if (food.isNotEmpty) {
         return right(food);
       }
       food = await foodRemoteDataSource.getFood();
@@ -24,7 +25,4 @@ class FoodRepoImpl extends FoodRepo {
       return left(ServerFailure(e.toString()));
     }
   }
-
-
-
 }

@@ -1,24 +1,28 @@
 import 'package:ez_eat/core/style/textStyles.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-
 import '../../../../core/utils/app_router.dart';
 import '../../../../core/widgets/image_error.dart';
 import '../../domain/entities/food_entity.dart';
 
 class BannerItem extends StatelessWidget {
-  const BannerItem({super.key, required this.food,});
+  const BannerItem({
+    super.key,
+    required this.food,
+  });
   final FoodEntity food;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        GoRouter.of(context).push(AppRouter.kFoodDetails,extra:food);
+        GoRouter.of(context).push(AppRouter.kFoodDetails, extra: food);
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
         child: SizedBox(
-          width: MediaQuery.of(context).size.width<600? MediaQuery.of(context).size.width: 600,
+          width: MediaQuery.of(context).size.width < 600
+              ? MediaQuery.of(context).size.width
+              : 600,
           child: Stack(
             children: [
               Column(
@@ -29,7 +33,9 @@ class BannerItem extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(vertical: 15.0),
                     child: Container(
                       height: 120,
-                      width: MediaQuery.of(context).size.width<600? MediaQuery.of(context).size.width*.75: 500,
+                      width: MediaQuery.of(context).size.width < 600
+                          ? MediaQuery.of(context).size.width * .75
+                          : 500,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(30),
                         color: Colors.white.withOpacity(.3),
@@ -47,6 +53,10 @@ class BannerItem extends StatelessWidget {
     );
   }
 }
+
+
+
+
 
 class _FoodInfo extends StatelessWidget {
   const _FoodInfo({
@@ -92,8 +102,8 @@ class _FoodInfo extends StatelessWidget {
             children: [
               Text(
                 '1500',
-                style: Styles.textStyle16.copyWith(
-                    decoration: TextDecoration.lineThrough),
+                style: Styles.textStyle16
+                    .copyWith(decoration: TextDecoration.lineThrough),
               ),
               const SizedBox(
                 width: 5,

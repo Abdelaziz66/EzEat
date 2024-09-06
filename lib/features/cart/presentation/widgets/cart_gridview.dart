@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
 import '../../../dashboard/domain/entities/food_entity.dart';
 import '../manager/cart_cubit/cart_cubit.dart';
 import '../manager/cart_cubit/cart_state.dart';
@@ -45,15 +44,6 @@ class _CartGridViewState extends State<CartGridView> {
                     MediaQuery.of(context).size.width < 1600
                     ? 3:4,
               ),
-
-              // gridDelegate:  SliverGridDelegateWithMaxCrossAxisExtent(
-              //   maxCrossAxisExtent: 430,
-              //   // childAspectRatio: 430/ 340,
-              //   // crossAxisSpacing:true? MediaQuery.of(context).size.width*:5,
-              //   mainAxisSpacing: 5,
-              //   mainAxisExtent: 340,
-              //
-              // ),
             ),
           ),
         );

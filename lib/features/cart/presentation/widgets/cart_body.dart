@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../../../core/utils/strings.dart';
 import '../../../../core/widgets/custom_title.dart';
 import 'cart_gridview.dart';

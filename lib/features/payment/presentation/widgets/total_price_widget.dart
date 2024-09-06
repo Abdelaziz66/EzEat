@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../../../core/style/textStyles.dart';
 
 class TotalPrice extends StatelessWidget {

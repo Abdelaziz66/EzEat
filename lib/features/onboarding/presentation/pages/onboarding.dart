@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../widgets/onboarding_body.dart';
 
 class Onboarding extends StatelessWidget {

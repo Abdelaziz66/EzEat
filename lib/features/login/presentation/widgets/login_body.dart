@@ -1,26 +1,18 @@
-import 'package:ez_eat/core/widgets/glass_box.dart';
-import 'package:ez_eat/features/cart/presentation/manager/cart_cubit/cart_cubit.dart';
-import 'package:ez_eat/features/cart/presentation/manager/cart_cubit/cart_state.dart';
-import 'package:ez_eat/features/dashboard/presentation/manager/dashboard_cubit/dashboard_cubit.dart';
+import 'package:ez_eat/features/login/presentation/widgets/sign_with_google.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:go_router/go_router.dart';
-import '../../../../core/constants/constant.dart';
-import '../../../../core/functions/hive_function.dart';
 import '../../../../core/functions/custom_snack_bar_message.dart';
+import '../../../../core/functions/login_success.dart';
 import '../../../../core/style/colors.dart';
 import '../../../../core/style/textStyles.dart';
-import '../../../../core/utils/app_router.dart';
-import '../../../../core/utils/google_auth.dart';
 import '../../../../core/widgets/animation_background.dart';
 import '../../../../core/widgets/back_icon.dart';
 import '../../../../core/widgets/custom_button.dart';
 import '../../../../core/widgets/custom_text_form_field.dart';
-import '../../../favourite/presentation/manager/favourite_cubit/favourite_cubit.dart';
-import '../../../favourite/presentation/manager/favourite_cubit/favourite_state.dart';
 import '../../data/models/login_model.dart';
 import '../manager/login_cubit/login_cubit.dart';
+import 'go_to_register.dart';
 
 class LoginBody extends StatefulWidget {
   const LoginBody({super.key});
@@ -38,9 +30,8 @@ class _LoginBodyState extends State<LoginBody> {
     return BlocConsumer<LoginCubit, LoginState>(
       listener: (context, state) {
         if (state is LoginSuccessState) {
-          _loginSuccess(state, context);
           showSnackBar(message: 'Login Success', context: context);
-
+        loginSuccess(state, context);
         }
         if (state is LoginErrorState) {
           showSnackBar(message: 'Login Failed', context: context);
@@ -137,8 +128,7 @@ class _LoginBodyState extends State<LoginBody> {
                       const SizedBox(
                         height: 25,
                       ),
-                      const _GoToRegister(),
-                      // SizedBox(height: MediaQuery.of(context).size.height*.2,),
+                      const GoToRegister(),
                     ],
                   ),
                 ),
@@ -151,113 +141,20 @@ class _LoginBodyState extends State<LoginBody> {
   }
 
   void _clickOnLogin(LoginCubit cubit) {
-    // if (loginFormKey.currentState!.validate()) {
+    if (loginFormKey.currentState!.validate()) {
     LoginDataModel loginDataModel = LoginDataModel(
-      // email: emailController.text,
-      // password: passwordController.text,
-      email: '3bdel3zizelsayed123@gmail.com',
-      password: '123456',
+      email: emailController.text,
+      password: passwordController.text,
     );
     cubit.login(
       loginDataModel: loginDataModel,
     );
-    // }
-  }
-
-  void _loginSuccess(LoginSuccessState state, context) async {
-    showSnackBar(message: 'Login Successful', context: context);
-    save('isLogin', true, kStartBox);
-    save('uId', LoginSuccessState.loginEntity?.uid, kStartBox);
-    save('isSkip', false, kStartBox);
-    save('id', LoginSuccessState.loginEntity?.id, kStartBox);
-    isSkip = false;
-    isLogin = true;
-    loginEntity = LoginSuccessState.loginEntity;
-    uId = LoginSuccessState.loginEntity?.uid;
-    customerId = LoginSuccessState.loginEntity?.id;
-    isMainGetFood = false;
-    await uploadLocalFavouriteCart(context);
-    GoRouter.of(context).go(AppRouter.kLayout);
-    DashboardCubit.get(context).getFood();
-  }
-
-  Future<void> uploadLocalFavouriteCart(context) async {
-    if (ChangeCartSuccessState.cart.isNotEmpty ||
-        ChangeFavouriteSuccessState.favourite.isNotEmpty) {
-      showSnackBar(message: 'Connecting your last activity', context: context);
-      for (int i = 0; i < ChangeCartSuccessState.cart.length; i++) {
-        await CartCubit.get(context)
-            .addToCartCloud(food: ChangeCartSuccessState.cart[i]);
-      }
-      for (int i = 0; i < ChangeFavouriteSuccessState.favourite.length; i++) {
-        await FavouriteCubit.get(context).addToFavouriteCloud(
-          food: ChangeFavouriteSuccessState.favourite[i],
-        );
-      }
     }
-    DashboardCubit.get(context).foods = [];
-    ChangeCartSuccessState.cart = [];
-    ChangeFavouriteSuccessState.favourite = [];
   }
+
+
+
 }
 
-class SignWithGoogle extends StatelessWidget {
-  const SignWithGoogle({
-    super.key,
-  });
 
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      borderRadius: BorderRadius.circular(30),
 
-      onTap: (){
-        LoginCubit.get(context).loginWithGoogle();
-      },
-      child: const GlassBox(
-          widget: Padding(
-            padding: EdgeInsets.all(10.0),
-            child: FaIcon(FontAwesomeIcons.google),
-          ),
-          color: Colors.white30,
-          borderRadius: 30,
-          x: 10,
-          y: 10,
-          border: false),
-    );
-  }
-}
-
-class _GoToRegister extends StatelessWidget {
-  const _GoToRegister();
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text(
-          'Not a member !',
-          style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.w500,
-            color: Colors.grey[700],
-          ),
-        ),
-        TextButton(
-          onPressed: () {
-            GoRouter.of(context).push(AppRouter.kRegister);
-          },
-          child: const Text(
-            'Register Now',
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w500,
-              color: Colors.blue,
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}

@@ -1,4 +1,3 @@
-
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import '../manager/dashboard_cubit/dashboard_cubit.dart';
@@ -10,9 +9,8 @@ class BestSellerSlider extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 260,
-
-      child:CarouselSlider(
-        items:  DashboardCubit.get(context).bestSellerCarouselList,
+      child: CarouselSlider(
+        items: DashboardCubit.get(context).bestSellerCarouselList,
         options: CarouselOptions(
           height: double.infinity,
           viewportFraction: 1,

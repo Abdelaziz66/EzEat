@@ -25,7 +25,7 @@ class _FavouriteItemState extends State<FavouriteItem> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        GoRouter.of(context).push(AppRouter.kFoodDetails,extra: widget.food);
+        GoRouter.of(context).push(AppRouter.kFoodDetails, extra: widget.food);
       },
       child: SizedBox(
         width: 400,
@@ -50,14 +50,16 @@ class _FavouriteItemState extends State<FavouriteItem> {
                         Expanded(
                           child: Padding(
                             padding: const EdgeInsets.only(
-                                left: 20.0, right: 20, top: 25,),
+                              left: 20.0,
+                              right: 20,
+                              top: 25,
+                            ),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 _Title(widget: widget),
                                 _Subtitle(widget: widget),
-
                               ],
                             ),
                           ),
@@ -96,16 +98,14 @@ class _FavouriteItemState extends State<FavouriteItem> {
   }
 
   void _clickOnCart(BuildContext context) {
-      setState(() {
+    setState(() {
       if (cart) {
         cart = false;
         CartCubit.get(context)
-            .removeFromCart(
-            food: widget.food,context: context);
+            .removeFromCart(food: widget.food, context: context);
       } else {
         cart = true;
-        CartCubit.get(context).addToCart(
-            food: widget.food,context: context);
+        CartCubit.get(context).addToCart(food: widget.food, context: context);
       }
     });
   }
@@ -147,8 +147,7 @@ class _FoodPriceInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment:
-      CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Text(
           'Total Price',
@@ -190,13 +189,9 @@ class _FavouriteIcon extends StatelessWidget {
       ),
       child: IconButton(
         onPressed: () {
-
-
-            _clickOnFavourite(context);
-
+          _clickOnFavourite(context);
         },
-        icon:
-            const Icon(Icons.favorite),
+        icon: const Icon(Icons.favorite),
 
         // icon: Icon(Icons.favorite_border),
       ),
@@ -204,10 +199,8 @@ class _FavouriteIcon extends StatelessWidget {
   }
 
   void _clickOnFavourite(BuildContext context) {
-     FavouriteCubit.get(context)
-        .removeFromFavourite(
-        food: widget.food,
-        context: context);
+    FavouriteCubit.get(context)
+        .removeFromFavourite(food: widget.food, context: context);
   }
 }
 
@@ -222,10 +215,8 @@ class _Title extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Row(
-        crossAxisAlignment:
-        CrossAxisAlignment.center,
-        mainAxisAlignment:
-        MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Expanded(
             child: Text(
@@ -237,7 +228,6 @@ class _Title extends StatelessWidget {
           ),
           const SizedBox(width: 50),
           _FavouriteIcon(widget: widget),
-
         ],
       ),
     );
@@ -264,8 +254,8 @@ class _CustomButton extends StatelessWidget {
         ),
       ),
       child: Padding(
-        padding: const EdgeInsets.only(
-            right: 10, left: 25, top: 10.0, bottom: 10),
+        padding:
+            const EdgeInsets.only(right: 10, left: 25, top: 10.0, bottom: 10),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -273,23 +263,17 @@ class _CustomButton extends StatelessWidget {
               width: 5,
             ),
             Text(
-              !cart?
-              'Add to Cart':'Remove',
-              style: Styles.textStyle17
-                  .copyWith(color: Colors.white),
+              !cart ? 'Add to Cart' : 'Remove',
+              style: Styles.textStyle17.copyWith(color: Colors.white),
             ),
             const SizedBox(
               width: 20,
             ),
             CircleAvatar(
                 radius: 17,
-                backgroundColor: !cart
-                    ? Colors.grey[300]
-                    : Colors.greenAccent,
-                child:  FaIcon(
-                  !cart
-                      ? FontAwesomeIcons.opencart
-                      : FontAwesomeIcons.check,
+                backgroundColor: !cart ? Colors.grey[300] : Colors.greenAccent,
+                child: FaIcon(
+                  !cart ? FontAwesomeIcons.opencart : FontAwesomeIcons.check,
                   color: Colors.black,
                   size: 20,
                 )),
@@ -311,12 +295,10 @@ class _FavouriteImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
-
-
       children: [
         Image.network(
-          '${widget.food.imageUrl}'
-        ,errorBuilder: (context, error, stackTrace) => const ImageError(),
+          '${widget.food.imageUrl}',
+          errorBuilder: (context, error, stackTrace) => const ImageError(),
           height: 190,
         ),
       ],

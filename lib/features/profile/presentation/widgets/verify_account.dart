@@ -1,7 +1,7 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
+import 'package:ez_eat/core/functions/custom_snack_bar_message.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
 import '../../../../core/style/textStyles.dart';
 import '../../../../core/widgets/glass_box.dart';
 
@@ -37,21 +37,8 @@ class VerifyAccount extends StatelessWidget {
                   const Spacer(),
                   TextButton(
                       onPressed: () {
-                        // FirebaseAuth.instance.currentUser
-                        //     ?.sendEmailVerification()
-                        //     .then((value) {
-                        //   Fluttertoast.showToast(
-                        //       msg: 'Check your email',
-                        //       toastLength:
-                        //       Toast.LENGTH_LONG,
-                        //       gravity:
-                        //       ToastGravity.BOTTOM,
-                        //       timeInSecForIosWeb: 3,
-                        //       backgroundColor:
-                        //       Colors.green,
-                        //       textColor: Colors.white,
-                        //       fontSize: 16.0);
-                        // }).catchError((error) {});
+                        showSnackBar(context: context, message: 'coming soon :)');
+
                       },
                       child: Text(
                         'Send',
@@ -59,9 +46,6 @@ class VerifyAccount extends StatelessWidget {
                       )),
                   IconButton(
                       onPressed: () {
-                        // cubit.verfiy_Function();
-                        // print(FirebaseAuth.instance
-                        //     .currentUser?.emailVerified);
                       },
                       icon: const Icon(
                         Icons.restart_alt,

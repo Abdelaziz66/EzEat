@@ -1,24 +1,20 @@
 import '../../../features/payment/data/models/paypal_model/amount_model.dart';
 import '../../../features/payment/data/models/paypal_model/item_list_model.dart';
+import '../../../features/payment/data/models/stripe_model/payment_intent_input_model.dart';
 
-({AmountModel amount, ItemListModel itemList}) getTransactionsData() {
+({AmountModel amount, ItemListModel itemList}) getTransactionsData({required PaymentIntentInputModel paymentIntentInputModel}) {
+  var total=paymentIntentInputModel.amount*paymentIntentInputModel.quantity;
   var amount = AmountModel(
-      total: "100",
-      currency: 'USD',
-      details: Details(shipping: "0", shippingDiscount: 0, subtotal: '100'));
+      total:total ,
+      currency:  paymentIntentInputModel.currency,
+      details: Details(shipping: "0", shippingDiscount: 0, subtotal: total));
 
   List<OrderItemModel> orders = [
     OrderItemModel(
-      currency: 'USD',
-      name: 'Apple',
-      price: "4",
-      quantity: 10,
-    ),
-    OrderItemModel(
-      currency: 'USD',
-      name: 'Apple',
-      price: "5",
-      quantity: 12,
+      currency: paymentIntentInputModel.currency,
+      name: 'Food',
+      price: paymentIntentInputModel.amount,
+      quantity: paymentIntentInputModel.quantity,
     ),
   ];
 
