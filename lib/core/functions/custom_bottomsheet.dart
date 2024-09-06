@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-
 import '../widgets/glass_box.dart';
 
-void customBottomSheet({required context,required Widget widget})=>   showModalBottomSheet(
+void customBottomSheet({required context,required Widget widget})=>showModalBottomSheet(
 
     context: context,
     shape:

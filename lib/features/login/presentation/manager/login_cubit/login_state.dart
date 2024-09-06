@@ -4,19 +4,17 @@ abstract class LoginState {}
 
 class LoginInitial extends LoginState {}
 
+class LoginLoadingState extends LoginState {}
+class LoginSuccessState extends LoginState {
+  static LoginEntity? loginEntity;
 
-class LoginLoadingState extends LoginState{}
-class LoginSuccessState extends LoginState{
-  static LoginEntity?  loginEntity;
-
-  static set({required LoginEntity loginEntity}){
-    LoginSuccessState.loginEntity=loginEntity;
+  static set({required LoginEntity loginEntity}) {
+    LoginSuccessState.loginEntity = loginEntity;
   }
 }
-class LoginErrorState extends LoginState{
+class LoginErrorState extends LoginState {
   final String errMessage;
   LoginErrorState(this.errMessage);
 }
 
-
-class ChangeEyeState extends LoginState{}
+class ChangeEyeState extends LoginState {}

@@ -18,7 +18,6 @@ class OnboardingBody extends StatefulWidget {
 class _OnboardingBodyState extends State<OnboardingBody> {
   bool isLast = false;
   var smoothPageController = PageController();
-
   final List title = [
     'High Quality Food',
     'Your Diet will be easy',
@@ -96,7 +95,7 @@ class _OnboardingBodyState extends State<OnboardingBody> {
   }
 
   void _changeInOnboarding(int index) {
-     if (index == 2) {
+    if (index == 2) {
       isLast = true;
     } else {
       isLast = false;
@@ -104,10 +103,9 @@ class _OnboardingBodyState extends State<OnboardingBody> {
   }
 
   void _clickOnNext(BuildContext context) {
-     if (isLast) {
-      save('isOnboarding',true, kStartBox);
+    if (isLast) {
+      save('isOnboarding', true, kStartBox);
       GoRouter.of(context).go(AppRouter.kLoginOrRegister);
-
     } else {
       smoothPageController.nextPage(
         duration: const Duration(
@@ -118,7 +116,3 @@ class _OnboardingBodyState extends State<OnboardingBody> {
     }
   }
 }
-
-
-
-

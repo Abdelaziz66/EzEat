@@ -15,35 +15,50 @@ class FoodItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        GoRouter.of(context).push(AppRouter.kFoodDetails,extra:food);
-
+        GoRouter.of(context).push(AppRouter.kFoodDetails, extra: food);
       },
       child: Stack(
         children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Container(
-                height: 180,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(25),
-                  color: Colors.white.withOpacity(.3),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(top:50.0),
-                  child: _FoodInfo(food: food),
-                ),
-              ),
-            ],
-          ),
-          CustomImage(food: food),
+          _FoodInfoShape(food: food),
+          _CustomImage(food: food),
         ],
       ),
     );
   }
 }
 
+
+
+
+class _FoodInfoShape extends StatelessWidget {
+  const _FoodInfoShape({
+    super.key,
+    required this.food,
+  });
+
+  final FoodEntity food;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        Container(
+          height: 180,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(25),
+            color: Colors.white.withOpacity(.3),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.only(top: 50.0),
+            child: _FoodInfo(food: food),
+          ),
+        ),
+      ],
+    );
+  }
+}
 
 class _FoodInfo extends StatelessWidget {
   const _FoodInfo({
@@ -89,8 +104,8 @@ class _FoodInfo extends StatelessWidget {
             children: [
               Text(
                 '1500',
-                style: Styles.textStyle16.copyWith(
-                    decoration: TextDecoration.lineThrough),
+                style: Styles.textStyle16
+                    .copyWith(decoration: TextDecoration.lineThrough),
               ),
               const SizedBox(
                 width: 5,
@@ -107,8 +122,8 @@ class _FoodInfo extends StatelessWidget {
   }
 }
 
-class CustomImage extends StatelessWidget {
-  const CustomImage({
+class _CustomImage extends StatelessWidget {
+  const _CustomImage({
     super.key,
     required this.food,
   });
@@ -123,7 +138,8 @@ class CustomImage extends StatelessWidget {
         SizedBox(
           height: 160,
           child: Image.network(
-            '${food.imageUrl}',errorBuilder: (context, error, stackTrace) => const ImageError(),
+            '${food.imageUrl}',
+            errorBuilder: (context, error, stackTrace) => const ImageError(),
           ),
         )
       ],

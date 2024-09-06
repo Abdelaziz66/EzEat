@@ -4,7 +4,6 @@ import 'package:ez_eat/features/profile/domain/entities/address_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
-
 import '../../../../core/widgets/custom_button.dart';
 import '../manager/address_cubit.dart';
 
@@ -19,11 +18,8 @@ class CustomBottomSheet extends StatefulWidget {
 
 class _CustomBottomSheetState extends State<CustomBottomSheet> {
   var addressFormKey = GlobalKey<FormState>();
-
   var nameController = TextEditingController();
-
   var addressController = TextEditingController();
-
   var numberController = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -31,9 +27,7 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
         padding: const EdgeInsets.only(left: 12, right: 12, bottom: 12.0),
         child: GlassBox(
           widget: SizedBox(
-            // width: double.infinity,
             height: 485,
-
             child: Form(
               key: addressFormKey,
               child: SingleChildScrollView(
@@ -42,42 +36,7 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
                     const SizedBox(
                       height: 10,
                     ),
-                     Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Expanded(child: SizedBox(),),
-                        const Expanded(
-                          child: Text(
-                            'Address Card',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
-                            ),
-                          ),
-                        ),
-                
-                        Expanded(
-                          child: Container(
-                            alignment: Alignment.centerRight,
-                            child: Padding(
-                              padding: const EdgeInsets.only(right: 12.0),
-                              child: IconButton(
-                                onPressed: (){
-                                  GoRouter.of(context).pop();
-                                },
-                                icon: const FaIcon(
-                                  FontAwesomeIcons.circleDown,
-                                  size: 30,
-                                  color: Colors.black38,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+                    const _CardBar(),
                     const SizedBox(
                       height: 10,
                     ),
@@ -145,7 +104,9 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
                         text: 'Add',
                       ),
                     ),
-                    const SizedBox(height: 100,),
+                    const SizedBox(
+                      height: 100,
+                    ),
                   ],
                 ),
               ),
@@ -157,5 +118,50 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
           x: 20,
           y: 20,
         ));
+  }
+}
+
+class _CardBar extends StatelessWidget {
+  const _CardBar();
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const Expanded(
+          child: SizedBox(),
+        ),
+        const Expanded(
+          child: Text(
+            'Address Card',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+            ),
+          ),
+        ),
+        Expanded(
+          child: Container(
+            alignment: Alignment.centerRight,
+            child: Padding(
+              padding: const EdgeInsets.only(right: 12.0),
+              child: IconButton(
+                onPressed: () {
+                  GoRouter.of(context).pop();
+                },
+                icon: const FaIcon(
+                  FontAwesomeIcons.circleDown,
+                  size: 30,
+                  color: Colors.black38,
+                ),
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
   }
 }

@@ -1,6 +1,4 @@
-
 import 'package:flutter/material.dart';
-
 import '../widgets/login_or_register_body.dart';
 
 class LoginOrRegister extends StatelessWidget {
@@ -8,7 +6,7 @@ class LoginOrRegister extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       backgroundColor: Colors.grey[300],
       body: const LoginOrRegisterBody(),
     );

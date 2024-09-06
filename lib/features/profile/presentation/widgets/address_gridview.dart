@@ -1,7 +1,6 @@
 import 'package:ez_eat/features/profile/presentation/widgets/shimmer_address_gridview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../domain/entities/address_entity.dart';
 import '../manager/address_cubit.dart';
 import 'address_card.dart';

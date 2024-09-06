@@ -11,9 +11,7 @@ class RemoveFromCartUseCase extends UseCase<void,String>{
 
   @override
   Future<Either<Failure, void>> call([String? itemId])async {
-
   return cartRepo.removeFromCart(itemId: itemId!);
-
   }
 
 

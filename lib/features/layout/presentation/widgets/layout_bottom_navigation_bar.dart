@@ -1,7 +1,6 @@
 import 'package:ez_eat/core/style/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
 import '../manager/layout_cubit/layout_cubit.dart';
 
 class LayoutNavigationBar extends StatefulWidget {
@@ -22,9 +21,10 @@ class _LayoutNavigationBarState extends State<LayoutNavigationBar> {
         right: 12,
         left: 12,
       ),
-      child:  Container(
-        width:  MediaQuery.of(context).size.width < 450
-            ?  MediaQuery.of(context).size.width:  450,
+      child: Container(
+        width: MediaQuery.of(context).size.width < 450
+            ? MediaQuery.of(context).size.width
+            : 450,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(28),
           color: Colors.black,
@@ -34,8 +34,8 @@ class _LayoutNavigationBarState extends State<LayoutNavigationBar> {
                 spreadRadius: 1,
                 blurRadius: 10,
                 offset: const Offset(0, 10)
-              // changes position of shadow
-            ),
+                // changes position of shadow
+                ),
           ],
         ),
         child: Padding(
@@ -49,10 +49,9 @@ class _LayoutNavigationBarState extends State<LayoutNavigationBar> {
               fontWeight: FontWeight.bold,
             ),
             selectedIconTheme:
-            const IconThemeData(color: KColors.secondaryColor, size: 35),
+                const IconThemeData(color: KColors.secondaryColor, size: 35),
             unselectedIconTheme:
-            const IconThemeData(
-                color: Colors.grey, size: 30),
+                const IconThemeData(color: Colors.grey, size: 30),
             unselectedLabelStyle: const TextStyle(
               color: KColors.secondaryColor,
             ),
@@ -61,12 +60,10 @@ class _LayoutNavigationBarState extends State<LayoutNavigationBar> {
             showSelectedLabels: false,
             elevation: 0,
             currentIndex: LayoutCubit.get(context).currentNavigationBarIndex,
-
             onTap: (index) {
               setState(() {
                 LayoutCubit.get(context).onTapNavigationBar(index);
               });
-
             },
             items: const [
               BottomNavigationBarItem(
@@ -82,7 +79,7 @@ class _LayoutNavigationBarState extends State<LayoutNavigationBar> {
                 label: 'Cart',
               ),
               BottomNavigationBarItem(
-                icon:  FaIcon(FontAwesomeIcons.user),
+                icon: FaIcon(FontAwesomeIcons.user),
                 label: 'Account',
               ),
             ],

@@ -1,9 +1,7 @@
 import 'package:ez_eat/features/profile/domain/use_cases/get_address_usecase.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../domain/entities/address_entity.dart';
 import '../../domain/use_cases/upload_address_usecase.dart';
-
 part 'address_state.dart';
 
 class AddressCubit extends Cubit<AddressState> {
@@ -18,9 +16,9 @@ class AddressCubit extends Cubit<AddressState> {
   void getAddress() async {
     emit(GetAddressLoadingState());
     var result = await getAddressUseCase.call();
-    result.fold((l){
+    result.fold((l) {
       emit(GetAddressErrorState(l.message));
-    }, (r){
+    }, (r) {
       GetAddressSuccessState.set(addressEntity: r);
       emit(GetAddressSuccessState());
     });
@@ -29,9 +27,9 @@ class AddressCubit extends Cubit<AddressState> {
   void uploadAddress({required AddressEntity addressEntity}) async {
     emit(UploadAddressLoadingState());
     var result = await uploadAddressUseCase.call(addressEntity);
-    result.fold((l){
+    result.fold((l) {
       emit(UploadAddressErrorState(l.message));
-    }, (r){
+    }, (r) {
       emit(UploadAddressSuccessState());
     });
   }

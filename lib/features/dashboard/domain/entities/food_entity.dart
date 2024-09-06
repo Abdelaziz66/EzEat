@@ -1,5 +1,5 @@
 import 'package:hive/hive.dart';
-part'food_entity.g.dart';
+part 'food_entity.g.dart';
 
 @HiveType(typeId: 0)
 class FoodEntity {
@@ -20,17 +20,18 @@ class FoodEntity {
   @HiveField(7)
   final String? imageUrl;
   @HiveField(8)
-  bool favourite=false;
+  bool favourite = false;
   @HiveField(9)
-  bool cart=false;
+  bool cart = false;
 
-  FoodEntity(
-      {required this.id,
-      required this.title,
-      required this.subTitle,
-      required this.price,
-      required this.protein,
-      required this.carb,
-      required this.fat,
-        required this.imageUrl,});
+  FoodEntity({
+    required this.id,
+    required this.title,
+    required this.subTitle,
+    required this.price,
+    required this.protein,
+    required this.carb,
+    required this.fat,
+    required this.imageUrl,
+  });
 }

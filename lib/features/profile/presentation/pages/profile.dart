@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../widgets/profile_body.dart';
 
-
 class Profile extends StatelessWidget {
   const Profile({super.key});
 
@@ -11,7 +10,3 @@ class Profile extends StatelessWidget {
     return const ProfileBody();
   }
 }
-
-
-
-

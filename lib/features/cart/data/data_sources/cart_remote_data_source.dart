@@ -13,7 +13,7 @@ class CartRemoteDataSourceImpl extends CartRemoteDataSource{
   @override
   Future<void> addToCart({required String itemId})async {
 
-    Map<String,dynamic> x = {
+    Map<String,dynamic> data = {
       'itemId':itemId,
       'cart':true,
     };
@@ -21,21 +21,14 @@ class CartRemoteDataSourceImpl extends CartRemoteDataSource{
     await FirebaseFirestore.instance
         .collection('users')
         .doc(uId).collection('cart').doc(itemId)
-        .set(x)
-        .then((value) {
-
-
-    });
+        .set(data);
   }
 
   @override
   Future<void> removeFromCart({required String itemId}) async{
     await FirebaseFirestore.instance
         .collection('users')
-        .doc(uId).collection('cart').doc(itemId).delete()
-        .then((value) {
-
-    });
+        .doc(uId).collection('cart').doc(itemId).delete();
   }
 
 

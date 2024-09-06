@@ -6,8 +6,8 @@ import '../../../../core/errors/failure.dart';
 
 class FavouriteRepoImpl extends FavouriteRepo{
   final FavouriteRemoteDataSource favouriteRemoteDataSource;
-
   FavouriteRepoImpl({required this.favouriteRemoteDataSource});
+
   @override
   Future<Either<Failure, void>> addToFavourite({required String itemId}) async{
     try{

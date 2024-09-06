@@ -4,7 +4,6 @@ import 'package:ez_eat/features/payment/presentation/widgets/payment_method_list
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-
 import '../../../../core/functions/custom_dialog.dart';
 import '../../../../core/functions/paypal/get_transctions.dart';
 import '../../../../core/functions/paypal/paypal_payment.dart';
@@ -36,24 +35,34 @@ class PaymentMethodsBottomSheet extends StatelessWidget {
             height: 32,
           ),
           CustomButtonBlocConsumer(function: () {
-            PaymentCubit cubit = PaymentCubit.get(context);
-            PaymentIntentInputModel paymentIntentInputModel =
-                PaymentIntentInputModel(
-                    amount: '${counter * price}00',
-                    currency: 'USD',
-                    customerId: customerId!);
-            if(CartCubit.get(context).activePaymentIndex==0){
-              cubit.createPayment(
-                  paymentIntentInputModel: paymentIntentInputModel);
-            }else if(CartCubit.get(context).activePaymentIndex==1){
-              executePaypalPayment(context: context, transactionsData:getTransactionsData());
-            }
-
-          }
-          ),
+            _executePayment(context);
+          }),
         ],
       ),
     );
+  }
+
+  void _executePayment(BuildContext context) {
+    PaymentCubit cubit = PaymentCubit.get(context);
+    PaymentIntentInputModel? paymentIntentInputModel;
+    if (CartCubit.get(context).activePaymentIndex == 0) {
+      paymentIntentInputModel = PaymentIntentInputModel(
+          amount: '${counter * price}00',
+          currency: 'USD',
+          customerId: customerId!);
+      cubit.createPayment(
+          paymentIntentInputModel: paymentIntentInputModel);
+    } else if (CartCubit.get(context).activePaymentIndex == 1) {
+      paymentIntentInputModel = PaymentIntentInputModel(
+          quantity: counter,
+          amount: '$price 00',
+          currency: 'USD',
+          customerId: customerId!);
+      executePaypalPayment(
+          context: context,
+          transactionsData: getTransactionsData(
+              paymentIntentInputModel: paymentIntentInputModel));
+    }
   }
 }
 

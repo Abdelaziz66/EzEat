@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
-
 import '../../../../core/style/textStyles.dart';
 
 class CustomLinear extends StatelessWidget {
-  const CustomLinear({super.key,
+  const CustomLinear({
+    super.key,
     required this.head,
     required this.tail,
     required this.percent,

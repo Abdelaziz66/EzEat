@@ -2,7 +2,6 @@ import 'package:ez_eat/features/favourite/presentation/widgets/shimmer_favourite
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
 import '../../../dashboard/domain/entities/food_entity.dart';
 import '../manager/favourite_cubit/favourite_cubit.dart';
 import '../manager/favourite_cubit/favourite_state.dart';
@@ -25,9 +24,7 @@ class _FavouriteGridViewState extends State<FavouriteGridView> {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10.0),
             child: GridView.builder(
-              itemCount: favourite.isNotEmpty
-                  ? favourite.length
-                  : 7,
+              itemCount: favourite.isNotEmpty ? favourite.length : 7,
               scrollDirection: Axis.vertical,
               // shrinkWrap: true,
 

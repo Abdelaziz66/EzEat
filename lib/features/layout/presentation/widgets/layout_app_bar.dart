@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
 import '../../../../core/constants/constant.dart';
 import '../../../../core/functions/custom_snack_bar_message.dart';
 
@@ -9,28 +8,25 @@ class LayoutAppBar extends StatelessWidget {
     super.key,
   });
 
-
   @override
   Widget build(BuildContext context) {
-    return  SafeArea(
+    return SafeArea(
       child: SizedBox(
         height: 60,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-
             const DrawerIcon(),
             const Spacer(),
             InkWell(
-              onTap: (){
-                showSnackBar(message: 'coming soon :)',context: context);
+              onTap: () {
+                showSnackBar(message: 'coming soon :)', context: context);
               },
               child: const Padding(
                 padding: EdgeInsets.only(top: 0.0, right: 20),
                 child: FaIcon(FontAwesomeIcons.opencart),
               ),
             ),
-
           ],
         ),
       ),
@@ -51,7 +47,6 @@ class DrawerIcon extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.only(top: 0.0, left: 20),
         child: SizedBox(
-
           width: 38,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -66,7 +61,6 @@ class DrawerIcon extends StatelessWidget {
               ),
               const SizedBox(height: 7),
               Container(
-
                 width: 20,
                 height: 2.5,
                 decoration: BoxDecoration(
@@ -74,7 +68,6 @@ class DrawerIcon extends StatelessWidget {
                   color: Colors.black,
                 ),
               ),
-
             ],
           ),
         ),

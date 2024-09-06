@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 
 class CustomTabs extends StatelessWidget {
   const CustomTabs({
-    super.key, required this.imagePath, required this.index, required this.tabIndex,
+    super.key,
+    required this.imagePath,
+    required this.index,
+    required this.tabIndex,
   });
   final String imagePath;
   final int index;
@@ -19,9 +22,7 @@ class CustomTabs extends StatelessWidget {
         padding: const EdgeInsets.all(15.0),
         child: Image.asset(
           'assets/images/$imagePath',
-          color:index == tabIndex?Colors.white:Colors.black,
-
-
+          color: index == tabIndex ? Colors.white : Colors.black,
         ),
       ),
     );

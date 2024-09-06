@@ -7,22 +7,13 @@ abstract class CartState {}
 
 class CartInitial extends CartState {}
 
-
-
-
 class AddToCartSuccessState extends CartState {}
-
 class AddToCartErrorState extends CartState {
   final String errMessage;
-
   AddToCartErrorState(this.errMessage);
 }
 
-class RemoveFromCartSuccessState extends CartState {
-
-}
-
-
+class RemoveFromCartSuccessState extends CartState {}
 class RemoveFromCartErrorState extends CartState {
   final String errMessage;
 
@@ -40,7 +31,4 @@ class ChangeCartSuccessState extends CartState {
     cart.remove(food);
   }
 }
-
-class GetCartSuccessState extends CartState {
-
-}
+class GetCartSuccessState extends CartState {}

@@ -1,8 +1,5 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-
 import '../widgets/dashboard_body.dart';
 
 class Dashboard extends StatelessWidget {
@@ -11,6 +8,5 @@ class Dashboard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const DashboardBody();
-
   }
 }
