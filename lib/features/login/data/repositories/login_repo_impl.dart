@@ -24,9 +24,13 @@ class LoginRepoImpl extends LoginRepo{
   }
 
   @override
-  Future<Either<Failure, LoginEntity>> googleLogin() {
-    // TODO: implement googleLogin
-    throw UnimplementedError();
+  Future<Either<Failure, LoginEntity>> googleLogin()async {
+    try{
+      LoginEntity loginEntity =await loginRemoteDataSource.googleLogin();
+      return right(loginEntity);
+    } catch (e) {
+      return left(ServerFailure(e.toString()));
+    }
   }
  
 

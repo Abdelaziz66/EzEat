@@ -1,3 +1,4 @@
+import 'package:ez_eat/features/login/domain/use_cases/google_login_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -17,7 +18,7 @@ class Login extends StatelessWidget {
       create: (context) => LoginCubit(
         loginUseCase: LoginUseCase(
           loginRepo: getIt.get<LoginRepoImpl>(),
-        ),
+        ), googleLoginUseCase: GoogleLoginUseCase(loginRepo: getIt.get<LoginRepoImpl>()),
       ),
       child: Scaffold(
         backgroundColor: Colors.grey[300],
