@@ -4,11 +4,15 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 import '../../../../core/constants/constant.dart';
 import '../../../../core/functions/hive_function.dart';
+import '../../../../core/functions/user_data/user_data.dart';
+import '../../../../core/utils/google_auth.dart';
+import '../../../payment/data/models/stripe_model/customer_model.dart';
+import '../../../register/data/models/register_model.dart';
 import '../models/login_model.dart';
 
 abstract class LoginRemoteDataSource{
  Future<LoginEntity>  login({required LoginDataModel loginDataModel});
- Future<LoginEntity> getUserDataFunction({required uid});
+ Future<LoginEntity>  googleLogin();
 }
 
 class LoginRemoteDataSourceImpl extends LoginRemoteDataSource{
@@ -29,20 +33,32 @@ class LoginRemoteDataSourceImpl extends LoginRemoteDataSource{
   }
 
   @override
-  Future<LoginEntity> getUserDataFunction({required uid}) async{
+  Future<LoginEntity> googleLogin() async{
     LoginEntity? loginEntity;
-    await FirebaseFirestore.instance
-        .collection('users')
-        .doc(uid)
-        .get()
-        .then((value) {
-          loginEntity = LoginModel.fromJson(value.data());
-          saveUserLoginHive(loginEntity!,kUserBox);
-          return  loginEntity;
-    });
-    return  loginEntity!;
+   await AuthService.signInWithGoogle().then((onValue)async{
+     User user=onValue.user;
+     await newAccount(onValue, user);
+     loginEntity = await getUserDataFunction(uid:onValue.user.uid);
+     return loginEntity!;
+   });
+
+    return loginEntity!;
   }
 
 
+
+
+  Future<void> newAccount(onValue, User user) async {
+    if (onValue.additionalUserInfo!.isNewUser) {
+      RegisterModel registerModel=RegisterModel(phone: user.phoneNumber,name: user.displayName,email: user.email);
+      CustomerModel customerModel =await createCustomer(
+        registerModel: registerModel,
+      );
+      await createUserData(
+        registerModel: registerModel,
+        uid: onValue.user.uid, customerId: customerModel.id!,
+      );
+    }
+  }
 
 }
