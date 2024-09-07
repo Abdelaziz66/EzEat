@@ -55,7 +55,7 @@ class PaymentMethodsBottomSheet extends StatelessWidget {
     } else if (CartCubit.get(context).activePaymentIndex == 1) {
       paymentIntentInputModel = PaymentIntentInputModel(
           quantity: counter,
-          amount: '$price 00',
+          amount: '$price',
           currency: 'USD',
           customerId: customerId!);
       executePaypalPayment(

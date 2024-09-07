@@ -6,7 +6,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'core/functions/hive_setup.dart';
 import 'core/functions/setup_service_locator.dart';
-import 'core/functions/custom_snack_bar_message.dart';
 import 'core/functions/system_ui_overlay_style.dart';
 import 'core/style/dark_theme.dart';
 import 'core/style/light_theme.dart';
@@ -23,7 +22,6 @@ import 'features/dashboard/presentation/manager/dashboard_cubit/dashboard_cubit.
 import 'features/favourite/data/repositories/favourite_repo_impl.dart';
 import 'features/favourite/presentation/manager/favourite_cubit/favourite_cubit.dart';
 import 'features/payment/data/repositories/payment_repo_impl.dart';
-import 'features/payment/domain/repositories/payment_repo.dart';
 import 'features/payment/domain/use_cases/payment_usecase.dart';
 import 'features/payment/presentation/manager/payment_cubit.dart';
 import 'firebase_options.dart';

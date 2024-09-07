@@ -10,11 +10,6 @@ final lightTheme = ThemeData(
       primary: KColors.primaryColor,
     ),
 
-    // progressIndicatorTheme: const ProgressIndicatorThemeData(color: KColors.primaryColor),
-    // floatingActionButtonTheme: const FloatingActionButtonThemeData(
-    //   backgroundColor: KColors.primaryColor,
-    //   foregroundColor: KColors.secondaryColor,
-    // ),
     inputDecorationTheme: InputDecorationTheme(
         floatingLabelStyle: const TextStyle(color: KColors.primaryColor),
         iconColor: KColors.secondaryColor,

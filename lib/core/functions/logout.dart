@@ -16,6 +16,7 @@ void logout(context) {
   isLogin = false;
   uId = null;
   customerId=null;
+  loginEntity=null;
   save('isLogin', false, kStartBox);
   save('uId', null, kStartBox);
   save('id', null, kStartBox);
