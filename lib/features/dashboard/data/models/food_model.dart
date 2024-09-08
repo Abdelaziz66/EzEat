@@ -1,6 +1,9 @@
 import 'package:ez_eat/features/dashboard/domain/entities/food_entity.dart';
 
 class FoodModel extends FoodEntity {
+
+
+
   FoodModel(
       {super.id,
       super.title,
