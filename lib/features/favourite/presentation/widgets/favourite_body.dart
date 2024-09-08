@@ -11,8 +11,8 @@ class FavouriteBody extends StatelessWidget {
     return const Column(
       children: [
         Titles(
-          title: Strings.dashboardTitle,
-          subtitle: Strings.dashboardSubTitle,
+          title: Strings.favouriteTitle,
+          subtitle: Strings.favouriteSubTitle,
         ),
         FavouriteGridView(),
       ],

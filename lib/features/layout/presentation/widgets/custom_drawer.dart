@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/functions/logout.dart';
+import '../../../../core/utils/strings.dart';
 import '../../../../core/widgets/glass_box.dart';
 
 class CustomDrawer extends StatefulWidget {
@@ -36,7 +37,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                   height: 15,
                 ),
                 Text(
-                  'Taste Trek',
+                  Strings.appName,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: Styles.textStyle25

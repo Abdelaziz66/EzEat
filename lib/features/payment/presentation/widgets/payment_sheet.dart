@@ -47,7 +47,8 @@ class PaymentMethodsBottomSheet extends StatelessWidget {
     PaymentIntentInputModel? paymentIntentInputModel;
     if (CartCubit.get(context).activePaymentIndex == 0) {
       paymentIntentInputModel = PaymentIntentInputModel(
-          amount: '${counter * price}00',
+          quantity: counter,
+          amount: '${price*counter}',
           currency: 'USD',
           customerId: customerId!);
       cubit.createPayment(

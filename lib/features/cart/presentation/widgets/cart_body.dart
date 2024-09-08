@@ -10,7 +10,7 @@ class CartBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Column(
       children: [
-        Titles(title: Strings.dashboardTitle, subtitle: Strings.dashboardSubTitle,),
+        Titles(title: Strings.cartTitle, subtitle: Strings.cartSubTitle,),
         CartGridView(),
       ],
 
