@@ -26,7 +26,7 @@ class _LayoutNavigationBarState extends State<LayoutNavigationBar> {
             ? MediaQuery.of(context).size.width
             : 450,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(28),
+          borderRadius: BorderRadius.circular(30),
           color: Colors.black,
           boxShadow: [
             BoxShadow(
@@ -49,9 +49,9 @@ class _LayoutNavigationBarState extends State<LayoutNavigationBar> {
               fontWeight: FontWeight.bold,
             ),
             selectedIconTheme:
-                const IconThemeData(color: KColors.secondaryColor, size: 35),
+                const IconThemeData(color: KColors.secondaryColor, size: 25),
             unselectedIconTheme:
-                const IconThemeData(color: Colors.grey, size: 30),
+                const IconThemeData(color: Colors.grey, size: 20),
             unselectedLabelStyle: const TextStyle(
               color: KColors.secondaryColor,
             ),

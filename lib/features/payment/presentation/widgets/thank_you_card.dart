@@ -21,11 +21,11 @@ class ThankYouCard extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(
-              height: 10,
+              height: 15,
             ),
             CustomCheckIcon(),
             SizedBox(
-              height: 15,
+              height: 12,
             ),
             Text(
               'Thank you!',
@@ -33,29 +33,33 @@ class ThankYouCard extends StatelessWidget {
               style: Styles.textStyle25,
             ),
             Text(
-              'Your transaction was successful',
+              'Transaction Successful',
               textAlign: TextAlign.center,
-              style: Styles.textStyle20,
+              style: TextStyle(
+                fontSize: 25,
+                fontWeight: FontWeight.w500,
+                color: Colors.black54
+              ),
             ),
             SizedBox(
-              height: 30,
+              height: 25,
             ),
             _PaymentInfo(),
             Divider(
               height: 60,
               thickness: 1,
             ),
-            TotalPrice(title: 'Total', value: '\$50.97'),
+            TotalPrice(title: 'Total', value: '\$25.00'),
             SizedBox(
-              height: 30,
+              height: 25,
             ),
             CardInfoWidget(),
             SizedBox(
-              height: 30,
+              height: 25,
             ),
             CustomDashedLine(),
             SizedBox(
-              height: 30,
+              height: 25,
             ),
             _PaymentTeal(),
             SizedBox(
@@ -73,9 +77,7 @@ class ThankYouCard extends StatelessWidget {
 
 
 class _PaymentTeal extends StatelessWidget {
-  const _PaymentTeal({
-    super.key,
-  });
+  const _PaymentTeal();
 
   @override
   Widget build(BuildContext context) {
@@ -130,9 +132,7 @@ class _PaymentTeal extends StatelessWidget {
 }
 
 class _PaymentInfo extends StatelessWidget {
-  const _PaymentInfo({
-    super.key,
-  });
+  const _PaymentInfo();
 
   @override
   Widget build(BuildContext context) {
@@ -161,7 +161,7 @@ class _PaymentInfo extends StatelessWidget {
           ),
           const PaymentItemInfo(
             title: 'To',
-            value: 'Taste Trek',
+            value: 'EzEat',
           ),
         ],
       ),

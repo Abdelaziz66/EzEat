@@ -2,6 +2,7 @@ import 'package:ez_eat/core/functions/custom_snack_bar_message.dart';
 import 'package:ez_eat/core/style/textStyles.dart';
 import 'package:ez_eat/features/profile/domain/entities/address_entity.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class AddressCard extends StatelessWidget {
   const AddressCard({
@@ -141,24 +142,50 @@ class _AddressText extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(addressEntity.name!,
-                overflow: TextOverflow.ellipsis,
-                maxLines: 1,
-                style: Styles.textStyle20),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                const FaIcon(FontAwesomeIcons.solidAddressBook,size: 18,),
+                const SizedBox(width: 10,),
+                Text(addressEntity.name!,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                    style: Styles.textStyle20),
+              ],
+            ),
             const SizedBox(
               height: 10,
             ),
-            Text(addressEntity.phone!,
-                overflow: TextOverflow.ellipsis,
-                maxLines: 1,
-                style: Styles.textStyle16),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                const FaIcon(FontAwesomeIcons.phone,size: 18,),
+                const SizedBox(width: 10,),
+                Text(addressEntity.phone!,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                    style: Styles.textStyle16),
+              ],
+            ),
+
             const SizedBox(
               height: 10,
             ),
-            Text(addressEntity.address!,
-                overflow: TextOverflow.ellipsis,
-                maxLines: 1,
-                style: Styles.textStyle16),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                const FaIcon(FontAwesomeIcons.locationDot,size: 18,),
+                const SizedBox(width: 15,),
+                Text(addressEntity.address!,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                    style: Styles.textStyle16),
+              ],
+            ),
+
           ],
         ),
       ),

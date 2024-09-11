@@ -26,12 +26,6 @@ import 'features/payment/domain/use_cases/payment_usecase.dart';
 import 'features/payment/presentation/manager/payment_cubit.dart';
 import 'firebase_options.dart';
 
-// Future<void>firebaseMessagingBackgroundHandler(RemoteMessage message)async{
-//   print('on background message');
-//   print(message.data.toString());
-//   showFlutterToastMessage(message: 'on background message');
-// }
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   systemStatesNavigationBar();
@@ -42,17 +36,6 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   Bloc.observer = SimpleBlocObserver();
-
-  // await FirebaseMessaging.instance.getToken();
-  //   FirebaseMessaging.onMessage.listen((event) {
-  //
-  //  });
-  //  FirebaseMessaging.onMessageOpenedApp.listen((event) {
-  //
-  //  });
-  //  FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
-
-  // FirebaseFirestore.instance.useFirestoreEmulator('localhost', 8080);
 
   runApp(const MyApp());
 }
