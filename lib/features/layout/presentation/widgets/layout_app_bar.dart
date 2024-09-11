@@ -11,25 +11,25 @@ class LayoutAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: SizedBox(
-        height: 60,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const DrawerIcon(),
-            const Spacer(),
-            InkWell(
-              onTap: () {
-                showSnackBar(message: 'coming soon :)', context: context);
-              },
-              child: const Padding(
-                padding: EdgeInsets.only(top: 0.0, right: 20),
-                child: FaIcon(FontAwesomeIcons.opencart),
+        child: SizedBox(
+          height: 60,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const DrawerIcon(),
+              const Spacer(),
+              InkWell(
+                onTap: () {
+                  showSnackBar(message: 'coming soon :)', context: context);
+                },
+                child: const Padding(
+                  padding: EdgeInsets.only(top: 0.0, right: 20),
+                  child: FaIcon(FontAwesomeIcons.opencart),
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
-      ),
     );
   }
 }
