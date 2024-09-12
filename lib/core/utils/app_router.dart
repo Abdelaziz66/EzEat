@@ -40,7 +40,7 @@ abstract class AppRouter {
         path: kFoodDetails,
         pageBuilder: (context, state) => CustomTransitionPage(
           child: FoodDetails(food: state.extra as FoodEntity),
-          transitionDuration: const Duration(milliseconds: 250),
+          transitionDuration: const Duration(milliseconds: 300),
           fullscreenDialog: true,
           key: state.pageKey,
           transitionsBuilder: (context, animation, secondaryAnimation, child) {

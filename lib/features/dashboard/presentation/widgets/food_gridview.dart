@@ -1,6 +1,8 @@
+import 'package:animations/animations.dart';
 import 'package:ez_eat/features/dashboard/domain/entities/food_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../../core/widgets/food_details.dart';
 import '../manager/dashboard_cubit/dashboard_cubit.dart';
 import 'food_item.dart';
 
@@ -24,17 +26,35 @@ class FoodGridView extends StatelessWidget {
                 scrollDirection: Axis.vertical,
                 // shrinkWrap: true,
                 physics: const BouncingScrollPhysics(),
-                itemBuilder: (context, index) => FoodItem(
-                  food: length == 7
-                      ? foods[index + 8]
-                      : length == 6
-                          ? foods[index + 15]
-                          : foods[index + 21],
-                  index: length == 7
-                      ? index + 8
-                      : length == 6
-                          ? index + 15
-                          : index + 21,
+                itemBuilder: (context, index) => OpenContainer(
+                  transitionDuration: const Duration(milliseconds: 500),
+                  openColor: Colors.white,
+                  closedColor: Colors.transparent,
+                  closedElevation: 0,
+                  openElevation: 0,
+                  middleColor: Colors.white,
+                  transitionType: ContainerTransitionType.fade,
+
+                  closedBuilder: (BuildContext context,VoidCallback openContainer)=>FoodItem(
+                    food: length == 7
+                        ? foods[index + 8]
+                        : length == 6
+                        ? foods[index + 15]
+                        : foods[index + 21],
+                    index: length == 7
+                        ? index + 8
+                        : length == 6
+                        ? index + 15
+                        : index + 21, onClicked: openContainer,
+                  ),
+                  openBuilder: (BuildContext context, _) =>FoodDetails(
+                    food: length == 7
+                        ? foods[index + 8]
+                        : length == 6
+                        ? foods[index + 15]
+                        : foods[index + 21],
+                  ),
+
                 ),
                 gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
                   maxCrossAxisExtent: 250,

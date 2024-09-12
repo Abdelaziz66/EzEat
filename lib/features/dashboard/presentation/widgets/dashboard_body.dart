@@ -1,3 +1,5 @@
+import 'package:ez_eat/features/dashboard/presentation/widgets/sandwiches.dart';
+import 'package:ez_eat/features/dashboard/presentation/widgets/sweets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/functions/custom_snack_bar_message.dart';
@@ -7,9 +9,23 @@ import 'banner_slider_item.dart';
 import 'best_seller_item.dart';
 import 'custom_tab_bar.dart';
 import '../../../../core/widgets/custom_title.dart';
-
-class DashboardBody extends StatelessWidget {
+import 'discount.dart';
+import 'drinks.dart';
+class DashboardBody extends StatefulWidget  {
   const DashboardBody({super.key});
+
+  @override
+  State<DashboardBody> createState() => _DashboardBodyState();
+}
+
+class _DashboardBodyState extends State<DashboardBody> with SingleTickerProviderStateMixin {
+  late final TabController tabController;
+
+  @override
+  void initState() {
+    super.initState();
+    tabController = TabController(length: 4, vsync: this);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,29 +43,29 @@ class DashboardBody extends StatelessWidget {
         }
       },
       builder: (context, state) {
-        DashboardCubit cubit = DashboardCubit.get(context);
+        DashboardCubit.get(context);
         return NestedScrollView(
           physics: const BouncingScrollPhysics(),
           floatHeaderSlivers: true,
           headerSliverBuilder: (context, innerBoxIsScrolled) => [
-            const SliverToBoxAdapter(
+            SliverToBoxAdapter(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Titles(
+                  const Titles(
                     title: Strings.dashboardTitle,
                     subtitle: Strings.dashboardSubTitle,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
-                  CustomTabBar(),
+                  CustomTabBar(tabController: tabController,),
                 ],
               ),
             ),
           ],
-          body: cubit.tabBarScreens[cubit.currentTabBarIndex],
+          body:_CustomTabView(tabController: tabController),
         );
       },
     );
@@ -88,5 +104,26 @@ class DashboardBody extends StatelessWidget {
         BestSellerItem(food: state.food[i]),
       );
     }
+  }
+}
+
+class _CustomTabView extends StatelessWidget {
+  const _CustomTabView({
+    required this.tabController,
+  });
+
+  final TabController tabController;
+
+  @override
+  Widget build(BuildContext context) {
+    return TabBarView(controller:tabController,
+      physics: const NeverScrollableScrollPhysics(),
+      children: const [
+      Discount(),
+      Sandwiches(),
+      Sweets(),
+      Drinks(),
+    ],
+    );
   }
 }

@@ -1,7 +1,9 @@
+import 'package:animations/animations.dart';
 import 'package:ez_eat/features/favourite/presentation/widgets/shimmer_favourite_gridview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import '../../../../core/widgets/food_details.dart';
 import '../../../dashboard/domain/entities/food_entity.dart';
 import '../manager/favourite_cubit/favourite_cubit.dart';
 import '../manager/favourite_cubit/favourite_state.dart';
@@ -9,6 +11,7 @@ import 'favourite_item.dart';
 
 class FavouriteGridView extends StatefulWidget {
   const FavouriteGridView({super.key});
+
 
   @override
   State<FavouriteGridView> createState() => _FavouriteGridViewState();
@@ -30,10 +33,22 @@ class _FavouriteGridViewState extends State<FavouriteGridView> {
 
               physics: const BouncingScrollPhysics(),
               itemBuilder: (context, index) {
-                return Center(
-                    child: favourite.isNotEmpty
-                        ? _favouriteItemBuilder(index, context)
-                        : const LoadingFavouriteGridView());
+                return OpenContainer(
+                  transitionDuration: const Duration(milliseconds: 500),
+                  openColor: Colors.white,
+                  closedColor: Colors.transparent,
+                  closedElevation: 0,
+                  openElevation: 0,
+                  middleColor: Colors.white,
+                  transitionType: ContainerTransitionType.fade,
+                  closedBuilder: (BuildContext context,VoidCallback openContainer)=> Center(
+                      child: favourite.isNotEmpty
+                          ? _favouriteItemBuilder(index, context,openContainer)
+                          : const LoadingFavouriteGridView()),
+                  openBuilder: (BuildContext context, _) =>FoodDetails(
+                    food:favourite[index],
+                  ),
+                );
               },
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisSpacing: 5,
@@ -56,7 +71,7 @@ class _FavouriteGridViewState extends State<FavouriteGridView> {
     );
   }
 
-  Widget _favouriteItemBuilder(int index, BuildContext context) {
+  Widget _favouriteItemBuilder(int index, BuildContext context,openContainer) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: Dismissible(
@@ -80,7 +95,7 @@ class _FavouriteGridViewState extends State<FavouriteGridView> {
             ),
           ),
           child: FavouriteItem(
-            food: favourite[index],
+            food: favourite[index], onClick:openContainer ,
           )),
     );
   }

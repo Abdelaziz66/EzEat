@@ -1,6 +1,8 @@
+import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import '../../../../core/widgets/food_details.dart';
 import '../../../dashboard/domain/entities/food_entity.dart';
 import '../manager/cart_cubit/cart_cubit.dart';
 import '../manager/cart_cubit/cart_state.dart';
@@ -29,7 +31,20 @@ class _CartGridViewState extends State<CartGridView> {
 
               physics: const BouncingScrollPhysics(),
               itemBuilder: (context, index) {
-                return Center(child: _cartItemBuilder(index, context));
+                return OpenContainer(
+                    transitionDuration: const Duration(milliseconds: 500),
+                    openColor: Colors.white,
+                    closedColor: Colors.transparent,
+                    closedElevation: 0,
+                    openElevation: 0,
+                    middleColor: Colors.white,
+                    transitionType: ContainerTransitionType.fade,
+                    closedBuilder: (BuildContext context,VoidCallback openContainer)=> Center(child: _cartItemBuilder(index, context,openContainer)),
+                    openBuilder: (BuildContext context, _) =>FoodDetails(
+                      food:cart[index],
+                    ),
+
+                   );
               },
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisSpacing: 5,
@@ -38,11 +53,12 @@ class _CartGridViewState extends State<CartGridView> {
                 crossAxisCount: MediaQuery.of(context).size.width < 800
                     ? 1
                     : MediaQuery.of(context).size.width >= 800 &&
-                    MediaQuery.of(context).size.width < 1200
-                    ? 2
-                    :  MediaQuery.of(context).size.width >= 1200 &&
-                    MediaQuery.of(context).size.width < 1600
-                    ? 3:4,
+                            MediaQuery.of(context).size.width < 1200
+                        ? 2
+                        : MediaQuery.of(context).size.width >= 1200 &&
+                                MediaQuery.of(context).size.width < 1600
+                            ? 3
+                            : 4,
               ),
             ),
           ),
@@ -51,8 +67,8 @@ class _CartGridViewState extends State<CartGridView> {
     );
   }
 
-  Widget _cartItemBuilder(int index, BuildContext context) {
-     return Padding(
+  Widget _cartItemBuilder(int index, BuildContext context,openContainer) {
+    return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: Dismissible(
         key: ValueKey<FoodEntity>(cart[index]),
@@ -74,13 +90,13 @@ class _CartGridViewState extends State<CartGridView> {
             ),
           ),
         ),
-        child: CartItem(food: cart[index]),
+        child: CartItem(food: cart[index],onClick:openContainer,),
       ),
     );
   }
 
   void _swipeCartItem(BuildContext context, int index) {
-     setState(() {
+    setState(() {
       CartCubit.get(context)
           .removeFromCart(food: cart[index], context: context);
     });

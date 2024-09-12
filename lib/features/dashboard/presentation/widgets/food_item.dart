@@ -7,16 +7,15 @@ import '../../../../core/utils/app_router.dart';
 import '../../../../core/widgets/image_error.dart';
 
 class FoodItem extends StatelessWidget {
-  const FoodItem({super.key, required this.food, required this.index});
+  const FoodItem({super.key, required this.food, required this.index, required this.onClicked});
   final FoodEntity food;
   final int index;
+  final VoidCallback onClicked;
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        GoRouter.of(context).push(AppRouter.kFoodDetails, extra: food);
-      },
+    return InkWell(
+      onTap: onClicked,
       child: Stack(
         children: [
           _FoodInfoShape(food: food),

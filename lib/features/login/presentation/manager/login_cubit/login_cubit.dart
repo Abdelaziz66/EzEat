@@ -33,7 +33,7 @@ class LoginCubit extends Cubit<LoginState> {
   }
 
   void loginWithGoogle() async {
-    emit(LoginLoadingState());
+    emit(LoginWithGoogleLoadingState());
     var result = await googleLoginUseCase.call();
     result.fold((failure) {
       emit(LoginErrorState(failure.toString()));

@@ -2,8 +2,7 @@ import 'package:ez_eat/core/style/textStyles.dart';
 import 'package:ez_eat/features/dashboard/domain/entities/food_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:go_router/go_router.dart';
-import '../../../../core/utils/app_router.dart';
+
 import '../../../../core/widgets/image_error.dart';
 import '../../../cart/presentation/manager/cart_cubit/cart_cubit.dart';
 import '../manager/favourite_cubit/favourite_cubit.dart';
@@ -11,9 +10,11 @@ import '../manager/favourite_cubit/favourite_cubit.dart';
 class FavouriteItem extends StatefulWidget {
   const FavouriteItem({
     super.key,
-    required this.food,
+    required this.food, required this.onClick,
   });
   final FoodEntity food;
+  final VoidCallback onClick;
+
 
   @override
   State<FavouriteItem> createState() => _FavouriteItemState();
@@ -23,10 +24,8 @@ class _FavouriteItemState extends State<FavouriteItem> {
   late bool cart = widget.food.cart;
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        GoRouter.of(context).push(AppRouter.kFoodDetails, extra: widget.food);
-      },
+    return InkWell(
+      onTap:widget.onClick,
       child: SizedBox(
         width: 400,
         child: Stack(
@@ -241,9 +240,12 @@ class _CustomButton extends StatelessWidget {
 
   final bool cart;
 
+
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 300),
+      width: cart? 160:180 ,
       decoration: const BoxDecoration(
         color: Colors.black,
         borderRadius: BorderRadius.only(
@@ -266,9 +268,7 @@ class _CustomButton extends StatelessWidget {
               !cart ? 'Add to Cart' : 'Remove',
               style: Styles.textStyle17.copyWith(color: Colors.white),
             ),
-            const SizedBox(
-              width: 20,
-            ),
+            const Spacer(),
             CircleAvatar(
                 radius: 17,
                 backgroundColor: !cart ? Colors.grey[300] : Colors.greenAccent,

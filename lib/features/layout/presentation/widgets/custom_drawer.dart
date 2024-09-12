@@ -109,13 +109,13 @@ class _DrawerImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const CircleAvatar(
-      backgroundColor: Colors.transparent,
+      backgroundColor: Colors.white70,
       radius: 80,
       child: CircleAvatar(
         radius: 75.0,
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.black,
         backgroundImage: AssetImage(
-          'assets/images/avatar.png',
+          'assets/appLogo.png',
         ),
       ),
     );

@@ -124,7 +124,10 @@ class _LoginBodyState extends State<LoginBody> {
                       const SizedBox(
                         height: 15,
                       ),
-                      const SignWithGoogle(),
+                      state is LoginWithGoogleLoadingState
+                          ? const CircularProgressIndicator()
+                          :    const SignWithGoogle(),
+
                       const SizedBox(
                         height: 25,
                       ),

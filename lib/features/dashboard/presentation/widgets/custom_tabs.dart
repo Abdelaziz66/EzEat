@@ -13,7 +13,8 @@ class CustomTabs extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 300),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(25),
         color: index == tabIndex ? Colors.black : Colors.white.withOpacity(.3),

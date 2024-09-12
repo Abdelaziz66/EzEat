@@ -5,8 +5,10 @@ import 'custom_tabs.dart';
 
 class CustomTabBar extends StatelessWidget {
   const CustomTabBar({
-    super.key,
+    super.key, required this.tabController,
   });
+   final TabController tabController;
+
 
   @override
   Widget build(BuildContext context) {
@@ -21,9 +23,11 @@ class CustomTabBar extends StatelessWidget {
               length: 4,
               initialIndex: cubit.currentTabBarIndex,
               child: TabBar(
+                controller: tabController,
                 onTap: (index) {
                   cubit.onTapTabBar(index);
                 },
+
                 indicatorColor: Colors.white.withOpacity(0),
                 padding: EdgeInsets.zero,
                 splashBorderRadius: BorderRadius.circular(20),
@@ -53,6 +57,7 @@ class CustomTabBar extends StatelessWidget {
                     tabIndex: 3,
                   ),
                 ],
+
               ),
             ),
           ),
