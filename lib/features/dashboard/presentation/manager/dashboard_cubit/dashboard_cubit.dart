@@ -11,12 +11,6 @@ class DashboardCubit extends Cubit<DashboardState> {
   DashboardCubit({required this.foodUseCase}) : super(DashboardInitial());
   static DashboardCubit get(context) => BlocProvider.of(context);
 
-  int currentTabBarIndex = 0;
-  void onTapTabBar(index) {
-    currentTabBarIndex = index;
-    emit(TabBarState());
-  }
-
   final FoodUseCase foodUseCase;
 
   List<Widget> bestSellerCarouselList = [];

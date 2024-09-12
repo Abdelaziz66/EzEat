@@ -24,15 +24,14 @@ class FoodGridView extends StatelessWidget {
               child: GridView.builder(
                 itemCount: length,
                 scrollDirection: Axis.vertical,
-                // shrinkWrap: true,
                 physics: const BouncingScrollPhysics(),
                 itemBuilder: (context, index) => OpenContainer(
-                  transitionDuration: const Duration(milliseconds: 500),
-                  openColor: Colors.white,
+                  transitionDuration: const Duration(milliseconds: 400),
+                  openColor: Colors.transparent,
                   closedColor: Colors.transparent,
                   closedElevation: 0,
                   openElevation: 0,
-                  middleColor: Colors.white,
+                  middleColor: Colors.transparent,
                   transitionType: ContainerTransitionType.fade,
 
                   closedBuilder: (BuildContext context,VoidCallback openContainer)=>FoodItem(
