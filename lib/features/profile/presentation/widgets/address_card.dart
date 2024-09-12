@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:ez_eat/core/functions/custom_snack_bar_message.dart';
 import 'package:ez_eat/core/style/textStyles.dart';
 import 'package:ez_eat/features/profile/domain/entities/address_entity.dart';
@@ -13,29 +14,31 @@ class AddressCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(10.0),
-      child: Container(
-        height: 235,
-        width: double.infinity,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(35),
-          color: Colors.white.withOpacity(.3),
-        ),
-        child: Column(
-          children: [
-            const _AddressAction(),
-            Container(
-              color: Colors.white24,
-              height: 2,
-            ),
-            Row(
-              children: [
-                const _CustomImage(),
-                _AddressText(addressEntity: addressEntity),
-              ],
-            ),
-          ],
+    return FadeInRight(
+      child: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Container(
+          height: 235,
+          width: double.infinity,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(35),
+            color: Colors.white.withOpacity(.3),
+          ),
+          child: Column(
+            children: [
+              const _AddressAction(),
+              Container(
+                color: Colors.white24,
+                height: 2,
+              ),
+              Row(
+                children: [
+                  const _CustomImage(),
+                  _AddressText(addressEntity: addressEntity),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

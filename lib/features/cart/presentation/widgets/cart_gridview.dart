@@ -32,8 +32,8 @@ class _CartGridViewState extends State<CartGridView> {
               physics: const BouncingScrollPhysics(),
               itemBuilder: (context, index) {
                 return OpenContainer(
-                    transitionDuration: const Duration(milliseconds: 500),
-                    openColor: Colors.white,
+                    transitionDuration: const Duration(milliseconds: 400),
+                    openColor: Colors.transparent,
                     closedColor: Colors.transparent,
                     closedElevation: 0,
                     openElevation: 0,

@@ -35,7 +35,7 @@ class _CartItemState extends State<CartItem> {
         width: 400,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(35),
-          color: Colors.white.withOpacity(.3),
+          color: Colors.white30,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

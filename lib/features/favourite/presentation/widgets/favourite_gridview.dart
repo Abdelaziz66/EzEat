@@ -34,7 +34,7 @@ class _FavouriteGridViewState extends State<FavouriteGridView> {
               physics: const BouncingScrollPhysics(),
               itemBuilder: (context, index) {
                 return OpenContainer(
-                  transitionDuration: const Duration(milliseconds: 500),
+                  transitionDuration: const Duration(milliseconds: 400),
                   openColor: Colors.white,
                   closedColor: Colors.transparent,
                   closedElevation: 0,

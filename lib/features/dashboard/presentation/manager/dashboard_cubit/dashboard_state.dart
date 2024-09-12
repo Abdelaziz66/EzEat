@@ -5,8 +5,6 @@ abstract class DashboardState {}
 
 class DashboardInitial extends DashboardState {}
 
-class TabBarState extends DashboardState {}
-
 class GetDashBoardDataLoadingState extends DashboardState {}
 
 class GetDashBoardDataSuccessState extends DashboardState {
