@@ -52,6 +52,8 @@ dependencies:
   flutter_inappwebview: ^6.0.0
   google_sign_in: ^6.2.1
   flutter_launcher_icons: ^0.13.1
+  animate_do: ^3.3.4
+  animations: ^2.0.11
 
 #  flutter_paypal_payment: ^1.0.0
 
@@ -78,4 +80,5 @@ flutter:
     - assets/images/rive/
     - assets/images/onboarding/
     - assets/images/payment/
+    - assets/
 

@@ -243,7 +243,9 @@ class _CustomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 300),
+      width: cart? 160:180 ,
       decoration: const BoxDecoration(
         color: Colors.black,
         borderRadius: BorderRadius.only(
@@ -266,9 +268,7 @@ class _CustomButton extends StatelessWidget {
               !cart ? 'Add to Cart' : 'Remove',
               style: Styles.textStyle17.copyWith(color: Colors.white),
             ),
-            const SizedBox(
-              width: 20,
-            ),
+            const Spacer(),
             CircleAvatar(
                 radius: 17,
                 backgroundColor: !cart ? Colors.grey[300] : Colors.greenAccent,

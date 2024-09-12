@@ -1,8 +1,4 @@
 import 'package:ez_eat/features/dashboard/domain/use_cases/food_use_case.dart';
-import 'package:ez_eat/features/dashboard/presentation/widgets/discount.dart';
-import 'package:ez_eat/features/dashboard/presentation/widgets/sweets.dart';
-import 'package:ez_eat/features/dashboard/presentation/widgets/drinks.dart';
-import 'package:ez_eat/features/dashboard/presentation/widgets/sandwiches.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/constants/constant.dart';
@@ -16,12 +12,6 @@ class DashboardCubit extends Cubit<DashboardState> {
   static DashboardCubit get(context) => BlocProvider.of(context);
 
   int currentTabBarIndex = 0;
-  List<Widget> tabBarScreens = [
-    const Discount(),
-    const Sandwiches(),
-    const Sweets(),
-    const Drinks(),
-  ];
   void onTapTabBar(index) {
     currentTabBarIndex = index;
     emit(TabBarState());
