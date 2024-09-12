@@ -41,9 +41,11 @@ class _LayoutNavigationBarState extends State<LayoutNavigationBar> {
         child: Padding(
           padding: const EdgeInsets.all(3.0),
           child: BottomNavigationBar(
+            enableFeedback: false,
             backgroundColor: Colors.transparent,
             type: BottomNavigationBarType.fixed,
-            fixedColor: Colors.white,
+            fixedColor: Colors.black,
+
             selectedFontSize: 17,
             selectedLabelStyle: const TextStyle(
               fontWeight: FontWeight.bold,
@@ -55,6 +57,7 @@ class _LayoutNavigationBarState extends State<LayoutNavigationBar> {
             unselectedLabelStyle: const TextStyle(
               color: KColors.secondaryColor,
             ),
+
             unselectedFontSize: 15,
             showUnselectedLabels: false,
             showSelectedLabels: false,

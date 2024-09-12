@@ -55,8 +55,6 @@ dependencies:
   animate_do: ^3.3.4
   animations: ^2.0.11
 
-#  flutter_paypal_payment: ^1.0.0
-
 
 
 dev_dependencies:

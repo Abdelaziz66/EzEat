@@ -14,8 +14,9 @@ import '../../../payment/presentation/widgets/payment_sheet.dart';
 import '../manager/cart_cubit/cart_cubit.dart';
 
 class CartItem extends StatefulWidget {
-  const CartItem({super.key, required this.food});
+  const CartItem({super.key, required this.food, required this.onClick});
   final FoodEntity food;
+  final VoidCallback onClick;
 
   @override
   State<CartItem> createState() => _CartItemState();
@@ -27,10 +28,8 @@ class _CartItemState extends State<CartItem> {
   bool confirm = false;
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        GoRouter.of(context).push(AppRouter.kFoodDetails, extra: widget.food);
-      },
+    return InkWell(
+      onTap: widget.onClick,
       child: Container(
         height: 210,
         width: 400,
