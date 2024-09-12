@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:ez_eat/features/login/presentation/widgets/sign_with_google.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -42,97 +43,101 @@ class _LoginBodyState extends State<LoginBody> {
         return AnimationBackground(
           widget: SafeArea(
             child: SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Form(
-                  key: loginFormKey,
-                  child: Column(
-                    children: [
-                      const BackIcon(),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * .1,
-                      ),
-                      const Text(
-                        'Hello Again !',
-                        style: Styles.textStyle35,
-                      ),
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      Text(
-                        'Welcome back you have been missed!',
-                        textAlign: TextAlign.center,
-                        style: Styles.textStyle30.copyWith(
-                          color: Colors.black54,
+              child: FadeInUp(
+                child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Form(
+                    key: loginFormKey,
+                    child: Column(
+                      children: [
+                        const BackIcon(),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * .1,
                         ),
-                      ),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      CustomTextFormField(
-                        borderRadius: 20,
-                        controller: emailController,
-                        keyboardType: TextInputType.emailAddress,
-                        hintText: 'Email',
-                        prefixIcon: FontAwesomeIcons.solidEnvelope,
-                        obscureText: false,
-                        suffix: const SizedBox(),
-                      ),
-                      const SizedBox(
-                        height: 12,
-                      ),
-                      CustomTextFormField(
-                        borderRadius: 20,
-                        controller: passwordController,
-                        keyboardType: TextInputType.visiblePassword,
-                        hintText: 'Password',
-                        prefixIcon: FontAwesomeIcons.lock,
-                        obscureText: cubit.isVisible,
-                        suffix: Padding(
-                          padding: const EdgeInsets.only(left: 15.0, right: 20),
-                          child: GestureDetector(
-                            onTap: () {
-                              cubit.changeEye();
-                            },
-                            child: FaIcon(
-                              cubit.isVisible
-                                  ? FontAwesomeIcons.eyeSlash
-                                  : FontAwesomeIcons.eye,
-                              color: KColors.primaryColor,
+                        const Text(
+                          'Hello Again !',
+                          style: Styles.textStyle35,
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        Text(
+                          'Welcome back you have been missed!',
+                          textAlign: TextAlign.center,
+                          style: Styles.textStyle30.copyWith(
+                            color: Colors.black54,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 30,
+                        ),
+                        CustomTextFormField(
+                          borderRadius: 20,
+                          controller: emailController,
+                          keyboardType: TextInputType.emailAddress,
+                          hintText: 'Email',
+                          prefixIcon: FontAwesomeIcons.solidEnvelope,
+                          obscureText: false,
+                          suffix: const SizedBox(),
+                        ),
+                        const SizedBox(
+                          height: 12,
+                        ),
+                        CustomTextFormField(
+                          borderRadius: 20,
+                          controller: passwordController,
+                          keyboardType: TextInputType.visiblePassword,
+                          hintText: 'Password',
+                          prefixIcon: FontAwesomeIcons.lock,
+                          obscureText: cubit.isVisible,
+                          suffix: Padding(
+                            padding: const EdgeInsets.only(left: 15.0, right: 20),
+                            child: GestureDetector(
+                              onTap: () {
+                                cubit.changeEye();
+                              },
+                              child: FaIcon(
+                                cubit.isVisible
+                                    ? FontAwesomeIcons.eyeSlash
+                                    : FontAwesomeIcons.eye,
+                                color: KColors.primaryColor,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      const SizedBox(
-                        height: 15,
-                      ),
-                      state is LoginLoadingState
-                          ? const CircularProgressIndicator()
-                          : CustomButton(
-                              onTap: () {
-                                _clickOnLogin(cubit);
-                              },
-                              text: 'Login',
-                            ),
-                      const SizedBox(
-                        height: 25,
-                      ),
-                      const Text(
-                        'Or continue with',
-                        style: Styles.textStyle18,
-                      ),
-                      const SizedBox(
-                        height: 15,
-                      ),
-                      state is LoginWithGoogleLoadingState
-                          ? const CircularProgressIndicator()
-                          :    const SignWithGoogle(),
-
-                      const SizedBox(
-                        height: 25,
-                      ),
-                      const GoToRegister(),
-                    ],
+                        const SizedBox(
+                          height: 15,
+                        ),
+                        state is LoginLoadingState
+                            ? const CircularProgressIndicator()
+                            : CustomButton(
+                                onTap: () {
+                                  _clickOnLogin(cubit);
+                                },
+                                text: 'Login',
+                          borderRadius: 20,
+                
+                              ),
+                        const SizedBox(
+                          height: 25,
+                        ),
+                        const Text(
+                          'Or continue with',
+                          style: Styles.textStyle18,
+                        ),
+                        const SizedBox(
+                          height: 15,
+                        ),
+                        state is LoginWithGoogleLoadingState
+                            ? const CircularProgressIndicator()
+                            :    const SignWithGoogle(),
+                
+                        const SizedBox(
+                          height: 25,
+                        ),
+                        const GoToRegister(),
+                      ],
+                    ),
                   ),
                 ),
               ),

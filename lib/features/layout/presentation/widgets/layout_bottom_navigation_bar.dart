@@ -26,7 +26,7 @@ class _LayoutNavigationBarState extends State<LayoutNavigationBar> {
             ? MediaQuery.of(context).size.width
             : 450,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(30),
+          borderRadius: BorderRadius.circular(32),
           color: Colors.black,
           boxShadow: [
             BoxShadow(

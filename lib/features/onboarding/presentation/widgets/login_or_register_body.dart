@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:ez_eat/core/style/textStyles.dart';
 import 'package:ez_eat/core/widgets/animation_background.dart';
 import 'package:ez_eat/features/dashboard/presentation/manager/dashboard_cubit/dashboard_cubit.dart';
@@ -12,17 +13,17 @@ class LoginOrRegisterBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const AnimationBackground(
+    return  AnimationBackground(
         widget: SafeArea(
       child: Padding(
-        padding: EdgeInsets.all(15.0),
+        padding: const EdgeInsets.all(15.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            _Skip(),
-            _Image(),
-            _Hello(),
-            _CustomButton(),
+            const _Skip(),
+            const _Image(),
+            const _Hello(),
+            BounceInDown(child: const _CustomButton()),
           ],
         ),
       ),
@@ -99,23 +100,25 @@ class _Hello extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Expanded(
+    return  Expanded(
         child: SizedBox(
       width: double.infinity,
       height: double.infinity,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Text('Hello Again!', style: Styles.onboardingTitle),
-          SizedBox(
-            height: 20,
-          ),
-          Text(
-            'You can skip Register and Login',
-            style: Styles.onboardingSubTitle,
-          ),
-        ],
+      child: FadeInDown(
+        child: const Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text('Hello Again!', style: Styles.onboardingTitle),
+            SizedBox(
+              height: 20,
+            ),
+            Text(
+              'You can skip Register and Login',
+              style: Styles.onboardingSubTitle,
+            ),
+          ],
+        ),
       ),
     ));
   }
@@ -134,8 +137,10 @@ class _Image extends StatelessWidget {
           alignment: AlignmentDirectional.center,
           child: Padding(
             padding: const EdgeInsets.all(20.0),
-            child: Image.asset(
-              'assets/images/onboarding/login.png',
+            child: FadeInDown(
+              child: Image.asset(
+                'assets/images/onboarding/login.png',
+              ),
             ),
           ),
         ),
