@@ -13,7 +13,6 @@ class BannerSlider extends StatelessWidget {
         items: DashboardCubit.get(context).offersCarouselList,
         options: CarouselOptions(
           height: double.infinity,
-          viewportFraction: 1,
           initialPage: 0,
           enableInfiniteScroll: true,
           reverse: false,
@@ -22,6 +21,8 @@ class BannerSlider extends StatelessWidget {
           autoPlayAnimationDuration: const Duration(seconds: 1),
           autoPlayCurve: Curves.fastOutSlowIn,
           scrollDirection: Axis.horizontal,
+          viewportFraction: 1,
+          // enlargeCenterPage: true,
         ),
       ),
     );
