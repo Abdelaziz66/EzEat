@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../../../core/constants/constant.dart';
 import '../../../../core/functions/custom_snack_bar_message.dart';
-import '../../../../core/widgets/test.dart';
 
 class LayoutAppBar extends StatelessWidget {
   const LayoutAppBar({
@@ -21,7 +20,6 @@ class LayoutAppBar extends StatelessWidget {
               const Spacer(),
               InkWell(
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => MovieDisplay(),));
                   showSnackBar(message: 'coming soon :)', context: context);
                 },
                 child: const Padding(
