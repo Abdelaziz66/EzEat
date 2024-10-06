@@ -1,16 +1,11 @@
-# ez_eat
+EzEat  
+( Food Delivery App - using “API & Firebase” )
+- Users : any one can register or authenticate with google account.
+- Display food and drinks.
+- Display calories, fats and protein for each food or drink.
+- Each user have a favourite and cart list.
+- User can create multiple delivery point card.
+- Users can make order and pay by credit card “Stripe or paypal”.
+- User can access food and drinks offline
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![poster](./readme/image.png)
