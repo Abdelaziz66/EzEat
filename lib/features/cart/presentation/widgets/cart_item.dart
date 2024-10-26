@@ -196,12 +196,14 @@ class _CartItemState extends State<CartItem> {
             LayoutCubit.get(context).currentNavigationBarIndex = 0;
           });
     } else {
-      customBottomSheet(
+      paymentBottomSheet(
           context: context,
           widget: PaymentMethodsBottomSheet(
             price: widget.food.price!,
             counter: counter,
-          ));
+
+          ),
+      );
     }
   }
 

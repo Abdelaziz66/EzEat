@@ -15,7 +15,11 @@ class BannerItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        GoRouter.of(context).push(AppRouter.kFoodDetails, extra: food);
+        GoRouter.of(context).push(AppRouter.kFoodDetails,
+            extra: {
+          'food': food,
+        }
+        );
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
@@ -53,10 +57,6 @@ class BannerItem extends StatelessWidget {
     );
   }
 }
-
-
-
-
 
 class _FoodInfo extends StatelessWidget {
   const _FoodInfo({
