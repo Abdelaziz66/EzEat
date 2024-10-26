@@ -38,29 +38,24 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: kFoodDetails,
-        pageBuilder: (context, state) => CustomTransitionPage(
-          child: FoodDetails(food: state.extra as FoodEntity),
+        pageBuilder: (context, state) {
+          final Map<String, dynamic> extraData =
+          state.extra as Map<String, dynamic>;
+          final FoodEntity food =
+          extraData['food'] as FoodEntity;
+
+          return CustomTransitionPage(
+          child: FoodDetails(food: food,),
           transitionDuration: const Duration(milliseconds: 300),
           fullscreenDialog: true,
           key: state.pageKey,
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
-            // return SlideTransition(
-            //   position: Tween<Offset>(
-            //     begin: Offset.zero,
-            //     end: const Offset(1.5, 0.0),
-            //   ).animate(
-            //     CurvedAnimation(
-            //       curve: Curves.elasticIn,
-            //       parent: animation,),
-            //   ),
-            //   child: child,
-            // );
             return FadeTransition(
               opacity: CurveTween(curve: Curves.easeIn).animate(animation),
               child: child,
             );
           },
-        ),
+        );}
       ),
       GoRoute(
         path: kLogin,

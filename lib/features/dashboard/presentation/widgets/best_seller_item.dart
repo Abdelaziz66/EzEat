@@ -28,7 +28,9 @@ class _BestSellerItemState extends State<BestSellerItem> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        GoRouter.of(context).push(AppRouter.kFoodDetails, extra: widget.food);
+        GoRouter.of(context).push(AppRouter.kFoodDetails, extra: {
+          'food': widget.food,
+        });
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15.0),
